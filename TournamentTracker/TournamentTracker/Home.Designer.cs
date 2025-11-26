@@ -42,12 +42,18 @@
             exitToolStripMenuItem = new ToolStripMenuItem();
             createBtn = new Button();
             findBtn = new Button();
-            tourList = new DataGridView();
-            pictureBox1 = new PictureBox();
+            flowPanelCards = new FlowLayoutPanel();
+            pnlEmptyState = new Panel();
+            label3 = new Label();
+            label2 = new Label();
+            addBtn = new Button();
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            deleteBtn = new ToolStripMenuItem();
+            toolStripTextBox1 = new ToolStripMenuItem();
             panel1.SuspendLayout();
             Account.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)tourList).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pnlEmptyState.SuspendLayout();
+            contextMenuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
@@ -60,7 +66,7 @@
             panel1.Dock = DockStyle.Top;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(928, 60);
+            panel1.Size = new Size(1278, 72);
             panel1.TabIndex = 0;
             // 
             // sfindBtn
@@ -69,7 +75,7 @@
             sfindBtn.FlatStyle = FlatStyle.Flat;
             sfindBtn.ForeColor = Color.Transparent;
             sfindBtn.Image = (Image)resources.GetObject("sfindBtn.Image");
-            sfindBtn.Location = new Point(726, 16);
+            sfindBtn.Location = new Point(1072, 22);
             sfindBtn.Name = "sfindBtn";
             sfindBtn.Size = new Size(30, 30);
             sfindBtn.TabIndex = 5;
@@ -82,11 +88,12 @@
             screateBtn.FlatStyle = FlatStyle.Flat;
             screateBtn.ForeColor = Color.Transparent;
             screateBtn.Image = (Image)resources.GetObject("screateBtn.Image");
-            screateBtn.Location = new Point(801, 16);
+            screateBtn.Location = new Point(1147, 22);
             screateBtn.Name = "screateBtn";
             screateBtn.Size = new Size(30, 30);
             screateBtn.TabIndex = 4;
             screateBtn.UseVisualStyleBackColor = false;
+            screateBtn.Click += screateBtn_Click;
             // 
             // LogOutBtn
             // 
@@ -98,7 +105,7 @@
             LogOutBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             LogOutBtn.ForeColor = SystemColors.ActiveCaptionText;
             LogOutBtn.Image = (Image)resources.GetObject("LogOutBtn.Image");
-            LogOutBtn.Location = new Point(875, 16);
+            LogOutBtn.Location = new Point(1221, 22);
             LogOutBtn.Name = "LogOutBtn";
             LogOutBtn.Size = new Size(30, 30);
             LogOutBtn.TabIndex = 3;
@@ -109,8 +116,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            label1.ForeColor = Color.LimeGreen;
-            label1.Location = new Point(28, 7);
+            label1.ForeColor = Color.FromArgb(52, 178, 51);
+            label1.Location = new Point(25, 9);
             label1.Name = "label1";
             label1.Size = new Size(298, 45);
             label1.TabIndex = 2;
@@ -153,69 +160,130 @@
             createBtn.BackColor = Color.FromArgb(52, 178, 51);
             createBtn.FlatAppearance.BorderSize = 0;
             createBtn.FlatStyle = FlatStyle.Flat;
-            createBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            createBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             createBtn.ForeColor = Color.White;
-            createBtn.Location = new Point(62, 93);
+            createBtn.Location = new Point(68, 132);
             createBtn.Name = "createBtn";
-            createBtn.Size = new Size(303, 70);
+            createBtn.Size = new Size(397, 104);
             createBtn.TabIndex = 2;
             createBtn.Text = "CREATE TOURNAMENT";
             createBtn.UseVisualStyleBackColor = false;
+            createBtn.Click += createBtn_Click;
             // 
             // findBtn
             // 
             findBtn.BackColor = Color.FromArgb(52, 178, 51);
             findBtn.FlatAppearance.BorderSize = 0;
             findBtn.FlatStyle = FlatStyle.Flat;
-            findBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            findBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             findBtn.ForeColor = Color.White;
-            findBtn.Location = new Point(62, 197);
+            findBtn.Location = new Point(68, 280);
             findBtn.Name = "findBtn";
-            findBtn.Size = new Size(303, 70);
+            findBtn.Size = new Size(397, 104);
             findBtn.TabIndex = 3;
             findBtn.Text = "FIND TOURNAMENTS";
             findBtn.UseVisualStyleBackColor = false;
             // 
-            // tourList
+            // flowPanelCards
             // 
-            tourList.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            tourList.Location = new Point(62, 301);
-            tourList.Name = "tourList";
-            tourList.RowHeadersWidth = 62;
-            tourList.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            tourList.Size = new Size(799, 225);
-            tourList.TabIndex = 4;
+            flowPanelCards.AutoScroll = true;
+            flowPanelCards.BackColor = Color.Transparent;
+            flowPanelCards.Dock = DockStyle.Bottom;
+            flowPanelCards.Location = new Point(0, 452);
+            flowPanelCards.Name = "flowPanelCards";
+            flowPanelCards.Padding = new Padding(20, 20, 0, 0);
+            flowPanelCards.Size = new Size(1278, 312);
+            flowPanelCards.TabIndex = 4;
+            flowPanelCards.Paint += flowPanelCards_Paint;
             // 
-            // pictureBox1
+            // pnlEmptyState
             // 
-            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
-            pictureBox1.Location = new Point(383, 66);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(478, 229);
-            pictureBox1.TabIndex = 5;
-            pictureBox1.TabStop = false;
+            pnlEmptyState.Controls.Add(label3);
+            pnlEmptyState.Controls.Add(label2);
+            pnlEmptyState.Controls.Add(addBtn);
+            pnlEmptyState.Location = new Point(0, 452);
+            pnlEmptyState.Name = "pnlEmptyState";
+            pnlEmptyState.Size = new Size(1243, 282);
+            pnlEmptyState.TabIndex = 0;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            label3.ForeColor = SystemColors.ControlLightLight;
+            label3.Location = new Point(582, 80);
+            label3.Name = "label3";
+            label3.Size = new Size(135, 38);
+            label3.TabIndex = 2;
+            label3.Text = "Add now";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            label2.ForeColor = SystemColors.ControlLightLight;
+            label2.Location = new Point(475, 18);
+            label2.Name = "label2";
+            label2.Size = new Size(371, 48);
+            label2.TabIndex = 1;
+            label2.Text = "No tournaments yet!";
+            // 
+            // addBtn
+            // 
+            addBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            addBtn.FlatAppearance.BorderSize = 0;
+            addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Image = (Image)resources.GetObject("addBtn.Image");
+            addBtn.Location = new Point(597, 144);
+            addBtn.Name = "addBtn";
+            addBtn.Size = new Size(100, 100);
+            addBtn.TabIndex = 0;
+            addBtn.UseVisualStyleBackColor = true;
+            addBtn.Click += addBtn_Click_1;
+            // 
+            // contextMenuStrip1
+            // 
+            contextMenuStrip1.ImageScalingSize = new Size(24, 24);
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteBtn, toolStripTextBox1 });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(214, 68);
+            // 
+            // deleteBtn
+            // 
+            deleteBtn.BackColor = Color.White;
+            deleteBtn.Name = "deleteBtn";
+            deleteBtn.Size = new Size(213, 32);
+            deleteBtn.Text = "✏️ Chỉnh sửa";
+            // 
+            // toolStripTextBox1
+            // 
+            toolStripTextBox1.Name = "toolStripTextBox1";
+            toolStripTextBox1.Size = new Size(213, 32);
+            toolStripTextBox1.Text = "🗑️ Xóa giải đấu";
+            toolStripTextBox1.Click += toolStripTextBox1_Click;
             // 
             // Home
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(928, 538);
-            Controls.Add(pictureBox1);
-            Controls.Add(tourList);
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(32, 34, 37);
+            ClientSize = new Size(1278, 764);
+            Controls.Add(pnlEmptyState);
+            Controls.Add(flowPanelCards);
             Controls.Add(findBtn);
             Controls.Add(createBtn);
             Controls.Add(panel1);
-            ForeColor = SystemColors.ControlDark;
+            ForeColor = SystemColors.ControlDarkDark;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
             Text = " ";
             FormClosed += Home_FormClosed;
+            Load += Home_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             Account.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)tourList).EndInit();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            pnlEmptyState.ResumeLayout(false);
+            pnlEmptyState.PerformLayout();
+            contextMenuStrip1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -231,11 +299,17 @@
         private ToolStripMenuItem exitToolStripMenuItem;
         private Button createBtn;
         private Button findBtn;
-        private DataGridView tourList;
-        private PictureBox pictureBox1;
         private Button Screate;
         private Button button2;
         private Button sfindBtn;
         private Button screateBtn;
+        private FlowLayoutPanel flowPanelCards;
+        private Panel pnlEmptyState;
+        private Button addBtn;
+        private Label label3;
+        private Label label2;
+        private ContextMenuStrip contextMenuStrip1;
+        private ToolStripMenuItem deleteBtn;
+        private ToolStripMenuItem toolStripTextBox1;
     }
 }

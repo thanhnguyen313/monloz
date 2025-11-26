@@ -57,6 +57,10 @@
             settingsToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            label9 = new Label();
+            label10 = new Label();
+            startDate = new DateTimePicker();
+            prizeTextBox = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numPar).BeginInit();
             panelSingle.SuspendLayout();
@@ -191,7 +195,7 @@
             // 
             panelSingle.Controls.Add(label8);
             panelSingle.Controls.Add(comboBox2);
-            panelSingle.Location = new Point(303, 282);
+            panelSingle.Location = new Point(303, 370);
             panelSingle.Name = "panelSingle";
             panelSingle.Size = new Size(400, 81);
             panelSingle.TabIndex = 10;
@@ -226,7 +230,7 @@
             panelMulti.Controls.Add(label6);
             panelMulti.Controls.Add(comboBox4);
             panelMulti.Controls.Add(comboBox3);
-            panelMulti.Location = new Point(303, 378);
+            panelMulti.Location = new Point(303, 466);
             panelMulti.Name = "panelMulti";
             panelMulti.Size = new Size(400, 122);
             panelMulti.TabIndex = 11;
@@ -283,7 +287,7 @@
             singleRad.AutoSize = true;
             singleRad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             singleRad.ForeColor = SystemColors.Info;
-            singleRad.Location = new Point(60, 305);
+            singleRad.Location = new Point(60, 393);
             singleRad.Name = "singleRad";
             singleRad.Size = new Size(140, 29);
             singleRad.TabIndex = 12;
@@ -297,7 +301,7 @@
             multiRad.AutoSize = true;
             multiRad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
             multiRad.ForeColor = SystemColors.Info;
-            multiRad.Location = new Point(60, 410);
+            multiRad.Location = new Point(60, 498);
             multiRad.Name = "multiRad";
             multiRad.Size = new Size(133, 29);
             multiRad.TabIndex = 13;
@@ -311,7 +315,7 @@
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
             label7.ForeColor = SystemColors.ButtonHighlight;
-            label7.Location = new Point(321, 236);
+            label7.Location = new Point(321, 324);
             label7.Name = "label7";
             label7.Size = new Size(87, 30);
             label7.TabIndex = 14;
@@ -324,7 +328,7 @@
             createBtn.FlatStyle = FlatStyle.Flat;
             createBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
             createBtn.ForeColor = Color.White;
-            createBtn.Location = new Point(214, 526);
+            createBtn.Location = new Point(214, 614);
             createBtn.Name = "createBtn";
             createBtn.Size = new Size(303, 60);
             createBtn.TabIndex = 15;
@@ -363,12 +367,58 @@
             exitToolStripMenuItem.Size = new Size(176, 32);
             exitToolStripMenuItem.Text = "Exit";
             // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label9.ForeColor = SystemColors.ButtonHighlight;
+            label9.Location = new Point(538, 236);
+            label9.Name = "label9";
+            label9.Size = new Size(65, 30);
+            label9.TabIndex = 16;
+            label9.Text = "Prize";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label10.ForeColor = SystemColors.ButtonHighlight;
+            label10.Location = new Point(105, 236);
+            label10.Name = "label10";
+            label10.Size = new Size(117, 30);
+            label10.TabIndex = 17;
+            label10.Text = "Start date";
+            // 
+            // startDate
+            // 
+            startDate.CalendarMonthBackground = Color.Gray;
+            startDate.Format = DateTimePickerFormat.Custom;
+            startDate.Location = new Point(60, 270);
+            startDate.Name = "startDate";
+            startDate.Size = new Size(206, 31);
+            startDate.TabIndex = 18;
+            startDate.ValueChanged += starTime_ValueChanged;
+            // 
+            // prizeTextBox
+            // 
+            prizeTextBox.BackColor = Color.FromArgb(64, 64, 64);
+            prizeTextBox.Font = new Font("Segoe UI", 10F);
+            prizeTextBox.ForeColor = SystemColors.Info;
+            prizeTextBox.Location = new Point(436, 269);
+            prizeTextBox.Name = "prizeTextBox";
+            prizeTextBox.PlaceholderText = "Tournament Prize";
+            prizeTextBox.Size = new Size(279, 34);
+            prizeTextBox.TabIndex = 19;
+            // 
             // CreaTourForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(737, 619);
+            ClientSize = new Size(737, 691);
+            Controls.Add(prizeTextBox);
+            Controls.Add(startDate);
+            Controls.Add(label10);
+            Controls.Add(label9);
             Controls.Add(createBtn);
             Controls.Add(label7);
             Controls.Add(multiRad);
@@ -382,7 +432,10 @@
             Controls.Add(label2);
             Controls.Add(sportCbox);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "CreaTourForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "CreaTourForm";
             Load += CreaTourForm_Load;
             panel1.ResumeLayout(false);
@@ -410,7 +463,7 @@
         private Label label4;
         private NumericUpDown numPar;
         private Label label5;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker startDate;
         private Panel panelSingle;
         private ComboBox comboBox2;
         private Panel panelMulti;
@@ -427,5 +480,8 @@
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem logOutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private Label label9;
+        private Label label10;
+        private TextBox prizeTextBox;
     }
 }

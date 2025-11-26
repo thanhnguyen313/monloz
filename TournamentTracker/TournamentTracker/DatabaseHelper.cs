@@ -252,5 +252,76 @@ namespace TeamListForm
                 return match > 0; // true nếu tồn tại, false nếu không
             }
         }
+        //Tournaments database
+        public bool AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = @"INSERT INTO Tournaments 
+                               (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT) 
+                               VALUES 
+                               (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount)";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@location", string.IsNullOrEmpty(location) ? (object)DBNull.Value : location);
+                    cmd.Parameters.AddWithValue("@startDate", startDate.HasValue ? (object)startDate.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@prize", string.IsNullOrEmpty(prize) ? (object)DBNull.Value : prize);
+                    cmd.Parameters.AddWithValue("@posterPath", string.IsNullOrEmpty(posterPath) ? (object)DBNull.Value : posterPath);
+                    cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
+                    cmd.Parameters.AddWithValue("@teamCount", teamCount);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    System.Diagnostics.Debug.WriteLine("Lỗi Database: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+        public DataTable GetAllTournaments()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Tournaments ORDER BY ID DESC";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return dt;
+        }
+        public bool DeleteTournament(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "DELETE FROM Tournaments WHERE ID = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+                catch (Exception)
+                {
+                    return false; 
+                }
+            }
+        }
     }
 }

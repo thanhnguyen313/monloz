@@ -5,20 +5,27 @@ namespace TourApp
     {
         private void Enter_Is_Tab_KeyDown(object sender, KeyEventArgs e)
         {
-            // Kiểm tra xem phím Enter có được nhấn không
             if (e.KeyCode == Keys.Enter)
             {
-                // Gửi lệnh gõ phím {TAB} cho ứng dụng
                 System.Windows.Forms.SendKeys.Send("{TAB}");
-
-                // Ngăn hệ thống xử lý phím Enter thêm nữa (rất quan trọng)
                 e.SuppressKeyPress = true;
                 e.Handled = true;
+            }
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; 
+                return cp;
             }
         }
         public LoginForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             res_usnTextBox.KeyDown += Enter_Is_Tab_KeyDown;
             res_passTextBox.KeyDown += Enter_Is_Tab_KeyDown;
             usnTextBox.KeyDown += Enter_Is_Tab_KeyDown;
