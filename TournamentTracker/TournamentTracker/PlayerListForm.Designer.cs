@@ -28,8 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerListForm));
             panelHeader = new Panel();
-            lbTitle = new Label();
+            lblTitle = new Label();
             panelSearch = new Panel();
             btnSearch = new Button();
             txtSearch = new TextBox();
@@ -47,30 +48,32 @@
             // 
             // panelHeader
             // 
-            panelHeader.Controls.Add(lbTitle);
-            panelHeader.Location = new Point(52, 30);
+            panelHeader.BackColor = Color.FromArgb(35, 38, 39);
+            panelHeader.Controls.Add(lblTitle);
+            panelHeader.Location = new Point(272, 49);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(814, 100);
+            panelHeader.Size = new Size(814, 87);
             panelHeader.TabIndex = 0;
             // 
-            // lbTitle
+            // lblTitle
             // 
-            lbTitle.AutoSize = true;
-            lbTitle.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbTitle.ForeColor = Color.FromArgb(40, 156, 56);
-            lbTitle.Location = new Point(35, 29);
-            lbTitle.Name = "lbTitle";
-            lbTitle.Size = new Size(352, 32);
-            lbTitle.TabIndex = 1;
-            lbTitle.Text = "DANH SÁCH CẦU THỦ CỦA ...";
+            lblTitle.AutoSize = true;
+            lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.ForeColor = Color.FromArgb(40, 156, 56);
+            lblTitle.Location = new Point(35, 29);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(474, 45);
+            lblTitle.TabIndex = 1;
+            lblTitle.Text = "DANH SÁCH CẦU THỦ CỦA ...";
             // 
             // panelSearch
             // 
+            panelSearch.BackColor = Color.Transparent;
             panelSearch.Controls.Add(btnSearch);
             panelSearch.Controls.Add(txtSearch);
             panelSearch.Controls.Add(lbSearch);
             panelSearch.ForeColor = Color.FromArgb(40, 156, 56);
-            panelSearch.Location = new Point(52, 189);
+            panelSearch.Location = new Point(272, 142);
             panelSearch.Name = "panelSearch";
             panelSearch.Size = new Size(814, 90);
             panelSearch.TabIndex = 1;
@@ -90,7 +93,7 @@
             txtSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtSearch.Location = new Point(220, 28);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(241, 33);
+            txtSearch.Size = new Size(350, 33);
             txtSearch.TabIndex = 3;
             // 
             // lbSearch
@@ -105,19 +108,21 @@
             // 
             // panelOptionBtn
             // 
+            panelOptionBtn.BackColor = Color.Transparent;
             panelOptionBtn.Controls.Add(btnDelete);
             panelOptionBtn.Controls.Add(btnUpdate);
             panelOptionBtn.Controls.Add(btnAdd);
-            panelOptionBtn.Location = new Point(52, 478);
+            panelOptionBtn.Location = new Point(272, 633);
             panelOptionBtn.Name = "panelOptionBtn";
-            panelOptionBtn.Size = new Size(814, 90);
+            panelOptionBtn.Size = new Size(814, 113);
             panelOptionBtn.TabIndex = 2;
             // 
             // btnDelete
             // 
+            btnDelete.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(624, 27);
             btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(75, 23);
+            btnDelete.Size = new Size(135, 41);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = true;
@@ -125,9 +130,10 @@
             // 
             // btnUpdate
             // 
-            btnUpdate.Location = new Point(386, 27);
+            btnUpdate.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnUpdate.Location = new Point(342, 27);
             btnUpdate.Name = "btnUpdate";
-            btnUpdate.Size = new Size(75, 23);
+            btnUpdate.Size = new Size(133, 41);
             btnUpdate.TabIndex = 1;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = true;
@@ -135,9 +141,10 @@
             // 
             // btnAdd
             // 
+            btnAdd.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.Location = new Point(35, 27);
             btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(75, 23);
+            btnAdd.Size = new Size(115, 41);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
@@ -146,16 +153,18 @@
             // dgvPlayers
             // 
             dgvPlayers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvPlayers.Location = new Point(52, 300);
+            dgvPlayers.Location = new Point(272, 238);
             dgvPlayers.Name = "dgvPlayers";
-            dgvPlayers.Size = new Size(814, 150);
+            dgvPlayers.Size = new Size(814, 389);
             dgvPlayers.TabIndex = 3;
             // 
             // PlayerListForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1062, 617);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            ClientSize = new Size(1284, 781);
             Controls.Add(dgvPlayers);
             Controls.Add(panelOptionBtn);
             Controls.Add(panelSearch);
@@ -174,7 +183,7 @@
         #endregion
 
         private Panel panelHeader;
-        private Label lbTitle;
+        private Label lblTitle;
         private Panel panelSearch;
         private Panel panelOptionBtn;
         private Button btnSearch;

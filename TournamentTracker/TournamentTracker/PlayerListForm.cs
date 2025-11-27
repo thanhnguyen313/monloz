@@ -21,6 +21,7 @@ namespace TeamListForm
             _teamId = teamId;
             _teamName = teamName;
             this.Text = $"Danh sách cầu thủ - {_teamName}";
+            lblTitle.Text = $"DANH SÁCH ĐỘI {_teamName.ToUpper()}";
             LoadPlayers();
         }
 
@@ -92,6 +93,15 @@ namespace TeamListForm
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
             LoadPlayers(txtSearch.Text.Trim());
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000; // Bật chế độ Double buffering của Windows
+                return cp;
+            }
         }
     }
 }

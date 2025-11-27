@@ -242,6 +242,7 @@
             Controls.Add(panelOption);
             Controls.Add(panelSearch);
             Controls.Add(Header);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.DarkGray;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;

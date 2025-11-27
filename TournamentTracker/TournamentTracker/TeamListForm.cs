@@ -11,6 +11,7 @@ namespace TeamListForm
         public TeamListForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
             LoadTeams(); // Load lần đầu
         }
 

@@ -41,7 +41,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(133, 174);
+            label1.Location = new Point(126, 136);
+            label1.Margin = new Padding(2, 0, 2, 0);
             label1.Name = "label1";
             label1.Size = new Size(144, 32);
             label1.TabIndex = 0;
@@ -51,7 +52,8 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(133, 235);
+            label2.Location = new Point(126, 185);
+            label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(81, 32);
             label2.TabIndex = 1;
@@ -62,9 +64,10 @@
             txtCoach.BackColor = Color.FromArgb(35, 38, 39);
             txtCoach.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtCoach.ForeColor = Color.DarkGray;
-            txtCoach.Location = new Point(333, 234);
+            txtCoach.Location = new Point(238, 187);
+            txtCoach.Margin = new Padding(2, 2, 2, 2);
             txtCoach.Name = "txtCoach";
-            txtCoach.Size = new Size(420, 33);
+            txtCoach.Size = new Size(301, 33);
             txtCoach.TabIndex = 4;
             // 
             // txtTeamName
@@ -72,18 +75,20 @@
             txtTeamName.BackColor = Color.FromArgb(35, 38, 39);
             txtTeamName.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtTeamName.ForeColor = Color.DarkGray;
-            txtTeamName.Location = new Point(333, 173);
+            txtTeamName.Location = new Point(238, 138);
+            txtTeamName.Margin = new Padding(2, 2, 2, 2);
             txtTeamName.Name = "txtTeamName";
-            txtTeamName.Size = new Size(420, 33);
+            txtTeamName.Size = new Size(301, 33);
             txtTeamName.TabIndex = 6;
             // 
             // btnOption
             // 
             btnOption.BackColor = Color.FromArgb(35, 38, 39);
             btnOption.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnOption.Location = new Point(176, 307);
+            btnOption.Location = new Point(126, 246);
+            btnOption.Margin = new Padding(2, 2, 2, 2);
             btnOption.Name = "btnOption";
-            btnOption.Size = new Size(112, 47);
+            btnOption.Size = new Size(80, 38);
             btnOption.TabIndex = 7;
             btnOption.Text = "Save";
             btnOption.UseVisualStyleBackColor = false;
@@ -93,9 +98,10 @@
             // 
             btnCancel.BackColor = Color.FromArgb(35, 38, 39);
             btnCancel.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(641, 307);
+            btnCancel.Location = new Point(458, 246);
+            btnCancel.Margin = new Padding(2, 2, 2, 2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(112, 47);
+            btnCancel.Size = new Size(80, 38);
             btnCancel.TabIndex = 8;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
@@ -103,20 +109,22 @@
             // 
             // TeamEditorForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(5F, 12F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(35, 38, 39);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(900, 500);
+            ClientSize = new Size(643, 400);
             Controls.Add(btnCancel);
             Controls.Add(btnOption);
             Controls.Add(txtTeamName);
             Controls.Add(txtCoach);
             Controls.Add(label2);
             Controls.Add(label1);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.FromArgb(40, 156, 56);
             FormBorderStyle = FormBorderStyle.None;
+            Margin = new Padding(2, 2, 2, 2);
             Name = "TeamEditorForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
