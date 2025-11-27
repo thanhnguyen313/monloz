@@ -102,6 +102,7 @@ namespace TeamListForm
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
     }
 
 

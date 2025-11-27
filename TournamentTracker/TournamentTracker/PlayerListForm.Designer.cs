@@ -80,17 +80,20 @@
             // 
             // btnSearch
             // 
+            btnSearch.BackColor = Color.FromArgb(35, 38, 39);
             btnSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSearch.Location = new Point(624, 27);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(135, 34);
             btnSearch.TabIndex = 4;
             btnSearch.Text = "Search";
-            btnSearch.UseVisualStyleBackColor = true;
+            btnSearch.UseVisualStyleBackColor = false;
             // 
             // txtSearch
             // 
+            txtSearch.BackColor = Color.FromArgb(35, 38, 39);
             txtSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtSearch.ForeColor = Color.DarkGray;
             txtSearch.Location = new Point(220, 28);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(350, 33);
@@ -112,6 +115,7 @@
             panelOptionBtn.Controls.Add(btnDelete);
             panelOptionBtn.Controls.Add(btnUpdate);
             panelOptionBtn.Controls.Add(btnAdd);
+            panelOptionBtn.ForeColor = Color.FromArgb(40, 156, 56);
             panelOptionBtn.Location = new Point(272, 633);
             panelOptionBtn.Name = "panelOptionBtn";
             panelOptionBtn.Size = new Size(814, 113);
@@ -119,39 +123,43 @@
             // 
             // btnDelete
             // 
+            btnDelete.BackColor = Color.FromArgb(35, 38, 39);
             btnDelete.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnDelete.Location = new Point(624, 27);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(135, 41);
             btnDelete.TabIndex = 2;
             btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
+            btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
             // 
             // btnUpdate
             // 
+            btnUpdate.BackColor = Color.FromArgb(35, 38, 39);
             btnUpdate.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnUpdate.Location = new Point(342, 27);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(133, 41);
             btnUpdate.TabIndex = 1;
             btnUpdate.Text = "Update";
-            btnUpdate.UseVisualStyleBackColor = true;
+            btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
             // 
             // btnAdd
             // 
+            btnAdd.BackColor = Color.FromArgb(35, 38, 39);
             btnAdd.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdd.Location = new Point(35, 27);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(115, 41);
             btnAdd.TabIndex = 0;
             btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
+            btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
             // 
             // dgvPlayers
             // 
+            dgvPlayers.BackgroundColor = Color.FromArgb(35, 38, 39);
             dgvPlayers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvPlayers.Location = new Point(272, 238);
             dgvPlayers.Name = "dgvPlayers";
@@ -160,8 +168,7 @@
             // 
             // PlayerListForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(1284, 781);
@@ -169,6 +176,7 @@
             Controls.Add(panelOptionBtn);
             Controls.Add(panelSearch);
             Controls.Add(panelHeader);
+            Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             Name = "PlayerListForm";
             Text = "Form1";
             panelHeader.ResumeLayout(false);

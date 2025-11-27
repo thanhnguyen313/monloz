@@ -64,8 +64,8 @@
             txtCoach.BackColor = Color.FromArgb(35, 38, 39);
             txtCoach.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtCoach.ForeColor = Color.DarkGray;
-            txtCoach.Location = new Point(238, 187);
-            txtCoach.Margin = new Padding(2, 2, 2, 2);
+            txtCoach.Location = new Point(319, 188);
+            txtCoach.Margin = new Padding(2);
             txtCoach.Name = "txtCoach";
             txtCoach.Size = new Size(301, 33);
             txtCoach.TabIndex = 4;
@@ -75,8 +75,8 @@
             txtTeamName.BackColor = Color.FromArgb(35, 38, 39);
             txtTeamName.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
             txtTeamName.ForeColor = Color.DarkGray;
-            txtTeamName.Location = new Point(238, 138);
-            txtTeamName.Margin = new Padding(2, 2, 2, 2);
+            txtTeamName.Location = new Point(319, 139);
+            txtTeamName.Margin = new Padding(2);
             txtTeamName.Name = "txtTeamName";
             txtTeamName.Size = new Size(301, 33);
             txtTeamName.TabIndex = 6;
@@ -86,9 +86,9 @@
             btnOption.BackColor = Color.FromArgb(35, 38, 39);
             btnOption.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnOption.Location = new Point(126, 246);
-            btnOption.Margin = new Padding(2, 2, 2, 2);
+            btnOption.Margin = new Padding(2);
             btnOption.Name = "btnOption";
-            btnOption.Size = new Size(80, 38);
+            btnOption.Size = new Size(121, 38);
             btnOption.TabIndex = 7;
             btnOption.Text = "Save";
             btnOption.UseVisualStyleBackColor = false;
@@ -98,10 +98,10 @@
             // 
             btnCancel.BackColor = Color.FromArgb(35, 38, 39);
             btnCancel.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(458, 246);
-            btnCancel.Margin = new Padding(2, 2, 2, 2);
+            btnCancel.Location = new Point(498, 246);
+            btnCancel.Margin = new Padding(2);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(80, 38);
+            btnCancel.Size = new Size(122, 38);
             btnCancel.TabIndex = 8;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
@@ -109,12 +109,11 @@
             // 
             // TeamEditorForm
             // 
-            AutoScaleDimensions = new SizeF(5F, 12F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(35, 38, 39);
             BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
             BackgroundImageLayout = ImageLayout.Stretch;
-            ClientSize = new Size(643, 400);
+            ClientSize = new Size(750, 400);
             Controls.Add(btnCancel);
             Controls.Add(btnOption);
             Controls.Add(txtTeamName);
@@ -124,7 +123,7 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.FromArgb(40, 156, 56);
             FormBorderStyle = FormBorderStyle.None;
-            Margin = new Padding(2, 2, 2, 2);
+            Margin = new Padding(2);
             Name = "TeamEditorForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form2";
