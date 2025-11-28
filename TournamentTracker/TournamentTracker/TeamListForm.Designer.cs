@@ -179,6 +179,7 @@
             dgvTeams.AllowUserToDeleteRows = false;
             dgvTeams.AllowUserToResizeColumns = false;
             dgvTeams.AllowUserToResizeRows = false;
+            dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvTeams.BackgroundColor = Color.FromArgb(35, 38, 39);
             dgvTeams.BorderStyle = BorderStyle.Fixed3D;
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
@@ -198,10 +199,12 @@
             dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(35, 38, 39);
             dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
             dgvTeams.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvTeams.EditMode = DataGridViewEditMode.EditProgrammatically;
             dgvTeams.EnableHeadersVisualStyles = false;
             dgvTeams.GridColor = Color.DarkGray;
             dgvTeams.Location = new Point(195, 231);
             dgvTeams.Name = "dgvTeams";
+            dgvTeams.ReadOnly = true;
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(35, 38, 39);
             dataGridViewCellStyle3.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
@@ -211,6 +214,8 @@
             dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
             dgvTeams.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
             dgvTeams.RowHeadersVisible = false;
+            dgvTeams.RowTemplate.Height = 42;
+            dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTeams.Size = new Size(889, 416);
             dgvTeams.TabIndex = 11;
             // 

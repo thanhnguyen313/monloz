@@ -36,9 +36,9 @@ namespace TeamListForm
             if (dgvPlayers.Columns["TeamID"] != null) dgvPlayers.Columns["TeamID"].Visible = false;
             if (dgvPlayers.Columns["TeamName"] != null) dgvPlayers.Columns["TeamName"].Visible = false;
 
-            dgvPlayers.Columns["PlayerName"].HeaderText = "Tên cầu thủ";
-            dgvPlayers.Columns["Age"].HeaderText = "Tuổi";
-            dgvPlayers.Columns["Position"].HeaderText = "Vị trí";
+            dgvPlayers.Columns["PlayerName"].HeaderText = "PLAYER NAME";
+            dgvPlayers.Columns["Age"].HeaderText = "AGE";
+            dgvPlayers.Columns["Position"].HeaderText = "POSITION";
         }
 
         // BUTTON OPTIONS (PlayersEditorForm)
@@ -94,6 +94,12 @@ namespace TeamListForm
         {
             LoadPlayers(txtSearch.Text.Trim());
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadPlayers(txtSearch.Text.Trim());
+        }
+
         protected override CreateParams CreateParams
         {
             get

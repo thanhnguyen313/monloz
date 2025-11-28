@@ -33,17 +33,6 @@ namespace TeamListForm
             if (dgvTeams.Columns["TEAMNAME"] != null) dgvTeams.Columns["TEAMNAME"].HeaderText = "TEAM";
             if (dgvTeams.Columns["COACH"] != null) dgvTeams.Columns["COACH"].HeaderText = "COACH";
 
-            // Chỉnh row height (kiếm ko ra trong bảng prop :< )
-            dgvTeams.RowTemplate.Height = 42;
-            // Tự động co giãn
-            dgvTeams.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            // CHẶN CHẾT – KHÔNG THỂ SỬA 
-            dgvTeams.ReadOnly = true;
-            dgvTeams.AllowUserToAddRows = false;
-            dgvTeams.AllowUserToDeleteRows = false;
-            dgvTeams.EditMode = DataGridViewEditMode.EditProgrammatically; // QUAN TRỌNG NHẤT!
-            dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-
             // Bonus: chặn luôn sự kiện bắt đầu sửa
             dgvTeams.CellBeginEdit += (s, e) => e.Cancel = true;
 

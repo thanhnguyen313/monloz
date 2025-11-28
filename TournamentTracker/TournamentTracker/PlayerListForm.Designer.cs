@@ -28,6 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayerListForm));
             panelHeader = new Panel();
             lblTitle = new Label();
@@ -50,9 +53,9 @@
             // 
             panelHeader.BackColor = Color.FromArgb(35, 38, 39);
             panelHeader.Controls.Add(lblTitle);
-            panelHeader.Location = new Point(272, 49);
+            panelHeader.Location = new Point(272, 73);
             panelHeader.Name = "panelHeader";
-            panelHeader.Size = new Size(814, 87);
+            panelHeader.Size = new Size(814, 63);
             panelHeader.TabIndex = 0;
             // 
             // lblTitle
@@ -60,7 +63,7 @@
             lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
             lblTitle.ForeColor = Color.FromArgb(40, 156, 56);
-            lblTitle.Location = new Point(35, 29);
+            lblTitle.Location = new Point(35, 12);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(474, 45);
             lblTitle.TabIndex = 1;
@@ -81,31 +84,32 @@
             // btnSearch
             // 
             btnSearch.BackColor = Color.FromArgb(35, 38, 39);
-            btnSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSearch.Location = new Point(624, 27);
+            btnSearch.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSearch.Location = new Point(679, 22);
             btnSearch.Name = "btnSearch";
-            btnSearch.Size = new Size(135, 34);
+            btnSearch.Size = new Size(135, 47);
             btnSearch.TabIndex = 4;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
+            btnSearch.Click += btnSearch_Click;
             // 
             // txtSearch
             // 
             txtSearch.BackColor = Color.FromArgb(35, 38, 39);
-            txtSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point, 0);
+            txtSearch.Font = new Font("Segoe UI", 18F, FontStyle.Italic, GraphicsUnit.Point, 0);
             txtSearch.ForeColor = Color.DarkGray;
-            txtSearch.Location = new Point(220, 28);
+            txtSearch.Location = new Point(250, 26);
             txtSearch.Name = "txtSearch";
-            txtSearch.Size = new Size(350, 33);
+            txtSearch.Size = new Size(350, 39);
             txtSearch.TabIndex = 3;
             // 
             // lbSearch
             // 
             lbSearch.AutoSize = true;
-            lbSearch.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lbSearch.Location = new Point(35, 36);
+            lbSearch.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lbSearch.Location = new Point(35, 29);
             lbSearch.Name = "lbSearch";
-            lbSearch.Size = new Size(127, 25);
+            lbSearch.Size = new Size(161, 32);
             lbSearch.TabIndex = 2;
             lbSearch.Text = "Search Player";
             // 
@@ -159,10 +163,46 @@
             // 
             // dgvPlayers
             // 
+            dgvPlayers.AllowUserToAddRows = false;
+            dgvPlayers.AllowUserToDeleteRows = false;
+            dgvPlayers.AllowUserToResizeColumns = false;
+            dgvPlayers.AllowUserToResizeRows = false;
+            dgvPlayers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvPlayers.BackgroundColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(40, 156, 56);
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle1.SelectionForeColor = Color.FromArgb(40, 156, 56);
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvPlayers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dgvPlayers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle2.Font = new Font("Segoe UI Semibold", 14.25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = Color.DarkGray;
+            dataGridViewCellStyle2.SelectionBackColor = Color.FromArgb(40, 156, 56);
+            dataGridViewCellStyle2.SelectionForeColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dgvPlayers.DefaultCellStyle = dataGridViewCellStyle2;
+            dgvPlayers.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dgvPlayers.EnableHeadersVisualStyles = false;
             dgvPlayers.Location = new Point(272, 238);
             dgvPlayers.Name = "dgvPlayers";
+            dgvPlayers.ReadOnly = true;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle3.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.ForeColor = Color.FromArgb(40, 156, 56);
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(35, 38, 39);
+            dataGridViewCellStyle3.SelectionForeColor = Color.FromArgb(40, 156, 56);
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.True;
+            dgvPlayers.RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
+            dgvPlayers.RowHeadersVisible = false;
+            dgvPlayers.RowTemplate.Height = 42;
+            dgvPlayers.RowTemplate.ReadOnly = true;
+            dgvPlayers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPlayers.Size = new Size(814, 389);
             dgvPlayers.TabIndex = 3;
             // 
