@@ -161,7 +161,6 @@ namespace TeamListForm
             conn.Open();
             cmd.ExecuteNonQuery();
         }
-
         public static void UpdatePlayer(Player player)
         {
             string sql = "UPDATE Players SET PlayerName = @Name, Age = @Age, Position = @Pos WHERE ID = @ID";

@@ -31,8 +31,8 @@ namespace TeamListForm
             lblStartDate.Text = startTime.ToString();
             lblTitle.Text = name;
             lblSport.Text = sport;
-            lblParticipants.Text = participant + " Teams";
-            lblPrize.Text = string.IsNullOrEmpty(prize) ? "No Prize" : prize + " VND";
+            lblParticipants.Text = "👥"+ participant + " Teams";
+            lblPrize.Text = string.IsNullOrEmpty(prize) ? "No Prize" : "💰" + prize + " VND";
             if (!string.IsNullOrEmpty(posterPath) && System.IO.File.Exists(posterPath))
             {
                 //pbPoster.Image = Image.FromFile(posterPath);

@@ -162,7 +162,7 @@
             createBtn.FlatStyle = FlatStyle.Flat;
             createBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             createBtn.ForeColor = Color.White;
-            createBtn.Location = new Point(68, 132);
+            createBtn.Location = new Point(45, 130);
             createBtn.Name = "createBtn";
             createBtn.Size = new Size(397, 104);
             createBtn.TabIndex = 2;
@@ -177,7 +177,7 @@
             findBtn.FlatStyle = FlatStyle.Flat;
             findBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
             findBtn.ForeColor = Color.White;
-            findBtn.Location = new Point(68, 280);
+            findBtn.Location = new Point(45, 275);
             findBtn.Name = "findBtn";
             findBtn.Size = new Size(397, 104);
             findBtn.TabIndex = 3;
@@ -275,6 +275,7 @@
             ForeColor = SystemColors.ControlDarkDark;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = " ";
             FormClosed += Home_FormClosed;
             Load += Home_Load;
