@@ -14,16 +14,7 @@ namespace TeamListForm
     internal class DatabaseHelper
     {
         private static string connectionString =
-            @"Data Source=localhost;
-  Initial Catalog=TournamentTracker;
-  Integrated Security=True;
-  Persist Security Info=False;
-  Pooling=False;
-  MultipleActiveResultSets=False;
-  Encrypt=False;
-  TrustServerCertificate=True;
-  Application Name=""SQL Server Management Studio"";
-  Command Timeout=30";
+            @"Data Source=localhost;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Application Name=""SQL Server Management Studio"";Command Timeout=30";
 
         // TEAMS
         public static List<Team> GetTeams(string search = "")

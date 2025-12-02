@@ -17,7 +17,7 @@ namespace TourApp
             get
             {
                 var cp = base.CreateParams;
-                cp.ExStyle |= 0x02000000; 
+                cp.ExStyle |= 0x02000000;
                 return cp;
             }
         }
@@ -153,6 +153,11 @@ namespace TourApp
         }
 
         private void loginLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
         {
 
         }

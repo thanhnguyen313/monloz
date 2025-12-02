@@ -123,7 +123,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label10.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 10pt</value>
+    <value>Segoe UI, 20px</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
     <value>163, 169</value>
@@ -183,7 +183,7 @@
     <value>True</value>
   </data>
   <data name="label8.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 24px</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
     <value>130, 10</value>
@@ -213,7 +213,7 @@
     <value>True</value>
   </data>
   <data name="resLink.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 18px</value>
   </data>
   <data name="resLink.Location" type="System.Drawing.Point, System.Drawing">
     <value>305, 597</value>
@@ -243,7 +243,7 @@
     <value>True</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 18px</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>110, 597</value>
@@ -300,7 +300,7 @@
     <value>Flat</value>
   </data>
   <data name="logBtn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 26pt</value>
+    <value>Segoe UI, 52px</value>
   </data>
   <data name="logBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>200, 465</value>
@@ -327,7 +327,7 @@
     <value>True</value>
   </data>
   <data name="loginLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt, style=Bold</value>
+    <value>Segoe UI, 40px, style=Bold</value>
   </data>
   <data name="loginLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>177, 98</value>
@@ -354,7 +354,7 @@
     <value>6</value>
   </data>
   <data name="passTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 12.999999pt</value>
+    <value>Sitka Banner, 26px</value>
   </data>
   <data name="passTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 345</value>
@@ -384,7 +384,7 @@
     <value>True</value>
   </data>
   <data name="passLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="passLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 312</value>
@@ -414,7 +414,7 @@
     <value>True</value>
   </data>
   <data name="usrnLabel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="usrnLabel.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 228</value>
@@ -441,7 +441,7 @@
     <value>9</value>
   </data>
   <data name="usnTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 12.999999pt</value>
+    <value>Sitka Banner, 26px</value>
   </data>
   <data name="usnTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 261</value>
@@ -463,6 +463,9 @@
   </data>
   <data name="&gt;&gt;usnTextBox.ZOrder" xml:space="preserve">
     <value>10</value>
+  </data>
+  <data name="loginPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="loginPanel.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 100</value>
@@ -518,6 +521,9 @@
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="label11.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 18px</value>
+  </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 145</value>
   </data>
@@ -546,7 +552,7 @@
     <value>True</value>
   </data>
   <data name="label7.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>74, 351</value>
@@ -576,10 +582,10 @@
     <value>True</value>
   </data>
   <data name="label13.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 12pt</value>
+    <value>Segoe UI, 24px</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 3</value>
+    <value>141, 4</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>229, 32</value>
@@ -603,7 +609,7 @@
     <value>3</value>
   </data>
   <data name="res_conPassTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 12.999999pt</value>
+    <value>Sitka Banner, 26px</value>
   </data>
   <data name="res_conPassTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 384</value>
@@ -633,7 +639,7 @@
     <value>True</value>
   </data>
   <data name="loginLink.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 18px</value>
   </data>
   <data name="loginLink.Location" type="System.Drawing.Point, System.Drawing">
     <value>298, 575</value>
@@ -663,7 +669,7 @@
     <value>True</value>
   </data>
   <data name="label3.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 9pt</value>
+    <value>Segoe UI, 18px</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>152, 575</value>
@@ -719,7 +725,7 @@
     <value>Flat</value>
   </data>
   <data name="resBtn.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 26pt</value>
+    <value>Segoe UI, 52px</value>
   </data>
   <data name="resBtn.Location" type="System.Drawing.Point, System.Drawing">
     <value>206, 469</value>
@@ -746,7 +752,7 @@
     <value>True</value>
   </data>
   <data name="label4.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 20pt, style=Bold</value>
+    <value>Segoe UI, 40px, style=Bold</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
     <value>157, 73</value>
@@ -773,7 +779,7 @@
     <value>8</value>
   </data>
   <data name="res_passTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 12.999999pt</value>
+    <value>Sitka Banner, 26px</value>
   </data>
   <data name="res_passTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 304</value>
@@ -803,7 +809,7 @@
     <value>True</value>
   </data>
   <data name="label5.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 271</value>
@@ -833,7 +839,7 @@
     <value>True</value>
   </data>
   <data name="label6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 11pt, style=Bold</value>
+    <value>Segoe UI, 22px, style=Bold</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 191</value>
@@ -860,7 +866,7 @@
     <value>11</value>
   </data>
   <data name="res_usnTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 12.999999pt</value>
+    <value>Sitka Banner, 26px</value>
   </data>
   <data name="res_usnTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 224</value>
@@ -884,7 +890,7 @@
     <value>12</value>
   </data>
   <data name="registerPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>9, 96</value>
+    <value>12, 100</value>
   </data>
   <data name="registerPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>512, 671</value>
@@ -908,7 +914,7 @@
     <value>True</value>
   </data>
   <data name="label1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 15pt, style=Bold</value>
+    <value>Segoe UI, 30px, style=Bold</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>122, 30</value>

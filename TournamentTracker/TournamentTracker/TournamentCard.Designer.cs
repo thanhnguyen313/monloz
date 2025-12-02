@@ -40,7 +40,7 @@
             // 
             lblTitle.BackColor = Color.Transparent;
             lblTitle.Dock = DockStyle.Top;
-            lblTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTitle.Font = new Font("Segoe UI", 32F, FontStyle.Bold, GraphicsUnit.Pixel);
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(0, 0);
             lblTitle.Name = "lblTitle";
@@ -54,7 +54,7 @@
             // 
             lblSport.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblSport.BackColor = Color.Transparent;
-            lblSport.Font = new Font("Segoe UI", 10F);
+            lblSport.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblSport.ForeColor = Color.Goldenrod;
             lblSport.Location = new Point(0, 48);
             lblSport.Name = "lblSport";
@@ -67,7 +67,7 @@
             // 
             lblParticipants.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             lblParticipants.BackColor = Color.Transparent;
-            lblParticipants.Font = new Font("Segoe UI", 10F);
+            lblParticipants.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblParticipants.ForeColor = Color.Silver;
             lblParticipants.Location = new Point(3, 86);
             lblParticipants.Name = "lblParticipants";
@@ -79,7 +79,7 @@
             // lblStartDate
             // 
             lblStartDate.BackColor = Color.Transparent;
-            lblStartDate.Font = new Font("Segoe UI", 10F);
+            lblStartDate.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblStartDate.ForeColor = Color.Orange;
             lblStartDate.Location = new Point(186, 174);
             lblStartDate.Name = "lblStartDate";
@@ -92,6 +92,7 @@
             // lblPrize
             // 
             lblPrize.BackColor = Color.Transparent;
+            lblPrize.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             lblPrize.ForeColor = Color.Yellow;
             lblPrize.Location = new Point(0, 177);
             lblPrize.Name = "lblPrize";
@@ -110,8 +111,7 @@
             // 
             // TournamentCard
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(47, 49, 54);
             Controls.Add(panel1);
             Controls.Add(lblPrize);

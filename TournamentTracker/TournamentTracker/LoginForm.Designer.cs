@@ -83,7 +83,7 @@
             // label10
             // 
             resources.ApplyResources(label10, "label10");
-            label10.ForeColor = Color.FromArgb(224, 224, 224);
+            label10.ForeColor = Color.White;
             label10.Name = "label10";
             // 
             // label9
@@ -95,7 +95,7 @@
             // label8
             // 
             resources.ApplyResources(label8, "label8");
-            label8.ForeColor = Color.FromArgb(230, 230, 230);
+            label8.ForeColor = Color.White;
             label8.Name = "label8";
             // 
             // resLink
@@ -125,7 +125,7 @@
             // loginLabel
             // 
             resources.ApplyResources(loginLabel, "loginLabel");
-            loginLabel.ForeColor = Color.FromArgb(230, 230, 230);
+            loginLabel.ForeColor = Color.White;
             loginLabel.Name = "loginLabel";
             loginLabel.Click += loginLabel_Click;
             // 
@@ -140,13 +140,13 @@
             // passLabel
             // 
             resources.ApplyResources(passLabel, "passLabel");
-            passLabel.ForeColor = Color.FromArgb(230, 230, 230);
+            passLabel.ForeColor = Color.FromArgb(240, 240, 230);
             passLabel.Name = "passLabel";
             // 
             // usrnLabel
             // 
             resources.ApplyResources(usrnLabel, "usrnLabel");
-            usrnLabel.ForeColor = Color.FromArgb(230, 230, 230);
+            usrnLabel.ForeColor = Color.FromArgb(240, 240, 230);
             usrnLabel.Name = "usrnLabel";
             // 
             // usnTextBox
@@ -186,19 +186,20 @@
             // label11
             // 
             resources.ApplyResources(label11, "label11");
-            label11.ForeColor = Color.FromArgb(230, 230, 230);
+            label11.ForeColor = Color.White;
             label11.Name = "label11";
+            label11.Click += label11_Click;
             // 
             // label7
             // 
             resources.ApplyResources(label7, "label7");
-            label7.ForeColor = Color.FromArgb(230, 230, 230);
+            label7.ForeColor = Color.FromArgb(240, 240, 230);
             label7.Name = "label7";
             // 
             // label13
             // 
             resources.ApplyResources(label13, "label13");
-            label13.ForeColor = Color.FromArgb(230, 230, 230);
+            label13.ForeColor = Color.White;
             label13.Name = "label13";
             // 
             // res_conPassTextBox
@@ -236,7 +237,7 @@
             // label4
             // 
             resources.ApplyResources(label4, "label4");
-            label4.ForeColor = Color.FromArgb(230, 230, 230);
+            label4.ForeColor = Color.White;
             label4.Name = "label4";
             // 
             // res_passTextBox
@@ -249,13 +250,13 @@
             // label5
             // 
             resources.ApplyResources(label5, "label5");
-            label5.ForeColor = Color.FromArgb(230, 230, 230);
+            label5.ForeColor = Color.FromArgb(240, 240, 230);
             label5.Name = "label5";
             // 
             // label6
             // 
             resources.ApplyResources(label6, "label6");
-            label6.ForeColor = Color.FromArgb(230, 230, 230);
+            label6.ForeColor = Color.FromArgb(240, 240, 230);
             label6.Name = "label6";
             // 
             // res_usnTextBox
@@ -270,7 +271,7 @@
             // 
             resources.ApplyResources(label1, "label1");
             label1.BackColor = Color.Transparent;
-            label1.ForeColor = Color.FromArgb(50, 230, 118);
+            label1.ForeColor = Color.SpringGreen;
             label1.Name = "label1";
             label1.Click += label1_Click;
             // 

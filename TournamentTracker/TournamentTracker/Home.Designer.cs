@@ -73,6 +73,7 @@
             // 
             sfindBtn.FlatAppearance.BorderSize = 0;
             sfindBtn.FlatStyle = FlatStyle.Flat;
+            sfindBtn.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             sfindBtn.ForeColor = Color.Transparent;
             sfindBtn.Image = (Image)resources.GetObject("sfindBtn.Image");
             sfindBtn.Location = new Point(1072, 22);
@@ -86,6 +87,7 @@
             screateBtn.BackColor = Color.FromArgb(30, 30, 30);
             screateBtn.FlatAppearance.BorderSize = 0;
             screateBtn.FlatStyle = FlatStyle.Flat;
+            screateBtn.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             screateBtn.ForeColor = Color.Transparent;
             screateBtn.Image = (Image)resources.GetObject("screateBtn.Image");
             screateBtn.Location = new Point(1147, 22);
@@ -102,7 +104,7 @@
             LogOutBtn.FlatAppearance.MouseDownBackColor = Color.Gray;
             LogOutBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 55, 55);
             LogOutBtn.FlatStyle = FlatStyle.Flat;
-            LogOutBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            LogOutBtn.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Pixel);
             LogOutBtn.ForeColor = SystemColors.ActiveCaptionText;
             LogOutBtn.Image = (Image)resources.GetObject("LogOutBtn.Image");
             LogOutBtn.Location = new Point(1221, 22);
@@ -115,7 +117,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label1.Font = new Font("Segoe UI", 32F, FontStyle.Bold, GraphicsUnit.Pixel);
             label1.ForeColor = Color.FromArgb(52, 178, 51);
             label1.Location = new Point(25, 9);
             label1.Name = "label1";
@@ -160,7 +162,7 @@
             createBtn.BackColor = Color.FromArgb(52, 178, 51);
             createBtn.FlatAppearance.BorderSize = 0;
             createBtn.FlatStyle = FlatStyle.Flat;
-            createBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            createBtn.Font = new Font("Segoe UI", 28F, FontStyle.Bold, GraphicsUnit.Pixel);
             createBtn.ForeColor = Color.White;
             createBtn.Location = new Point(45, 130);
             createBtn.Name = "createBtn";
@@ -175,7 +177,7 @@
             findBtn.BackColor = Color.FromArgb(52, 178, 51);
             findBtn.FlatAppearance.BorderSize = 0;
             findBtn.FlatStyle = FlatStyle.Flat;
-            findBtn.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            findBtn.Font = new Font("Segoe UI", 28F, FontStyle.Bold, GraphicsUnit.Pixel);
             findBtn.ForeColor = Color.White;
             findBtn.Location = new Point(45, 275);
             findBtn.Name = "findBtn";
@@ -209,7 +211,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            label3.Font = new Font("Segoe UI", 28F, FontStyle.Bold, GraphicsUnit.Pixel);
             label3.ForeColor = SystemColors.ControlLightLight;
             label3.Location = new Point(582, 80);
             label3.Name = "label3";
@@ -220,7 +222,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            label2.Font = new Font("Segoe UI", 36F, FontStyle.Bold, GraphicsUnit.Pixel);
             label2.ForeColor = SystemColors.ControlLightLight;
             label2.Location = new Point(475, 18);
             label2.Name = "label2";
@@ -233,6 +235,7 @@
             addBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             addBtn.FlatAppearance.BorderSize = 0;
             addBtn.FlatStyle = FlatStyle.Flat;
+            addBtn.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             addBtn.Image = (Image)resources.GetObject("addBtn.Image");
             addBtn.Location = new Point(597, 144);
             addBtn.Name = "addBtn";
