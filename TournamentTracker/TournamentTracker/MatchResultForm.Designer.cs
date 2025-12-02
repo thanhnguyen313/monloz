@@ -49,9 +49,9 @@
             // 
             // HGLabel
             // 
-            HGLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            HGLabel.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             HGLabel.ForeColor = Color.Gold;
-            HGLabel.Location = new Point(59, 17);
+            HGLabel.Location = new Point(46, 17);
             HGLabel.Name = "HGLabel";
             HGLabel.Size = new Size(200, 40);
             HGLabel.TabIndex = 0;
@@ -60,9 +60,9 @@
             // 
             // AGLabel
             // 
-            AGLabel.Font = new Font("Segoe UI", 16F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            AGLabel.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             AGLabel.ForeColor = Color.Gold;
-            AGLabel.Location = new Point(309, 17);
+            AGLabel.Location = new Point(325, 17);
             AGLabel.Name = "AGLabel";
             AGLabel.Size = new Size(200, 40);
             AGLabel.TabIndex = 1;
@@ -83,22 +83,22 @@
             // homeLabel
             // 
             homeLabel.AutoSize = true;
-            homeLabel.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            homeLabel.Font = new Font("Segoe UI", 41F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             homeLabel.ForeColor = Color.Silver;
-            homeLabel.Location = new Point(0, 7);
+            homeLabel.Location = new Point(-12, 7);
             homeLabel.Name = "homeLabel";
-            homeLabel.Size = new Size(84, 57);
+            homeLabel.Size = new Size(81, 55);
             homeLabel.TabIndex = 3;
             homeLabel.Text = "🛡️";
             // 
             // awayLabel
             // 
             awayLabel.AutoSize = true;
-            awayLabel.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            awayLabel.Font = new Font("Segoe UI", 41F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             awayLabel.ForeColor = Color.Silver;
-            awayLabel.Location = new Point(493, 7);
+            awayLabel.Location = new Point(509, 7);
             awayLabel.Name = "awayLabel";
-            awayLabel.Size = new Size(84, 57);
+            awayLabel.Size = new Size(81, 55);
             awayLabel.TabIndex = 4;
             awayLabel.Text = "⚔️";
             // 
@@ -106,7 +106,7 @@
             // 
             homeNumericUpDown.BackColor = Color.FromArgb(32, 33, 36);
             homeNumericUpDown.BorderStyle = BorderStyle.None;
-            homeNumericUpDown.Font = new Font("Microsoft Sans Serif", 50F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            homeNumericUpDown.Font = new Font("Microsoft Sans Serif", 83.4F, FontStyle.Regular, GraphicsUnit.Pixel, 0);
             homeNumericUpDown.ForeColor = Color.White;
             homeNumericUpDown.Location = new Point(77, 68);
             homeNumericUpDown.Margin = new Padding(3, 4, 3, 4);
@@ -118,7 +118,7 @@
             // 
             awayNumericUpDown.BackColor = Color.FromArgb(32, 33, 36);
             awayNumericUpDown.BorderStyle = BorderStyle.None;
-            awayNumericUpDown.Font = new Font("Microsoft Sans Serif", 50F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            awayNumericUpDown.Font = new Font("Microsoft Sans Serif", 83.4F, FontStyle.Regular, GraphicsUnit.Pixel, 0);
             awayNumericUpDown.ForeColor = Color.White;
             awayNumericUpDown.Location = new Point(384, 68);
             awayNumericUpDown.Margin = new Padding(3, 4, 3, 4);
@@ -132,7 +132,7 @@
             saveMatchButton.FlatAppearance.BorderColor = Color.SpringGreen;
             saveMatchButton.FlatAppearance.BorderSize = 0;
             saveMatchButton.FlatStyle = FlatStyle.Flat;
-            saveMatchButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            saveMatchButton.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             saveMatchButton.ForeColor = Color.White;
             saveMatchButton.Location = new Point(308, 284);
             saveMatchButton.Margin = new Padding(3, 4, 3, 4);
@@ -160,7 +160,7 @@
             closeButton.FlatAppearance.BorderColor = Color.Silver;
             closeButton.FlatAppearance.BorderSize = 0;
             closeButton.FlatStyle = FlatStyle.Flat;
-            closeButton.Font = new Font("Segoe UI", 15F, FontStyle.Bold);
+            closeButton.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
             closeButton.ForeColor = Color.White;
             closeButton.Location = new Point(25, 284);
             closeButton.Name = "closeButton";
@@ -174,11 +174,11 @@
             MatchInfoLabel.Anchor = AnchorStyles.Top;
             MatchInfoLabel.AutoSize = true;
             MatchInfoLabel.BackColor = Color.Transparent;
-            MatchInfoLabel.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            MatchInfoLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.World);
             MatchInfoLabel.ForeColor = Color.Silver;
-            MatchInfoLabel.Location = new Point(177, 10);
+            MatchInfoLabel.Location = new Point(175, 10);
             MatchInfoLabel.Name = "MatchInfoLabel";
-            MatchInfoLabel.Size = new Size(226, 32);
+            MatchInfoLabel.Size = new Size(230, 35);
             MatchInfoLabel.TabIndex = 10;
             MatchInfoLabel.Text = "Round 0 - Match 0";
             MatchInfoLabel.TextAlign = ContentAlignment.MiddleCenter;
@@ -186,6 +186,7 @@
             // panel1
             // 
             panel1.BackColor = Color.FromArgb(32, 33, 36);
+            panel1.Controls.Add(awayLabel);
             panel1.Controls.Add(finishedCheckBox);
             panel1.Controls.Add(awayNumericUpDown);
             panel1.Controls.Add(HGLabel);
@@ -194,7 +195,6 @@
             panel1.Controls.Add(vsLabel);
             panel1.Controls.Add(homeLabel);
             panel1.Controls.Add(homeNumericUpDown);
-            panel1.Controls.Add(awayLabel);
             panel1.Location = new Point(0, 56);
             panel1.Name = "panel1";
             panel1.Size = new Size(580, 215);
@@ -225,7 +225,7 @@
             Controls.Add(saveMatchButton);
             Controls.Add(panel1);
             DoubleBuffered = true;
-            Font = new Font("Segoe UI", 10F);
+            Font = new Font("Segoe UI", 17F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(3, 4, 3, 4);

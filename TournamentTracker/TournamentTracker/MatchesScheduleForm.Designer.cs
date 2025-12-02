@@ -62,7 +62,8 @@
             // matchesLabel
             // 
             matchesLabel.AutoSize = true;
-            matchesLabel.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            matchesLabel.BackColor = Color.Transparent;
+            matchesLabel.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             matchesLabel.ForeColor = Color.Gold;
             matchesLabel.Location = new Point(39, 105);
             matchesLabel.Name = "matchesLabel";
@@ -89,6 +90,8 @@
             // matchesDataGridView
             // 
             matchesDataGridView.AllowUserToAddRows = false;
+            matchesDataGridView.AllowUserToResizeColumns = false;
+            matchesDataGridView.AllowUserToResizeRows = false;
             matchesDataGridView.BackgroundColor = Color.FromArgb(45, 48, 53);
             matchesDataGridView.BorderStyle = BorderStyle.None;
             matchesDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -105,7 +108,7 @@
             matchesDataGridView.Columns.AddRange(new DataGridViewColumn[] { colHome, colScore, colAway });
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = Color.FromArgb(45, 48, 53);
-            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle3.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle3.ForeColor = Color.White;
             dataGridViewCellStyle3.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = SystemColors.HighlightText;
@@ -120,6 +123,7 @@
             matchesDataGridView.RowHeadersVisible = false;
             matchesDataGridView.RowHeadersWidth = 51;
             matchesDataGridView.RowTemplate.Height = 50;
+            matchesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             matchesDataGridView.Size = new Size(585, 487);
             matchesDataGridView.TabIndex = 3;
             // 
@@ -162,7 +166,7 @@
             updateButton.FlatAppearance.BorderColor = Color.SpringGreen;
             updateButton.FlatAppearance.BorderSize = 0;
             updateButton.FlatStyle = FlatStyle.Flat;
-            updateButton.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            updateButton.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             updateButton.ForeColor = Color.White;
             updateButton.Location = new Point(44, 658);
             updateButton.Margin = new Padding(3, 4, 3, 4);
@@ -176,6 +180,8 @@
             // standingsDataGridView
             // 
             standingsDataGridView.AllowUserToAddRows = false;
+            standingsDataGridView.AllowUserToResizeColumns = false;
+            standingsDataGridView.AllowUserToResizeRows = false;
             standingsDataGridView.BackgroundColor = Color.FromArgb(45, 48, 53);
             standingsDataGridView.BorderStyle = BorderStyle.None;
             standingsDataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
@@ -192,7 +198,7 @@
             standingsDataGridView.Columns.AddRange(new DataGridViewColumn[] { colSTT, colTeam, colP, colW, colD, colL, colGF, colGA, colGD, colPTS });
             dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = Color.FromArgb(45, 48, 53);
-            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle6.Font = new Font("Microsoft Sans Serif", 11F, FontStyle.Regular, GraphicsUnit.Point, 0);
             dataGridViewCellStyle6.ForeColor = Color.White;
             dataGridViewCellStyle6.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = SystemColors.HighlightText;
@@ -207,6 +213,7 @@
             standingsDataGridView.RowHeadersVisible = false;
             standingsDataGridView.RowHeadersWidth = 51;
             standingsDataGridView.RowTemplate.Height = 50;
+            standingsDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             standingsDataGridView.Size = new Size(585, 558);
             standingsDataGridView.TabIndex = 5;
             // 
@@ -316,7 +323,8 @@
             // standingsLabel
             // 
             standingsLabel.AutoSize = true;
-            standingsLabel.Font = new Font("Segoe UI", 15F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            standingsLabel.BackColor = Color.Transparent;
+            standingsLabel.Font = new Font("Segoe UI", 25F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             standingsLabel.ForeColor = Color.Gold;
             standingsLabel.Location = new Point(649, 105);
             standingsLabel.Name = "standingsLabel";
@@ -329,7 +337,7 @@
             titleLabel.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             titleLabel.AutoSize = true;
             titleLabel.BackColor = Color.Transparent;
-            titleLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            titleLabel.Font = new Font("Segoe UI", 40F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             titleLabel.ForeColor = Color.FromArgb(0, 180, 80);
             titleLabel.Location = new Point(23, 30);
             titleLabel.Name = "titleLabel";
