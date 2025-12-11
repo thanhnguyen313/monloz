@@ -56,7 +56,7 @@
             label2.Margin = new Padding(2, 0, 2, 0);
             label2.Name = "label2";
             label2.Size = new Size(81, 32);
-            label2.TabIndex = 1;
+            label2.TabIndex = 0;
             label2.Text = "Coach";
             // 
             // txtCoach
@@ -68,7 +68,7 @@
             txtCoach.Margin = new Padding(2);
             txtCoach.Name = "txtCoach";
             txtCoach.Size = new Size(301, 32);
-            txtCoach.TabIndex = 4;
+            txtCoach.TabIndex = 2;
             // 
             // txtTeamName
             // 
@@ -79,7 +79,7 @@
             txtTeamName.Margin = new Padding(2);
             txtTeamName.Name = "txtTeamName";
             txtTeamName.Size = new Size(301, 32);
-            txtTeamName.TabIndex = 6;
+            txtTeamName.TabIndex = 1;
             // 
             // btnOption
             // 
@@ -89,7 +89,7 @@
             btnOption.Margin = new Padding(2);
             btnOption.Name = "btnOption";
             btnOption.Size = new Size(118, 49);
-            btnOption.TabIndex = 7;
+            btnOption.TabIndex = 3;
             btnOption.Text = "Save";
             btnOption.UseVisualStyleBackColor = false;
             btnOption.Click += btnOption_Click;
@@ -102,7 +102,7 @@
             btnCancel.Margin = new Padding(2);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(122, 49);
-            btnCancel.TabIndex = 8;
+            btnCancel.TabIndex = 4;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -123,6 +123,7 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.FromArgb(40, 156, 56);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "TeamEditorForm";
             StartPosition = FormStartPosition.CenterScreen;

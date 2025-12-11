@@ -19,6 +19,17 @@ namespace TeamListForm
         {
             LoadTeams(txtSearch.Text.Trim());
         }
+        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                LoadTeams(txtSearch.Text.Trim());
+
+                // tắt tiếng "Ting" của Windows
+                e.SuppressKeyPress = true;
+                e.Handled = true;
+            }
+        }
         private void LoadTeams(string search = "")
         {
             var teams = DatabaseHelper.GetTeams(search);

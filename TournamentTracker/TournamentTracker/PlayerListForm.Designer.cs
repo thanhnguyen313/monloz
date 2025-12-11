@@ -67,7 +67,7 @@
             lblTitle.Location = new Point(35, 12);
             lblTitle.Name = "lblTitle";
             lblTitle.Size = new Size(523, 48);
-            lblTitle.TabIndex = 1;
+            lblTitle.TabIndex = 0;
             lblTitle.Text = "DANH SÁCH CẦU THỦ CỦA ...";
             // 
             // panelSearch
@@ -80,7 +80,7 @@
             panelSearch.Location = new Point(272, 142);
             panelSearch.Name = "panelSearch";
             panelSearch.Size = new Size(814, 90);
-            panelSearch.TabIndex = 1;
+            panelSearch.TabIndex = 0;
             // 
             // btnSearch
             // 
@@ -89,7 +89,7 @@
             btnSearch.Location = new Point(679, 22);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(135, 47);
-            btnSearch.TabIndex = 4;
+            btnSearch.TabIndex = 2;
             btnSearch.Text = "Search";
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += btnSearch_Click;
@@ -102,7 +102,7 @@
             txtSearch.Location = new Point(250, 26);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(350, 39);
-            txtSearch.TabIndex = 3;
+            txtSearch.TabIndex = 1;
             // 
             // lbSearch
             // 
@@ -111,7 +111,7 @@
             lbSearch.Location = new Point(35, 29);
             lbSearch.Name = "lbSearch";
             lbSearch.Size = new Size(161, 32);
-            lbSearch.TabIndex = 2;
+            lbSearch.TabIndex = 0;
             lbSearch.Text = "Search Player";
             // 
             // panelOptionBtn
@@ -133,7 +133,7 @@
             btnDelete.Location = new Point(679, 27);
             btnDelete.Name = "btnDelete";
             btnDelete.Size = new Size(135, 41);
-            btnDelete.TabIndex = 2;
+            btnDelete.TabIndex = 3;
             btnDelete.Text = "Delete";
             btnDelete.UseVisualStyleBackColor = false;
             btnDelete.Click += btnDelete_Click;
@@ -145,7 +145,7 @@
             btnUpdate.Location = new Point(372, 27);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(133, 41);
-            btnUpdate.TabIndex = 1;
+            btnUpdate.TabIndex = 2;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
@@ -157,7 +157,7 @@
             btnAdd.Location = new Point(35, 27);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(115, 41);
-            btnAdd.TabIndex = 0;
+            btnAdd.TabIndex = 1;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
@@ -205,7 +205,7 @@
             dgvPlayers.RowTemplate.ReadOnly = true;
             dgvPlayers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvPlayers.Size = new Size(814, 389);
-            dgvPlayers.TabIndex = 3;
+            dgvPlayers.TabIndex = 0;
             dgvPlayers.CellContentClick += dgvPlayers_CellContentClick;
             // 
             // btnCloseForm
@@ -221,7 +221,7 @@
             btnCloseForm.Location = new Point(1212, 2);
             btnCloseForm.Name = "btnCloseForm";
             btnCloseForm.Size = new Size(60, 60);
-            btnCloseForm.TabIndex = 13;
+            btnCloseForm.TabIndex = 4;
             btnCloseForm.UseVisualStyleBackColor = false;
             btnCloseForm.Click += btnCloseForm_Click;
             // 
@@ -238,6 +238,7 @@
             Controls.Add(btnCloseForm);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "PlayerListForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";

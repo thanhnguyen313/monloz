@@ -53,7 +53,7 @@
             btnCancel.Margin = new Padding(3, 2, 3, 2);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(112, 48);
-            btnCancel.TabIndex = 14;
+            btnCancel.TabIndex = 6;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = false;
             btnCancel.Click += btnCancel_Click;
@@ -66,7 +66,7 @@
             btnOption.Margin = new Padding(3, 2, 3, 2);
             btnOption.Name = "btnOption";
             btnOption.Size = new Size(112, 48);
-            btnOption.TabIndex = 13;
+            btnOption.TabIndex = 5;
             btnOption.Text = "Save";
             btnOption.UseVisualStyleBackColor = false;
             btnOption.Click += btnSave_Click;
@@ -80,7 +80,7 @@
             txtPlayerName.Margin = new Padding(3, 2, 3, 2);
             txtPlayerName.Name = "txtPlayerName";
             txtPlayerName.Size = new Size(323, 32);
-            txtPlayerName.TabIndex = 12;
+            txtPlayerName.TabIndex = 1;
             // 
             // txtPosition
             // 
@@ -91,7 +91,7 @@
             txtPosition.Margin = new Padding(3, 2, 3, 2);
             txtPosition.Name = "txtPosition";
             txtPosition.Size = new Size(323, 32);
-            txtPosition.TabIndex = 11;
+            txtPosition.TabIndex = 2;
             // 
             // lbPosition
             // 
@@ -101,7 +101,7 @@
             lbPosition.Location = new Point(39, 74);
             lbPosition.Name = "lbPosition";
             lbPosition.Size = new Size(100, 32);
-            lbPosition.TabIndex = 10;
+            lbPosition.TabIndex = 0;
             lbPosition.Text = "Position";
             // 
             // lbPlayerName
@@ -113,7 +113,7 @@
             lbPlayerName.Location = new Point(39, 26);
             lbPlayerName.Name = "lbPlayerName";
             lbPlayerName.Size = new Size(153, 32);
-            lbPlayerName.TabIndex = 9;
+            lbPlayerName.TabIndex = 0;
             lbPlayerName.Text = "Player Name";
             // 
             // txtAge
@@ -125,7 +125,7 @@
             txtAge.Margin = new Padding(3, 2, 3, 2);
             txtAge.Name = "txtAge";
             txtAge.Size = new Size(323, 32);
-            txtAge.TabIndex = 18;
+            txtAge.TabIndex = 3;
             // 
             // lbAge
             // 
@@ -135,7 +135,7 @@
             lbAge.Location = new Point(39, 122);
             lbAge.Name = "lbAge";
             lbAge.Size = new Size(57, 32);
-            lbAge.TabIndex = 15;
+            lbAge.TabIndex = 0;
             lbAge.Text = "Age";
             // 
             // panelOption
@@ -148,7 +148,7 @@
             panelOption.Margin = new Padding(3, 2, 3, 2);
             panelOption.Name = "panelOption";
             panelOption.Size = new Size(601, 100);
-            panelOption.TabIndex = 19;
+            panelOption.TabIndex = 0;
             // 
             // panelEditPlayer
             // 
@@ -166,7 +166,7 @@
             panelEditPlayer.Margin = new Padding(3, 2, 3, 2);
             panelEditPlayer.Name = "panelEditPlayer";
             panelEditPlayer.Size = new Size(601, 218);
-            panelEditPlayer.TabIndex = 20;
+            panelEditPlayer.TabIndex = 0;
             // 
             // txtNumber
             // 
@@ -177,7 +177,7 @@
             txtNumber.Margin = new Padding(3, 2, 3, 2);
             txtNumber.Name = "txtNumber";
             txtNumber.Size = new Size(323, 32);
-            txtNumber.TabIndex = 20;
+            txtNumber.TabIndex = 4;
             // 
             // lbNumber
             // 
@@ -187,7 +187,7 @@
             lbNumber.Location = new Point(39, 171);
             lbNumber.Name = "lbNumber";
             lbNumber.Size = new Size(103, 32);
-            lbNumber.TabIndex = 19;
+            lbNumber.TabIndex = 0;
             lbNumber.Text = "Number";
             // 
             // PlayerEditorForm
@@ -201,6 +201,7 @@
             Controls.Add(panelOption);
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 2, 3, 2);
             Name = "PlayerEditorForm";
             StartPosition = FormStartPosition.CenterScreen;

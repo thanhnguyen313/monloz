@@ -69,7 +69,7 @@
             labelSearch.Location = new Point(33, 27);
             labelSearch.Name = "labelSearch";
             labelSearch.Size = new Size(152, 32);
-            labelSearch.TabIndex = 1;
+            labelSearch.TabIndex = 0;
             labelSearch.Text = "Search Team";
             // 
             // txtSearch
@@ -80,7 +80,8 @@
             txtSearch.Location = new Point(294, 30);
             txtSearch.Name = "txtSearch";
             txtSearch.Size = new Size(382, 39);
-            txtSearch.TabIndex = 2;
+            txtSearch.TabIndex = 1;
+            txtSearch.KeyDown += txtSearch_KeyDown;
             // 
             // btnSearch
             // 
@@ -95,7 +96,7 @@
             btnSearch.Location = new Point(795, 19);
             btnSearch.Name = "btnSearch";
             btnSearch.Size = new Size(59, 56);
-            btnSearch.TabIndex = 3;
+            btnSearch.TabIndex = 2;
             btnSearch.UseVisualStyleBackColor = false;
             btnSearch.Click += SearchBtn_Click;
             // 
@@ -130,7 +131,7 @@
             btnViewPlayers.Location = new Point(759, 35);
             btnViewPlayers.Name = "btnViewPlayers";
             btnViewPlayers.Size = new Size(111, 37);
-            btnViewPlayers.TabIndex = 13;
+            btnViewPlayers.TabIndex = 7;
             btnViewPlayers.Text = "Players";
             btnViewPlayers.UseVisualStyleBackColor = false;
             btnViewPlayers.Click += btnViewPlayers_Click;
@@ -143,7 +144,7 @@
             btnRemove.Location = new Point(524, 35);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(111, 37);
-            btnRemove.TabIndex = 12;
+            btnRemove.TabIndex = 6;
             btnRemove.Text = "Remove";
             btnRemove.UseVisualStyleBackColor = false;
             btnRemove.Click += btnRemove_Click;
@@ -156,7 +157,7 @@
             btnUpdate.Location = new Point(274, 35);
             btnUpdate.Name = "btnUpdate";
             btnUpdate.Size = new Size(111, 37);
-            btnUpdate.TabIndex = 11;
+            btnUpdate.TabIndex = 5;
             btnUpdate.Text = "Update";
             btnUpdate.UseVisualStyleBackColor = false;
             btnUpdate.Click += btnUpdate_Click;
@@ -169,7 +170,7 @@
             btnAdd.Location = new Point(33, 35);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(111, 37);
-            btnAdd.TabIndex = 9;
+            btnAdd.TabIndex = 4;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = false;
             btnAdd.Click += btnAdd_Click;
@@ -218,7 +219,7 @@
             dgvTeams.RowTemplate.Height = 42;
             dgvTeams.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvTeams.Size = new Size(889, 416);
-            dgvTeams.TabIndex = 11;
+            dgvTeams.TabIndex = 0;
             // 
             // btnCloseForm
             // 
@@ -233,7 +234,7 @@
             btnCloseForm.Location = new Point(1226, 1);
             btnCloseForm.Name = "btnCloseForm";
             btnCloseForm.Size = new Size(60, 60);
-            btnCloseForm.TabIndex = 12;
+            btnCloseForm.TabIndex = 9;
             btnCloseForm.UseVisualStyleBackColor = false;
             btnCloseForm.Click += btnCloseForm_Click;
             // 
@@ -250,7 +251,7 @@
             btnMinimize.Location = new Point(1175, 1);
             btnMinimize.Name = "btnMinimize";
             btnMinimize.Size = new Size(60, 60);
-            btnMinimize.TabIndex = 13;
+            btnMinimize.TabIndex = 8;
             btnMinimize.UseVisualStyleBackColor = false;
             btnMinimize.Click += btnMinimize_Click;
             // 
@@ -270,6 +271,7 @@
             Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.DarkGray;
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "TeamListForm";
             StartPosition = FormStartPosition.CenterScreen;
