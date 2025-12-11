@@ -129,5 +129,22 @@ namespace TourApp
         {
             startDate.CustomFormat = "dd/MM/yyyy";
         }
+
+        private void Account_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void logOutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            LoginForm homeform = new LoginForm();
+            this.Hide();
+            homeform.Show();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

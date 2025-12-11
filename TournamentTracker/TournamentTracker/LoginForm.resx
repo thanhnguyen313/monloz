@@ -117,163 +117,50 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;label10.Name" xml:space="preserve">
-    <value>label10</value>
-  </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;resLink.Name" xml:space="preserve">
-    <value>resLink</value>
-  </data>
-  <data name="&gt;&gt;resLink.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resLink.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;resLink.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;logBtn.Name" xml:space="preserve">
-    <value>logBtn</value>
-  </data>
-  <data name="&gt;&gt;logBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;logBtn.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;logBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;loginLabel.Name" xml:space="preserve">
-    <value>loginLabel</value>
-  </data>
-  <data name="&gt;&gt;loginLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loginLabel.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;loginLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;passTextBox.Name" xml:space="preserve">
-    <value>passTextBox</value>
-  </data>
-  <data name="&gt;&gt;passTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;passTextBox.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;passTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;passLabel.Name" xml:space="preserve">
-    <value>passLabel</value>
-  </data>
-  <data name="&gt;&gt;passLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;passLabel.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;passLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;usrnLabel.Name" xml:space="preserve">
-    <value>usrnLabel</value>
-  </data>
-  <data name="&gt;&gt;usrnLabel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;usrnLabel.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;usrnLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;usnTextBox.Name" xml:space="preserve">
-    <value>usnTextBox</value>
-  </data>
-  <data name="&gt;&gt;usnTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;usnTextBox.Parent" xml:space="preserve">
-    <value>loginPanel</value>
-  </data>
-  <data name="&gt;&gt;usnTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="loginPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 18px, style=Bold</value>
+  <data name="showBtn3.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAYFJREFUSEvt1TsvREEYxvGjcItLJGQbrdCJj4CShkSlXcJn0KHxTShdChGXQiMR
+        USCCCCJRKBQEhUT4P5tzTl7vDmaL7fZJftk958zMm505M5vUUmn2cYRC6aoKOcQXTpEVacMybvGGV1xh
+        HTPoRHQ0qAb3RcbwAd33XrCIZkRlAJ9Q59gicoJe/Jke3MF2tEUa0YJBaIpsO3lEP4LpwjV8J7FFbObg
+        2z6gG2VZg2+8jdCa2GzA99tFHfJMwjcSTYUGvU+vQ0WG4PtJEXnOEWqk+VaekN3zRfQa2z6ZM+S5RKhR
+        KxTNq71vizQh9HYdI88UfAMZgbIE/8wWGYcvMoE8WpA92AayCT1rgIrol2i6Qmtii6zoho9eLT8VMo8f
+        bwTRoBpcz20RbUZNTTa1ZdEm0WbxRbYwinao8zB2kD23RerTz1/TB217WyCGLfJvdHAtQAdZaDDrGTfp
+        94qKKDqKp7GKC+iofocWWTt/Fh2wa6IjvypREf1ZHZSuaolLknwDHTHI1+o9iYoAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="loginPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 100</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="showBtn3.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
   </data>
-  <data name="loginPanel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>512, 671</value>
+  <data name="showBtn3.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 52px</value>
+  </data>
+  <data name="showBtn3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="showBtn3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>385, 353</value>
+  </data>
+  <data name="showBtn3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="loginPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="showBtn3.TabIndex" type="System.Int32, mscorlib">
+    <value>15</value>
   </data>
-  <data name="&gt;&gt;loginPanel.Name" xml:space="preserve">
+  <data name="&gt;&gt;showBtn3.Name" xml:space="preserve">
+    <value>showBtn3</value>
+  </data>
+  <data name="&gt;&gt;showBtn3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;showBtn3.Parent" xml:space="preserve">
     <value>loginPanel</value>
   </data>
-  <data name="&gt;&gt;loginPanel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loginPanel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;loginPanel.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="&gt;&gt;showBtn3.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -303,7 +190,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -333,7 +220,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -363,7 +250,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="resLink.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -393,7 +280,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;resLink.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -423,7 +310,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="logBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -451,7 +338,6 @@
         aS4bbsaxWCgUCoVCoXAU0mr9D7QOUcOjSaCGAAAAAElFTkSuQmCC
 </value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="logBtn.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
     <value>Flat</value>
   </data>
@@ -477,7 +363,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;logBtn.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="loginLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -507,10 +393,10 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;loginLabel.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="passTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 26px</value>
+    <value>Segoe UI, 26px</value>
   </data>
   <data name="passTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 345</value>
@@ -519,7 +405,7 @@
     <value>*</value>
   </data>
   <data name="passTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 40</value>
+    <value>341, 42</value>
   </data>
   <data name="passTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -534,7 +420,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;passTextBox.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="passLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -564,7 +450,7 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;passLabel.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="usrnLabel.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -594,16 +480,16 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;usrnLabel.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="usnTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 26px</value>
+    <value>Segoe UI, 26px</value>
   </data>
   <data name="usnTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>78, 261</value>
   </data>
   <data name="usnTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 40</value>
+    <value>341, 42</value>
   </data>
   <data name="usnTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -618,187 +504,115 @@
     <value>loginPanel</value>
   </data>
   <data name="&gt;&gt;usnTextBox.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;label12.Name" xml:space="preserve">
-    <value>label12</value>
-  </data>
-  <data name="&gt;&gt;label12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;label13.Name" xml:space="preserve">
-    <value>label13</value>
-  </data>
-  <data name="&gt;&gt;label13.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;res_conPassTextBox.Name" xml:space="preserve">
-    <value>res_conPassTextBox</value>
-  </data>
-  <data name="&gt;&gt;res_conPassTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;res_conPassTextBox.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;res_conPassTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;loginLink.Name" xml:space="preserve">
-    <value>loginLink</value>
-  </data>
-  <data name="&gt;&gt;loginLink.Type" xml:space="preserve">
-    <value>System.Windows.Forms.LinkLabel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;loginLink.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;loginLink.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;resBtn.Name" xml:space="preserve">
-    <value>resBtn</value>
-  </data>
-  <data name="&gt;&gt;resBtn.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;resBtn.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;resBtn.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;res_passTextBox.Name" xml:space="preserve">
-    <value>res_passTextBox</value>
-  </data>
-  <data name="&gt;&gt;res_passTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;res_passTextBox.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;res_passTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;res_usnTextBox.Name" xml:space="preserve">
-    <value>res_usnTextBox</value>
+  <data name="loginPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 18px, style=Bold</value>
   </data>
-  <data name="&gt;&gt;res_usnTextBox.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="loginPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 100</value>
   </data>
-  <data name="&gt;&gt;res_usnTextBox.Parent" xml:space="preserve">
-    <value>registerPanel</value>
-  </data>
-  <data name="&gt;&gt;res_usnTextBox.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="registerPanel.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Segoe UI, 18px</value>
-  </data>
-  <data name="registerPanel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 100</value>
-  </data>
-  <data name="registerPanel.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="loginPanel.Size" type="System.Drawing.Size, System.Drawing">
     <value>512, 671</value>
   </data>
-  <data name="registerPanel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="loginPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;registerPanel.Name" xml:space="preserve">
-    <value>registerPanel</value>
+  <data name="&gt;&gt;loginPanel.Name" xml:space="preserve">
+    <value>loginPanel</value>
   </data>
-  <data name="&gt;&gt;registerPanel.Type" xml:space="preserve">
+  <data name="&gt;&gt;loginPanel.Type" xml:space="preserve">
     <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;registerPanel.Parent" xml:space="preserve">
+  <data name="&gt;&gt;loginPanel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;registerPanel.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;loginPanel.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="showBtn2.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAYFJREFUSEvt1TsvREEYxvGjcItLJGQbrdCJj4CShkSlXcJn0KHxTShdChGXQiMR
+        USCCCCJRKBQEhUT4P5tzTl7vDmaL7fZJftk958zMm505M5vUUmn2cYRC6aoKOcQXTpEVacMybvGGV1xh
+        HTPoRHQ0qAb3RcbwAd33XrCIZkRlAJ9Q59gicoJe/Jke3MF2tEUa0YJBaIpsO3lEP4LpwjV8J7FFbObg
+        2z6gG2VZg2+8jdCa2GzA99tFHfJMwjcSTYUGvU+vQ0WG4PtJEXnOEWqk+VaekN3zRfQa2z6ZM+S5RKhR
+        KxTNq71vizQh9HYdI88UfAMZgbIE/8wWGYcvMoE8WpA92AayCT1rgIrol2i6Qmtii6zoho9eLT8VMo8f
+        bwTRoBpcz20RbUZNTTa1ZdEm0WbxRbYwinao8zB2kD23RerTz1/TB217WyCGLfJvdHAtQAdZaDDrGTfp
+        94qKKDqKp7GKC+iofocWWTt/Fh2wa6IjvypREf1ZHZSuaolLknwDHTHI1+o9iYoAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="showBtn2.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="showBtn2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 52px</value>
+  </data>
+  <data name="showBtn2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="showBtn2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>389, 393</value>
+  </data>
+  <data name="showBtn2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="showBtn2.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="&gt;&gt;showBtn2.Name" xml:space="preserve">
+    <value>showBtn2</value>
+  </data>
+  <data name="&gt;&gt;showBtn2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;showBtn2.Parent" xml:space="preserve">
+    <value>registerPanel</value>
+  </data>
+  <data name="&gt;&gt;showBtn2.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="showBtn1.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAL
+        DAAACwwBP0AiyAAAAYFJREFUSEvt1TsvREEYxvGjcItLJGQbrdCJj4CShkSlXcJn0KHxTShdChGXQiMR
+        USCCCCJRKBQEhUT4P5tzTl7vDmaL7fZJftk958zMm505M5vUUmn2cYRC6aoKOcQXTpEVacMybvGGV1xh
+        HTPoRHQ0qAb3RcbwAd33XrCIZkRlAJ9Q59gicoJe/Jke3MF2tEUa0YJBaIpsO3lEP4LpwjV8J7FFbObg
+        2z6gG2VZg2+8jdCa2GzA99tFHfJMwjcSTYUGvU+vQ0WG4PtJEXnOEWqk+VaekN3zRfQa2z6ZM+S5RKhR
+        KxTNq71vizQh9HYdI88UfAMZgbIE/8wWGYcvMoE8WpA92AayCT1rgIrol2i6Qmtii6zoho9eLT8VMo8f
+        bwTRoBpcz20RbUZNTTa1ZdEm0WbxRbYwinao8zB2kD23RerTz1/TB217WyCGLfJvdHAtQAdZaDDrGTfp
+        94qKKDqKp7GKC+iofocWWTt/Fh2wa6IjvypREf1ZHZSuaolLknwDHTHI1+o9iYoAAAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="showBtn1.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="showBtn1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 52px</value>
+  </data>
+  <data name="showBtn1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="showBtn1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>389, 312</value>
+  </data>
+  <data name="showBtn1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>24, 24</value>
+  </data>
+  <data name="showBtn1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;showBtn1.Name" xml:space="preserve">
+    <value>showBtn1</value>
+  </data>
+  <data name="&gt;&gt;showBtn1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;showBtn1.Parent" xml:space="preserve">
+    <value>registerPanel</value>
+  </data>
+  <data name="&gt;&gt;showBtn1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -828,7 +642,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -858,7 +672,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -888,7 +702,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>4</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -918,10 +732,10 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>5</value>
   </data>
   <data name="res_conPassTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 26px</value>
+    <value>Segoe UI, 26px</value>
   </data>
   <data name="res_conPassTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 384</value>
@@ -930,7 +744,7 @@
     <value>*</value>
   </data>
   <data name="res_conPassTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 40</value>
+    <value>341, 42</value>
   </data>
   <data name="res_conPassTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -945,7 +759,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;res_conPassTextBox.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>6</value>
   </data>
   <data name="loginLink.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -975,7 +789,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;loginLink.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1005,7 +819,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
   </data>
   <data name="resBtn.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1058,7 +872,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;resBtn.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1088,10 +902,10 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>10</value>
   </data>
   <data name="res_passTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 26px</value>
+    <value>Segoe UI, 26px</value>
   </data>
   <data name="res_passTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 304</value>
@@ -1100,7 +914,7 @@
     <value>*</value>
   </data>
   <data name="res_passTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 40</value>
+    <value>341, 42</value>
   </data>
   <data name="res_passTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1115,7 +929,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;res_passTextBox.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>11</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1145,7 +959,7 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>12</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1175,16 +989,16 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>13</value>
   </data>
   <data name="res_usnTextBox.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Sitka Banner, 26px</value>
+    <value>Segoe UI, 26px</value>
   </data>
   <data name="res_usnTextBox.Location" type="System.Drawing.Point, System.Drawing">
     <value>83, 224</value>
   </data>
   <data name="res_usnTextBox.Size" type="System.Drawing.Size, System.Drawing">
-    <value>341, 40</value>
+    <value>341, 42</value>
   </data>
   <data name="res_usnTextBox.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1199,7 +1013,31 @@
     <value>registerPanel</value>
   </data>
   <data name="&gt;&gt;res_usnTextBox.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>14</value>
+  </data>
+  <data name="registerPanel.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Segoe UI, 18px</value>
+  </data>
+  <data name="registerPanel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 100</value>
+  </data>
+  <data name="registerPanel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>512, 671</value>
+  </data>
+  <data name="registerPanel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;registerPanel.Name" xml:space="preserve">
+    <value>registerPanel</value>
+  </data>
+  <data name="&gt;&gt;registerPanel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;registerPanel.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;registerPanel.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>

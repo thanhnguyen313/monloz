@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             loginPanel = new Panel();
+            showBtn3 = new Button();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -42,6 +43,8 @@
             usrnLabel = new Label();
             usnTextBox = new TextBox();
             registerPanel = new Panel();
+            showBtn2 = new Button();
+            showBtn1 = new Button();
             label12 = new Label();
             label11 = new Label();
             label7 = new Label();
@@ -65,6 +68,7 @@
             // loginPanel
             // 
             loginPanel.BackColor = Color.Transparent;
+            loginPanel.Controls.Add(showBtn3);
             loginPanel.Controls.Add(label10);
             loginPanel.Controls.Add(label9);
             loginPanel.Controls.Add(label8);
@@ -79,6 +83,16 @@
             resources.ApplyResources(loginPanel, "loginPanel");
             loginPanel.Name = "loginPanel";
             loginPanel.Paint += loginPanel_Paint;
+            // 
+            // showBtn3
+            // 
+            showBtn3.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn3, "showBtn3");
+            showBtn3.FlatAppearance.BorderSize = 0;
+            showBtn3.ForeColor = Color.Transparent;
+            showBtn3.Name = "showBtn3";
+            showBtn3.UseVisualStyleBackColor = false;
+            showBtn3.Click += showBtn3_Click;
             // 
             // label10
             // 
@@ -160,6 +174,8 @@
             // registerPanel
             // 
             registerPanel.BackColor = Color.Transparent;
+            registerPanel.Controls.Add(showBtn2);
+            registerPanel.Controls.Add(showBtn1);
             registerPanel.Controls.Add(label12);
             registerPanel.Controls.Add(label11);
             registerPanel.Controls.Add(label7);
@@ -176,6 +192,26 @@
             resources.ApplyResources(registerPanel, "registerPanel");
             registerPanel.Name = "registerPanel";
             registerPanel.Paint += registerPanel_Paint;
+            // 
+            // showBtn2
+            // 
+            showBtn2.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn2, "showBtn2");
+            showBtn2.FlatAppearance.BorderSize = 0;
+            showBtn2.ForeColor = Color.Transparent;
+            showBtn2.Name = "showBtn2";
+            showBtn2.UseVisualStyleBackColor = false;
+            showBtn2.Click += showBtn2_Click;
+            // 
+            // showBtn1
+            // 
+            showBtn1.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn1, "showBtn1");
+            showBtn1.FlatAppearance.BorderSize = 0;
+            showBtn1.ForeColor = Color.Transparent;
+            showBtn1.Name = "showBtn1";
+            showBtn1.UseVisualStyleBackColor = false;
+            showBtn1.Click += showBtn1_Click;
             // 
             // label12
             // 
@@ -336,5 +372,8 @@
         private Label label11;
         private Label label12;
         private Label label13;
+        private Button showBtn1;
+        private Button showBtn2;
+        private Button showBtn3;
     }
 }

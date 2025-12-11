@@ -170,6 +170,7 @@
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(176, 32);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // createBtn
             // 
@@ -453,7 +454,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = " ";
+            Text = " Home";
             FormClosed += Home_FormClosed;
             Load += Home_Load;
             panel1.ResumeLayout(false);

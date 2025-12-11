@@ -346,6 +346,7 @@
             Account.Items.AddRange(new ToolStripItem[] { myAccountToolStripMenuItem, settingsToolStripMenuItem, logOutToolStripMenuItem, exitToolStripMenuItem });
             Account.Name = "Account";
             Account.Size = new Size(177, 132);
+            Account.Opening += Account_Opening;
             // 
             // myAccountToolStripMenuItem
             // 
@@ -364,12 +365,14 @@
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             logOutToolStripMenuItem.Size = new Size(176, 32);
             logOutToolStripMenuItem.Text = "Log out";
+            logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(176, 32);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
             // 
             // label9
             // 
@@ -438,10 +441,11 @@
             Controls.Add(sportCbox);
             Controls.Add(panel1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "CreaTourForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "CreaTourForm";
+            Text = "Create Tournament";
             Load += CreaTourForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
