@@ -123,6 +123,7 @@
             // 
             // sportCbox
             // 
+            sportCbox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             sportCbox.BackColor = Color.FromArgb(64, 64, 64);
             sportCbox.FlatStyle = FlatStyle.Flat;
             sportCbox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -145,6 +146,7 @@
             label2.Size = new Size(71, 30);
             label2.TabIndex = 4;
             label2.Text = "Sport";
+            label2.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label3
             // 
@@ -156,10 +158,12 @@
             label3.Size = new Size(74, 30);
             label3.TabIndex = 5;
             label3.Text = "Name";
+            label3.TextAlign = ContentAlignment.MiddleLeft;
             label3.Click += label3_Click;
             // 
             // nameTextBox
             // 
+            nameTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             nameTextBox.BackColor = Color.FromArgb(64, 64, 64);
             nameTextBox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             nameTextBox.ForeColor = SystemColors.Info;
@@ -179,14 +183,16 @@
             label4.Size = new Size(256, 30);
             label4.TabIndex = 8;
             label4.Text = "Number of Participants";
+            label4.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // numPar
             // 
+            numPar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             numPar.BackColor = Color.FromArgb(64, 64, 64);
             numPar.BorderStyle = BorderStyle.FixedSingle;
             numPar.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             numPar.ForeColor = SystemColors.Info;
-            numPar.Location = new Point(438, 188);
+            numPar.Location = new Point(438, 189);
             numPar.Name = "numPar";
             numPar.Size = new Size(277, 34);
             numPar.TabIndex = 9;
@@ -214,13 +220,14 @@
             // 
             // comboBox2
             // 
+            comboBox2.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox2.BackColor = Color.FromArgb(64, 64, 64);
             comboBox2.FlatStyle = FlatStyle.Flat;
             comboBox2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox2.ForeColor = SystemColors.Info;
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "Knockout Bracket", "Round-robin League" });
-            comboBox2.Location = new Point(31, 22);
+            comboBox2.Location = new Point(36, 23);
             comboBox2.Name = "comboBox2";
             comboBox2.Size = new Size(345, 33);
             comboBox2.TabIndex = 0;
@@ -262,6 +269,7 @@
             // 
             // comboBox4
             // 
+            comboBox4.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox4.BackColor = Color.FromArgb(64, 64, 64);
             comboBox4.FlatStyle = FlatStyle.Flat;
             comboBox4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -275,6 +283,7 @@
             // 
             // comboBox3
             // 
+            comboBox3.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             comboBox3.BackColor = Color.FromArgb(64, 64, 64);
             comboBox3.FlatStyle = FlatStyle.Flat;
             comboBox3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
@@ -324,9 +333,11 @@
             label7.Size = new Size(87, 30);
             label7.TabIndex = 14;
             label7.Text = "Format";
+            label7.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // createBtn
             // 
+            createBtn.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             createBtn.BackColor = Color.FromArgb(52, 178, 51);
             createBtn.FlatAppearance.BorderSize = 0;
             createBtn.FlatStyle = FlatStyle.Flat;
@@ -384,6 +395,7 @@
             label9.Size = new Size(65, 30);
             label9.TabIndex = 16;
             label9.Text = "Prize";
+            label9.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // label10
             // 
@@ -395,9 +407,11 @@
             label10.Size = new Size(117, 30);
             label10.TabIndex = 17;
             label10.Text = "Start date";
+            label10.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // startDate
             // 
+            startDate.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             startDate.CalendarMonthBackground = Color.Gray;
             startDate.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             startDate.Format = DateTimePickerFormat.Custom;
@@ -409,6 +423,7 @@
             // 
             // prizeTextBox
             // 
+            prizeTextBox.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             prizeTextBox.BackColor = Color.FromArgb(64, 64, 64);
             prizeTextBox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             prizeTextBox.ForeColor = SystemColors.Info;
@@ -420,7 +435,7 @@
             // 
             // CreaTourForm
             // 
-            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None; 
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(737, 691);
             Controls.Add(prizeTextBox);
