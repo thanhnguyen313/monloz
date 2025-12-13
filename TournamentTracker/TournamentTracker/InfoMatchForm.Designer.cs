@@ -330,11 +330,11 @@
             dateLabel.BackColor = Color.Transparent;
             dateLabel.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             dateLabel.ForeColor = Color.FromArgb(224, 224, 224);
-            dateLabel.Location = new Point(508, 118);
+            dateLabel.Location = new Point(464, 118);
             dateLabel.Name = "dateLabel";
-            dateLabel.Size = new Size(266, 28);
+            dateLabel.Size = new Size(354, 28);
             dateLabel.TabIndex = 18;
-            dateLabel.Text = "DD/MM/YYYY";
+            dateLabel.Text = "yyyy-MM-dd HH:mm:ss";
             dateLabel.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // homeScoreLabel
@@ -354,9 +354,9 @@
             locationLabel.BackColor = Color.Transparent;
             locationLabel.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             locationLabel.ForeColor = Color.FromArgb(224, 224, 224);
-            locationLabel.Location = new Point(516, 146);
+            locationLabel.Location = new Point(468, 146);
             locationLabel.Name = "locationLabel";
-            locationLabel.Size = new Size(250, 28);
+            locationLabel.Size = new Size(346, 28);
             locationLabel.TabIndex = 21;
             locationLabel.Text = "LOCATION";
             locationLabel.TextAlign = ContentAlignment.MiddleCenter;
