@@ -11,8 +11,8 @@ namespace TeamListForm
 {
     internal class DatabaseHelper
     {
-        private static string connectionString =
-            @"Data Source=DESKTOP-LOJ3INE\SQLEXPRESS;Initial Catalog=TournamentTracker;Integrated Security=True;TrustServerCertificate=True;";
+        private static string connectionString = "";
+;            
 
         // TEAMS
         public static List<Team> GetTeams(string search = "")
