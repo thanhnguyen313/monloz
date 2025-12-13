@@ -30,8 +30,25 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginForm));
             loginPanel = new Panel();
+            showBtn3 = new Button();
+            label10 = new Label();
+            label9 = new Label();
+            label8 = new Label();
+            resLink = new LinkLabel();
+            label2 = new Label();
+            logBtn = new Button();
+            loginLabel = new Label();
+            passTextBox = new TextBox();
+            passLabel = new Label();
+            usrnLabel = new Label();
+            usnTextBox = new TextBox();
             registerPanel = new Panel();
+            showBtn2 = new Button();
+            showBtn1 = new Button();
+            label12 = new Label();
+            label11 = new Label();
             label7 = new Label();
+            label13 = new Label();
             res_conPassTextBox = new TextBox();
             loginLink = new LinkLabel();
             label3 = new Label();
@@ -41,14 +58,6 @@
             label5 = new Label();
             label6 = new Label();
             res_usnTextBox = new TextBox();
-            resLink = new LinkLabel();
-            label2 = new Label();
-            logBtn = new Button();
-            loginLabel = new Label();
-            passTextBox = new TextBox();
-            passLabel = new Label();
-            usrnLabel = new Label();
-            usnTextBox = new TextBox();
             label1 = new Label();
             pictureBox2 = new PictureBox();
             loginPanel.SuspendLayout();
@@ -59,6 +68,10 @@
             // loginPanel
             // 
             loginPanel.BackColor = Color.Transparent;
+            loginPanel.Controls.Add(showBtn3);
+            loginPanel.Controls.Add(label10);
+            loginPanel.Controls.Add(label9);
+            loginPanel.Controls.Add(label8);
             loginPanel.Controls.Add(resLink);
             loginPanel.Controls.Add(label2);
             loginPanel.Controls.Add(logBtn);
@@ -67,16 +80,106 @@
             loginPanel.Controls.Add(passLabel);
             loginPanel.Controls.Add(usrnLabel);
             loginPanel.Controls.Add(usnTextBox);
-            loginPanel.Location = new Point(12, 100);
+            resources.ApplyResources(loginPanel, "loginPanel");
             loginPanel.Name = "loginPanel";
-            loginPanel.Size = new Size(376, 457);
-            loginPanel.TabIndex = 0;
             loginPanel.Paint += loginPanel_Paint;
+            // 
+            // showBtn3
+            // 
+            showBtn3.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn3, "showBtn3");
+            showBtn3.FlatAppearance.BorderSize = 0;
+            showBtn3.ForeColor = Color.Transparent;
+            showBtn3.Name = "showBtn3";
+            showBtn3.UseVisualStyleBackColor = false;
+            showBtn3.Click += showBtn3_Click;
+            // 
+            // label10
+            // 
+            resources.ApplyResources(label10, "label10");
+            label10.ForeColor = Color.White;
+            label10.Name = "label10";
+            // 
+            // label9
+            // 
+            resources.ApplyResources(label9, "label9");
+            label9.ForeColor = Color.FromArgb(225, 225, 225);
+            label9.Name = "label9";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(label8, "label8");
+            label8.ForeColor = Color.White;
+            label8.Name = "label8";
+            // 
+            // resLink
+            // 
+            resLink.ActiveLinkColor = Color.ForestGreen;
+            resources.ApplyResources(resLink, "resLink");
+            resLink.LinkColor = Color.FromArgb(50, 230, 118);
+            resLink.Name = "resLink";
+            resLink.TabStop = true;
+            resLink.LinkClicked += resLink_LinkClicked;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(label2, "label2");
+            label2.Name = "label2";
+            // 
+            // logBtn
+            // 
+            logBtn.BackColor = Color.Transparent;
+            resources.ApplyResources(logBtn, "logBtn");
+            logBtn.FlatAppearance.BorderSize = 0;
+            logBtn.ForeColor = Color.Transparent;
+            logBtn.Name = "logBtn";
+            logBtn.UseVisualStyleBackColor = false;
+            logBtn.Click += logBtn_Click;
+            // 
+            // loginLabel
+            // 
+            resources.ApplyResources(loginLabel, "loginLabel");
+            loginLabel.ForeColor = Color.White;
+            loginLabel.Name = "loginLabel";
+            loginLabel.Click += loginLabel_Click;
+            // 
+            // passTextBox
+            // 
+            passTextBox.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(passTextBox, "passTextBox");
+            passTextBox.ForeColor = Color.FromArgb(232, 232, 232);
+            passTextBox.Name = "passTextBox";
+            passTextBox.KeyDown += passTextBox_KeyDown;
+            // 
+            // passLabel
+            // 
+            resources.ApplyResources(passLabel, "passLabel");
+            passLabel.ForeColor = Color.FromArgb(240, 240, 230);
+            passLabel.Name = "passLabel";
+            // 
+            // usrnLabel
+            // 
+            resources.ApplyResources(usrnLabel, "usrnLabel");
+            usrnLabel.ForeColor = Color.FromArgb(240, 240, 230);
+            usrnLabel.Name = "usrnLabel";
+            // 
+            // usnTextBox
+            // 
+            usnTextBox.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(usnTextBox, "usnTextBox");
+            usnTextBox.ForeColor = Color.FromArgb(232, 232, 232);
+            usnTextBox.Name = "usnTextBox";
+            usnTextBox.TextChanged += textBox1_TextChanged;
             // 
             // registerPanel
             // 
             registerPanel.BackColor = Color.Transparent;
+            registerPanel.Controls.Add(showBtn2);
+            registerPanel.Controls.Add(showBtn1);
+            registerPanel.Controls.Add(label12);
+            registerPanel.Controls.Add(label11);
             registerPanel.Controls.Add(label7);
+            registerPanel.Controls.Add(label13);
             registerPanel.Controls.Add(res_conPassTextBox);
             registerPanel.Controls.Add(loginLink);
             registerPanel.Controls.Add(label3);
@@ -86,258 +189,146 @@
             registerPanel.Controls.Add(label5);
             registerPanel.Controls.Add(label6);
             registerPanel.Controls.Add(res_usnTextBox);
-            registerPanel.Location = new Point(12, 112);
+            resources.ApplyResources(registerPanel, "registerPanel");
             registerPanel.Name = "registerPanel";
-            registerPanel.Size = new Size(376, 457);
-            registerPanel.TabIndex = 3;
             registerPanel.Paint += registerPanel_Paint;
+            // 
+            // showBtn2
+            // 
+            showBtn2.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn2, "showBtn2");
+            showBtn2.FlatAppearance.BorderSize = 0;
+            showBtn2.ForeColor = Color.Transparent;
+            showBtn2.Name = "showBtn2";
+            showBtn2.UseVisualStyleBackColor = false;
+            showBtn2.Click += showBtn2_Click;
+            // 
+            // showBtn1
+            // 
+            showBtn1.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(showBtn1, "showBtn1");
+            showBtn1.FlatAppearance.BorderSize = 0;
+            showBtn1.ForeColor = Color.Transparent;
+            showBtn1.Name = "showBtn1";
+            showBtn1.UseVisualStyleBackColor = false;
+            showBtn1.Click += showBtn1_Click;
+            // 
+            // label12
+            // 
+            resources.ApplyResources(label12, "label12");
+            label12.ForeColor = Color.FromArgb(225, 225, 225);
+            label12.Name = "label12";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(label11, "label11");
+            label11.ForeColor = Color.White;
+            label11.Name = "label11";
+            label11.Click += label11_Click;
             // 
             // label7
             // 
-            label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label7.ForeColor = SystemColors.ButtonFace;
-            label7.Location = new Point(42, 253);
+            resources.ApplyResources(label7, "label7");
+            label7.ForeColor = Color.FromArgb(240, 240, 230);
             label7.Name = "label7";
-            label7.Size = new Size(207, 30);
-            label7.TabIndex = 9;
-            label7.Text = " Confirm Password";
+            // 
+            // label13
+            // 
+            resources.ApplyResources(label13, "label13");
+            label13.ForeColor = Color.White;
+            label13.Name = "label13";
             // 
             // res_conPassTextBox
             // 
-            res_conPassTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            res_conPassTextBox.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            res_conPassTextBox.ForeColor = SystemColors.Info;
-            res_conPassTextBox.Location = new Point(51, 286);
+            res_conPassTextBox.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(res_conPassTextBox, "res_conPassTextBox");
+            res_conPassTextBox.ForeColor = Color.FromArgb(232, 232, 232);
             res_conPassTextBox.Name = "res_conPassTextBox";
-            res_conPassTextBox.PasswordChar = '*';
-            res_conPassTextBox.Size = new Size(253, 37);
-            res_conPassTextBox.TabIndex = 2;
             res_conPassTextBox.KeyDown += res_conPassTextBox_KeyDown;
             // 
             // loginLink
             // 
             loginLink.ActiveLinkColor = Color.ForestGreen;
-            loginLink.AutoSize = true;
-            loginLink.Font = new Font("Segoe UI", 8F);
-            loginLink.LinkColor = Color.LimeGreen;
-            loginLink.Location = new Point(218, 402);
+            resources.ApplyResources(loginLink, "loginLink");
+            loginLink.LinkColor = Color.FromArgb(50, 230, 118);
             loginLink.Name = "loginLink";
-            loginLink.Size = new Size(53, 21);
-            loginLink.TabIndex = 4;
             loginLink.TabStop = true;
-            loginLink.Text = "Log in";
             loginLink.LinkClicked += loginLink_LinkClicked;
             // 
             // label3
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 8F);
-            label3.Location = new Point(92, 402);
+            resources.ApplyResources(label3, "label3");
             label3.Name = "label3";
-            label3.Size = new Size(131, 21);
-            label3.TabIndex = 6;
-            label3.Text = "Have an account?";
             // 
             // resBtn
             // 
-            resBtn.BackColor = Color.FromArgb(64, 64, 64);
-            resBtn.BackgroundImage = (Image)resources.GetObject("resBtn.BackgroundImage");
+            resBtn.BackColor = Color.Transparent;
+            resources.ApplyResources(resBtn, "resBtn");
             resBtn.FlatAppearance.BorderSize = 0;
-            resBtn.FlatStyle = FlatStyle.Flat;
-            resBtn.Font = new Font("Segoe UI", 26F);
             resBtn.ForeColor = Color.Transparent;
-            resBtn.Location = new Point(137, 329);
             resBtn.Name = "resBtn";
-            resBtn.Size = new Size(75, 71);
-            resBtn.TabIndex = 3;
             resBtn.UseVisualStyleBackColor = false;
             resBtn.Click += resBtn_Click;
             // 
             // label4
             // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            label4.ForeColor = SystemColors.ButtonFace;
-            label4.Location = new Point(102, 29);
+            resources.ApplyResources(label4, "label4");
+            label4.ForeColor = Color.White;
             label4.Name = "label4";
-            label4.Size = new Size(157, 48);
-            label4.TabIndex = 4;
-            label4.Text = "Register";
             // 
             // res_passTextBox
             // 
-            res_passTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            res_passTextBox.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            res_passTextBox.ForeColor = SystemColors.Info;
-            res_passTextBox.Location = new Point(51, 203);
+            res_passTextBox.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(res_passTextBox, "res_passTextBox");
+            res_passTextBox.ForeColor = Color.FromArgb(232, 232, 232);
             res_passTextBox.Name = "res_passTextBox";
-            res_passTextBox.PasswordChar = '*';
-            res_passTextBox.Size = new Size(253, 37);
-            res_passTextBox.TabIndex = 1;
             // 
             // label5
             // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label5.ForeColor = SystemColors.ButtonFace;
-            label5.Location = new Point(51, 170);
+            resources.ApplyResources(label5, "label5");
+            label5.ForeColor = Color.FromArgb(240, 240, 230);
             label5.Name = "label5";
-            label5.Size = new Size(112, 30);
-            label5.TabIndex = 2;
-            label5.Text = "Password";
             // 
             // label6
             // 
-            label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            label6.ForeColor = SystemColors.ButtonFace;
-            label6.Location = new Point(51, 90);
+            resources.ApplyResources(label6, "label6");
+            label6.ForeColor = Color.FromArgb(240, 240, 230);
             label6.Name = "label6";
-            label6.Size = new Size(117, 30);
-            label6.TabIndex = 1;
-            label6.Text = "Username";
             // 
             // res_usnTextBox
             // 
-            res_usnTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            res_usnTextBox.Font = new Font("Segoe UI", 11F);
-            res_usnTextBox.ForeColor = SystemColors.Info;
-            res_usnTextBox.Location = new Point(51, 123);
+            res_usnTextBox.BackColor = Color.FromArgb(35, 39, 47);
+            resources.ApplyResources(res_usnTextBox, "res_usnTextBox");
+            res_usnTextBox.ForeColor = Color.FromArgb(232, 232, 232);
             res_usnTextBox.Name = "res_usnTextBox";
-            res_usnTextBox.Size = new Size(253, 37);
-            res_usnTextBox.TabIndex = 0;
             res_usnTextBox.TextChanged += res_usnTextBox_TextChanged;
-            // 
-            // resLink
-            // 
-            resLink.ActiveLinkColor = Color.ForestGreen;
-            resLink.AutoSize = true;
-            resLink.Font = new Font("Segoe UI", 8F);
-            resLink.LinkColor = Color.LimeGreen;
-            resLink.Location = new Point(227, 364);
-            resLink.Name = "resLink";
-            resLink.Size = new Size(63, 21);
-            resLink.TabIndex = 7;
-            resLink.TabStop = true;
-            resLink.Text = "Sign up";
-            resLink.LinkClicked += resLink_LinkClicked;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 8F);
-            label2.Location = new Point(55, 364);
-            label2.Name = "label2";
-            label2.Size = new Size(178, 21);
-            label2.TabIndex = 6;
-            label2.Text = "Don't have an account?, ";
-            // 
-            // logBtn
-            // 
-            logBtn.BackColor = Color.FromArgb(64, 64, 64);
-            logBtn.BackgroundImage = (Image)resources.GetObject("logBtn.BackgroundImage");
-            logBtn.FlatAppearance.BorderSize = 0;
-            logBtn.FlatStyle = FlatStyle.Flat;
-            logBtn.Font = new Font("Segoe UI", 26F);
-            logBtn.ForeColor = Color.Transparent;
-            logBtn.Location = new Point(136, 275);
-            logBtn.Name = "logBtn";
-            logBtn.Size = new Size(75, 71);
-            logBtn.TabIndex = 5;
-            logBtn.UseVisualStyleBackColor = false;
-            logBtn.Click += logBtn_Click;
-            // 
-            // loginLabel
-            // 
-            loginLabel.AutoSize = true;
-            loginLabel.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            loginLabel.ForeColor = SystemColors.ButtonFace;
-            loginLabel.Location = new Point(119, 25);
-            loginLabel.Name = "loginLabel";
-            loginLabel.Size = new Size(114, 48);
-            loginLabel.TabIndex = 4;
-            loginLabel.Text = "Login";
-            // 
-            // passTextBox
-            // 
-            passTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            passTextBox.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            passTextBox.ForeColor = SystemColors.Info;
-            passTextBox.Location = new Point(50, 211);
-            passTextBox.Name = "passTextBox";
-            passTextBox.PasswordChar = '*';
-            passTextBox.Size = new Size(253, 37);
-            passTextBox.TabIndex = 3;
-            passTextBox.KeyDown += passTextBox_KeyDown;
-            // 
-            // passLabel
-            // 
-            passLabel.AutoSize = true;
-            passLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            passLabel.ForeColor = SystemColors.ButtonFace;
-            passLabel.Location = new Point(50, 178);
-            passLabel.Name = "passLabel";
-            passLabel.Size = new Size(112, 30);
-            passLabel.TabIndex = 2;
-            passLabel.Text = "Password";
-            // 
-            // usrnLabel
-            // 
-            usrnLabel.AutoSize = true;
-            usrnLabel.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            usrnLabel.ForeColor = SystemColors.ButtonFace;
-            usrnLabel.Location = new Point(50, 98);
-            usrnLabel.Name = "usrnLabel";
-            usrnLabel.Size = new Size(117, 30);
-            usrnLabel.TabIndex = 1;
-            usrnLabel.Text = "Username";
-            // 
-            // usnTextBox
-            // 
-            usnTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            usnTextBox.Font = new Font("Segoe UI", 11F);
-            usnTextBox.ForeColor = SystemColors.Info;
-            usnTextBox.Location = new Point(50, 131);
-            usnTextBox.Name = "usnTextBox";
-            usnTextBox.Size = new Size(253, 37);
-            usnTextBox.TabIndex = 0;
-            usnTextBox.TextChanged += textBox1_TextChanged;
             // 
             // label1
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 20F, FontStyle.Bold);
-            label1.ForeColor = Color.LimeGreen;
-            label1.Location = new Point(12, 29);
+            resources.ApplyResources(label1, "label1");
+            label1.BackColor = Color.Transparent;
+            label1.ForeColor = Color.SpringGreen;
             label1.Name = "label1";
-            label1.Size = new Size(368, 54);
-            label1.TabIndex = 1;
-            label1.Text = "🏆 TOURNAMENT";
             label1.Click += label1_Click;
             // 
             // pictureBox2
             // 
-            pictureBox2.Image = (Image)resources.GetObject("pictureBox2.Image");
-            pictureBox2.Location = new Point(394, 0);
+            resources.ApplyResources(pictureBox2, "pictureBox2");
             pictureBox2.Name = "pictureBox2";
-            pictureBox2.Size = new Size(591, 569);
-            pictureBox2.TabIndex = 2;
             pictureBox2.TabStop = false;
             // 
             // LoginForm
             // 
-            AutoScaleDimensions = new SizeF(10F, 25F);
-            AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(984, 569);
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(44, 44, 44);
+            resources.ApplyResources(this, "$this");
             Controls.Add(registerPanel);
             Controls.Add(pictureBox2);
             Controls.Add(label1);
             Controls.Add(loginPanel);
-            Icon = (Icon)resources.GetObject("$this.Icon");
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "LoginForm";
-            Text = "Home";
             FormClosed += LoginForm_FormClosed;
             loginPanel.ResumeLayout(false);
             loginPanel.PerformLayout();
@@ -375,5 +366,14 @@
         private LinkLabel resLink;
         private Label label7;
         private LinkLabel loginLink;
+        private Label label8;
+        private Label label10;
+        private Label label9;
+        private Label label11;
+        private Label label12;
+        private Label label13;
+        private Button showBtn1;
+        private Button showBtn2;
+        private Button showBtn3;
     }
 }

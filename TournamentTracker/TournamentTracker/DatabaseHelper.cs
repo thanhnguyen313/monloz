@@ -14,7 +14,6 @@ namespace TeamListForm
     internal class DatabaseHelper
     {
         private static string connectionString = "";
-;            
 
         // TEAMS
         public static List<Team> GetTeams(string search = "")
@@ -155,7 +154,6 @@ namespace TeamListForm
             conn.Open();
             cmd.ExecuteNonQuery();
         }
-
         public static void UpdatePlayer(Player player)
         {
             string sql = "UPDATE Players SET PlayerName = @Name, Age = @Age, Position = @Pos WHERE ID = @ID";
@@ -245,6 +243,139 @@ namespace TeamListForm
                 cmd.Parameters.AddWithValue("@password", hashedPassword);
                 int match = (int)cmd.ExecuteScalar();
                 return match > 0; // true nếu tồn tại, false nếu không
+            }
+        }
+        //Tournaments database
+        public bool AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+
+                    // --- BƯỚC 1: FIX LỖI THIẾU CỘT (TỰ ĐỘNG SỬA DB) ---
+                    string fixSql = @"
+                IF COL_LENGTH('dbo.Tournaments', 'SPORT') IS NULL
+                    ALTER TABLE dbo.Tournaments ADD SPORT NVARCHAR(50) NULL;
+                
+                IF COL_LENGTH('dbo.Tournaments', 'TEAM_COUNT') IS NULL
+                    ALTER TABLE dbo.Tournaments ADD TEAM_COUNT INT DEFAULT 0;
+            ";
+                    using (SqlCommand fixCmd = new SqlCommand(fixSql, conn))
+                    {
+                        fixCmd.ExecuteNonQuery();
+                    }
+                    // ----------------------------------------------------
+
+                    // BƯỚC 2: THÊM DỮ LIỆU NHƯ BÌNH THƯỜNG
+                    string query = @"INSERT INTO Tournaments 
+                           (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT) 
+                           VALUES 
+                           (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount)";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@location", string.IsNullOrEmpty(location) ? (object)DBNull.Value : location);
+                    cmd.Parameters.AddWithValue("@startDate", startDate.HasValue ? (object)startDate.Value : DBNull.Value);
+                    cmd.Parameters.AddWithValue("@prize", string.IsNullOrEmpty(prize) ? (object)DBNull.Value : prize);
+                    cmd.Parameters.AddWithValue("@posterPath", string.IsNullOrEmpty(posterPath) ? (object)DBNull.Value : posterPath);
+                    cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
+                    cmd.Parameters.AddWithValue("@teamCount", teamCount);
+
+                    int rowsAffected = cmd.ExecuteNonQuery();
+                    return rowsAffected > 0;
+                }
+                catch (Exception ex)
+                {
+                    // Hiện lỗi chi tiết để debug
+                    System.Windows.Forms.MessageBox.Show("Lỗi Database: " + ex.Message);
+                    return false;
+                }
+            }
+        }
+        public DataTable GetAllTournaments()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT * FROM Tournaments ORDER BY ID DESC";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                    adapter.Fill(dt);
+                }
+                catch (Exception ex)
+                {
+                }
+            }
+            return dt;
+        }
+        public bool DeleteTournament(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    string query = "DELETE FROM Tournaments WHERE ID = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@id", id);
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+                catch (Exception)
+                {
+                    return false; 
+                }
+            }
+        }
+        public DataRow GetHeroTournament()
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+
+                string sql = @"
+            SELECT TOP 1 *
+            FROM Tournaments
+            ORDER BY STARTDATE ASC";
+
+                SqlDataAdapter da = new SqlDataAdapter(sql, conn);
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                    return dt.Rows[0];
+
+                return null;
+            }
+        }
+        public DataRow GetTournamentStats()
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = @"
+            SELECT
+
+    COUNT(ID) AS TotalTournaments,
+    
+ 
+    SUM(CASE WHEN STARTDATE > GETDATE() THEN 1 ELSE 0 END) AS UpcomingTournaments,
+    
+   
+    SUM(CASE WHEN STARTDATE <= GETDATE() THEN 1 ELSE 0 END) AS StartedOrFinishedTournaments
+FROM Tournaments;";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+
+                return dt.Rows.Count > 0 ? dt.Rows[0] : null; 
             }
         }
     }

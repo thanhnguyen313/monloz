@@ -57,6 +57,10 @@
             settingsToolStripMenuItem = new ToolStripMenuItem();
             logOutToolStripMenuItem = new ToolStripMenuItem();
             exitToolStripMenuItem = new ToolStripMenuItem();
+            label9 = new Label();
+            label10 = new Label();
+            startDate = new DateTimePicker();
+            prizeTextBox = new TextBox();
             panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numPar).BeginInit();
             panelSingle.SuspendLayout();
@@ -67,7 +71,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            label1.Font = new Font("Segoe UI", 32F, FontStyle.Bold, GraphicsUnit.Pixel);
             label1.ForeColor = Color.LimeGreen;
             label1.Location = new Point(8, 5);
             label1.Margin = new Padding(2, 0, 2, 0);
@@ -83,7 +87,7 @@
             LogOutBtn.FlatAppearance.MouseDownBackColor = Color.Gray;
             LogOutBtn.FlatAppearance.MouseOverBackColor = Color.FromArgb(55, 55, 55);
             LogOutBtn.FlatStyle = FlatStyle.Flat;
-            LogOutBtn.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            LogOutBtn.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Pixel);
             LogOutBtn.ForeColor = SystemColors.ActiveCaptionText;
             LogOutBtn.Image = (Image)resources.GetObject("LogOutBtn.Image");
             LogOutBtn.Location = new Point(471, 7);
@@ -98,6 +102,7 @@
             // 
             sfindBtn.FlatAppearance.BorderSize = 0;
             sfindBtn.FlatStyle = FlatStyle.Flat;
+            sfindBtn.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             sfindBtn.ForeColor = Color.Transparent;
             sfindBtn.Image = (Image)resources.GetObject("sfindBtn.Image");
             sfindBtn.Location = new Point(425, 7);
@@ -124,7 +129,7 @@
             // 
             sportCbox.BackColor = Color.FromArgb(64, 64, 64);
             sportCbox.FlatStyle = FlatStyle.Flat;
-            sportCbox.Font = new Font("Segoe UI", 10F);
+            sportCbox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             sportCbox.ForeColor = SystemColors.Info;
             sportCbox.FormattingEnabled = true;
             sportCbox.IntegralHeight = false;
@@ -138,7 +143,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label2.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
             label2.ForeColor = SystemColors.ButtonHighlight;
             label2.Location = new Point(90, 93);
             label2.Margin = new Padding(2, 0, 2, 0);
@@ -150,7 +155,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label3.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
             label3.ForeColor = SystemColors.ButtonHighlight;
             label3.Location = new Point(225, 47);
             label3.Margin = new Padding(2, 0, 2, 0);
@@ -163,7 +168,7 @@
             // nameTextBox
             // 
             nameTextBox.BackColor = Color.FromArgb(64, 64, 64);
-            nameTextBox.Font = new Font("Segoe UI", 10F);
+            nameTextBox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             nameTextBox.ForeColor = SystemColors.Info;
             nameTextBox.Location = new Point(150, 67);
             nameTextBox.Margin = new Padding(2, 2, 2, 2);
@@ -175,7 +180,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label4.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
             label4.ForeColor = SystemColors.ButtonHighlight;
             label4.Location = new Point(307, 93);
             label4.Margin = new Padding(2, 0, 2, 0);
@@ -188,7 +193,7 @@
             // 
             numPar.BackColor = Color.FromArgb(64, 64, 64);
             numPar.BorderStyle = BorderStyle.FixedSingle;
-            numPar.Font = new Font("Segoe UI", 10F);
+            numPar.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             numPar.ForeColor = SystemColors.Info;
             numPar.Location = new Point(307, 113);
             numPar.Margin = new Padding(2, 2, 2, 2);
@@ -201,8 +206,7 @@
             // 
             panelSingle.Controls.Add(label8);
             panelSingle.Controls.Add(comboBox2);
-            panelSingle.Location = new Point(212, 169);
-            panelSingle.Margin = new Padding(2, 2, 2, 2);
+            panelSingle.Location = new Point(303, 370);
             panelSingle.Name = "panelSingle";
             panelSingle.Size = new Size(280, 49);
             panelSingle.TabIndex = 10;
@@ -210,7 +214,7 @@
             // label8
             // 
             label8.AutoSize = true;
-            label8.Font = new Font("Segoe UI", 8F);
+            label8.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             label8.ForeColor = SystemColors.Control;
             label8.Location = new Point(25, 5);
             label8.Margin = new Padding(2, 0, 2, 0);
@@ -223,6 +227,7 @@
             // 
             comboBox2.BackColor = Color.FromArgb(64, 64, 64);
             comboBox2.FlatStyle = FlatStyle.Flat;
+            comboBox2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox2.ForeColor = SystemColors.Info;
             comboBox2.FormattingEnabled = true;
             comboBox2.Items.AddRange(new object[] { "Knockout Bracket", "Round-robin League" });
@@ -239,8 +244,7 @@
             panelMulti.Controls.Add(label6);
             panelMulti.Controls.Add(comboBox4);
             panelMulti.Controls.Add(comboBox3);
-            panelMulti.Location = new Point(212, 227);
-            panelMulti.Margin = new Padding(2, 2, 2, 2);
+            panelMulti.Location = new Point(303, 466);
             panelMulti.Name = "panelMulti";
             panelMulti.Size = new Size(280, 73);
             panelMulti.TabIndex = 11;
@@ -248,7 +252,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 8F);
+            label5.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             label5.ForeColor = SystemColors.Control;
             label5.Location = new Point(25, 32);
             label5.Margin = new Padding(2, 0, 2, 0);
@@ -260,7 +264,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 8F);
+            label6.Font = new Font("Segoe UI", 16F, FontStyle.Regular, GraphicsUnit.Pixel);
             label6.ForeColor = SystemColors.Control;
             label6.Location = new Point(25, 0);
             label6.Margin = new Padding(2, 0, 2, 0);
@@ -274,6 +278,7 @@
             // 
             comboBox4.BackColor = Color.FromArgb(64, 64, 64);
             comboBox4.FlatStyle = FlatStyle.Flat;
+            comboBox4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox4.ForeColor = SystemColors.Info;
             comboBox4.FormattingEnabled = true;
             comboBox4.Items.AddRange(new object[] { "Knockout Bracket", "Round-robin League" });
@@ -287,6 +292,7 @@
             // 
             comboBox3.BackColor = Color.FromArgb(64, 64, 64);
             comboBox3.FlatStyle = FlatStyle.Flat;
+            comboBox3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox3.ForeColor = SystemColors.Info;
             comboBox3.FormattingEnabled = true;
             comboBox3.Items.AddRange(new object[] { "Knockout Bracket", "Round-robin League" });
@@ -299,10 +305,9 @@
             // singleRad
             // 
             singleRad.AutoSize = true;
-            singleRad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            singleRad.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Pixel);
             singleRad.ForeColor = SystemColors.Info;
-            singleRad.Location = new Point(42, 183);
-            singleRad.Margin = new Padding(2, 2, 2, 2);
+            singleRad.Location = new Point(60, 393);
             singleRad.Name = "singleRad";
             singleRad.Size = new Size(92, 19);
             singleRad.TabIndex = 12;
@@ -314,10 +319,9 @@
             // multiRad
             // 
             multiRad.AutoSize = true;
-            multiRad.Font = new Font("Segoe UI", 9F, FontStyle.Bold);
+            multiRad.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Pixel);
             multiRad.ForeColor = SystemColors.Info;
-            multiRad.Location = new Point(42, 246);
-            multiRad.Margin = new Padding(2, 2, 2, 2);
+            multiRad.Location = new Point(60, 498);
             multiRad.Name = "multiRad";
             multiRad.Size = new Size(87, 19);
             multiRad.TabIndex = 13;
@@ -329,10 +333,9 @@
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
+            label7.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
             label7.ForeColor = SystemColors.ButtonHighlight;
-            label7.Location = new Point(225, 142);
-            label7.Margin = new Padding(2, 0, 2, 0);
+            label7.Location = new Point(321, 324);
             label7.Name = "label7";
             label7.Size = new Size(60, 20);
             label7.TabIndex = 14;
@@ -343,10 +346,9 @@
             createBtn.BackColor = Color.FromArgb(52, 178, 51);
             createBtn.FlatAppearance.BorderSize = 0;
             createBtn.FlatStyle = FlatStyle.Flat;
-            createBtn.Font = new Font("Segoe UI", 10F, FontStyle.Bold);
+            createBtn.Font = new Font("Segoe UI", 20F, FontStyle.Bold, GraphicsUnit.Pixel);
             createBtn.ForeColor = Color.White;
-            createBtn.Location = new Point(150, 316);
-            createBtn.Margin = new Padding(2, 2, 2, 2);
+            createBtn.Location = new Point(214, 614);
             createBtn.Name = "createBtn";
             createBtn.Size = new Size(212, 36);
             createBtn.TabIndex = 15;
@@ -359,7 +361,8 @@
             Account.ImageScalingSize = new Size(24, 24);
             Account.Items.AddRange(new ToolStripItem[] { myAccountToolStripMenuItem, settingsToolStripMenuItem, logOutToolStripMenuItem, exitToolStripMenuItem });
             Account.Name = "Account";
-            Account.Size = new Size(138, 92);
+            Account.Size = new Size(177, 132);
+            Account.Opening += Account_Opening;
             // 
             // myAccountToolStripMenuItem
             // 
@@ -378,19 +381,68 @@
             logOutToolStripMenuItem.Name = "logOutToolStripMenuItem";
             logOutToolStripMenuItem.Size = new Size(137, 22);
             logOutToolStripMenuItem.Text = "Log out";
+            logOutToolStripMenuItem.Click += logOutToolStripMenuItem_Click;
             // 
             // exitToolStripMenuItem
             // 
             exitToolStripMenuItem.Name = "exitToolStripMenuItem";
             exitToolStripMenuItem.Size = new Size(137, 22);
             exitToolStripMenuItem.Text = "Exit";
+            exitToolStripMenuItem.Click += exitToolStripMenuItem_Click;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
+            label9.ForeColor = SystemColors.ButtonHighlight;
+            label9.Location = new Point(538, 236);
+            label9.Name = "label9";
+            label9.Size = new Size(65, 30);
+            label9.TabIndex = 16;
+            label9.Text = "Prize";
+            // 
+            // label10
+            // 
+            label10.AutoSize = true;
+            label10.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
+            label10.ForeColor = SystemColors.ButtonHighlight;
+            label10.Location = new Point(105, 236);
+            label10.Name = "label10";
+            label10.Size = new Size(117, 30);
+            label10.TabIndex = 17;
+            label10.Text = "Start date";
+            // 
+            // startDate
+            // 
+            startDate.CalendarMonthBackground = Color.Gray;
+            startDate.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
+            startDate.Format = DateTimePickerFormat.Custom;
+            startDate.Location = new Point(60, 270);
+            startDate.Name = "startDate";
+            startDate.Size = new Size(206, 31);
+            startDate.TabIndex = 18;
+            startDate.ValueChanged += starTime_ValueChanged;
+            // 
+            // prizeTextBox
+            // 
+            prizeTextBox.BackColor = Color.FromArgb(64, 64, 64);
+            prizeTextBox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
+            prizeTextBox.ForeColor = SystemColors.Info;
+            prizeTextBox.Location = new Point(436, 269);
+            prizeTextBox.Name = "prizeTextBox";
+            prizeTextBox.PlaceholderText = "Tournament Prize";
+            prizeTextBox.Size = new Size(279, 34);
+            prizeTextBox.TabIndex = 19;
             // 
             // CreaTourForm
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(64, 64, 64);
-            ClientSize = new Size(516, 371);
+            ClientSize = new Size(737, 691);
+            Controls.Add(prizeTextBox);
+            Controls.Add(startDate);
+            Controls.Add(label10);
+            Controls.Add(label9);
             Controls.Add(createBtn);
             Controls.Add(label7);
             Controls.Add(multiRad);
@@ -404,9 +456,12 @@
             Controls.Add(label2);
             Controls.Add(sportCbox);
             Controls.Add(panel1);
-            Margin = new Padding(2, 2, 2, 2);
+            FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MaximizeBox = false;
             Name = "CreaTourForm";
-            Text = "CreaTourForm";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Create Tournament";
             Load += CreaTourForm_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
@@ -433,7 +488,7 @@
         private Label label4;
         private NumericUpDown numPar;
         private Label label5;
-        private DateTimePicker dateTimePicker1;
+        private DateTimePicker startDate;
         private Panel panelSingle;
         private ComboBox comboBox2;
         private Panel panelMulti;
@@ -450,5 +505,8 @@
         private ToolStripMenuItem settingsToolStripMenuItem;
         private ToolStripMenuItem logOutToolStripMenuItem;
         private ToolStripMenuItem exitToolStripMenuItem;
+        private Label label9;
+        private Label label10;
+        private TextBox prizeTextBox;
     }
 }

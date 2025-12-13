@@ -5,20 +5,27 @@ namespace TourApp
     {
         private void Enter_Is_Tab_KeyDown(object sender, KeyEventArgs e)
         {
-            // Kiểm tra xem phím Enter có được nhấn không
             if (e.KeyCode == Keys.Enter)
             {
-                // Gửi lệnh gõ phím {TAB} cho ứng dụng
                 System.Windows.Forms.SendKeys.Send("{TAB}");
-
-                // Ngăn hệ thống xử lý phím Enter thêm nữa (rất quan trọng)
                 e.SuppressKeyPress = true;
                 e.Handled = true;
+            }
+        }
+        protected override CreateParams CreateParams
+        {
+            get
+            {
+                var cp = base.CreateParams;
+                cp.ExStyle |= 0x02000000;
+                return cp;
             }
         }
         public LoginForm()
         {
             InitializeComponent();
+            this.DoubleBuffered = true;
+            SetStyle(ControlStyles.AllPaintingInWmPaint | ControlStyles.UserPaint | ControlStyles.OptimizedDoubleBuffer, true);
             res_usnTextBox.KeyDown += Enter_Is_Tab_KeyDown;
             res_passTextBox.KeyDown += Enter_Is_Tab_KeyDown;
             usnTextBox.KeyDown += Enter_Is_Tab_KeyDown;
@@ -46,14 +53,12 @@ namespace TourApp
             res_conPassTextBox.Text = "";
             res_passTextBox.Text = "";
             res_usnTextBox.Text = "";
-            this.AcceptButton = resBtn;
         }
 
         private void loginLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             loginPanel.Visible = true;
             registerPanel.Visible = false;
-            this.AcceptButton = logBtn;
         }
 
         private void registerPanel_Paint(object sender, PaintEventArgs e)
@@ -144,6 +149,52 @@ namespace TourApp
             {
                 logBtn.PerformClick();
                 e.SuppressKeyPress = true;
+            }
+        }
+
+        private void loginLabel_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void showBtn1_Click(object sender, EventArgs e)
+        {
+            if (res_passTextBox.PasswordChar == '*')
+            {
+                res_passTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                res_passTextBox.PasswordChar = '*';
+            }
+        }
+
+        private void showBtn2_Click(object sender, EventArgs e)
+        {
+            if (res_conPassTextBox.PasswordChar == '*')
+            {
+                res_conPassTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                res_conPassTextBox.PasswordChar = '*';
+            }
+        }
+
+        private void showBtn3_Click(object sender, EventArgs e)
+        {
+            if (passTextBox.PasswordChar == '*')
+            {
+                passTextBox.PasswordChar = '\0';
+            }
+            else
+            {
+                passTextBox.PasswordChar = '*';
             }
         }
     }

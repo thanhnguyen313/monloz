@@ -1,5 +1,4 @@
-﻿-- 1. Sử dụng đúng Database
-USE [TournamentTracker];
+﻿USE [TournamentTracker];
 GO
 
 -- 2. Tạo bảng Teams (Đội bóng)
@@ -36,7 +35,7 @@ BEGIN
 END
 GO
 
--- 4. Tạo bảng Matches (Lịch thi đấu) - Cái này cần cho tính năng bạn vừa làm
+-- 4. Tạo bảng Matches (Lịch thi đấu)
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Matches]') AND type in (N'U'))
 BEGIN
     CREATE TABLE [dbo].[Matches](
@@ -53,8 +52,25 @@ END
 GO
 USE [TournamentTracker];
 GO
-
--- Kiểm tra xem bảng có chưa, chưa có thì mới tạo
+-- Tournaments
+IF NOT EXISTS (SELECT * FROM sys.objects 
+               WHERE object_id = OBJECT_ID(N'[dbo].[Tournaments]') 
+               AND type in (N'U'))
+BEGIN
+    CREATE TABLE [dbo].[Tournaments](
+        [ID] INT IDENTITY(1,1) PRIMARY KEY,
+        [NAME] NVARCHAR(100) NOT NULL,
+        [LOCATION] NVARCHAR(100) NULL,
+        [STARTDATE] DATE NULL,
+        [PRIZE] NVARCHAR(50) NULL,
+        [POSTERPATH] NVARCHAR(255) NULL  ,
+        [SPORT] NVARCHAR(50),   
+        [TEAM_COUNT] int
+    );
+    PRINT 'Created table Tournaments.';
+END
+GO
+-- Account
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[Account]') AND type in (N'U'))
 BEGIN
     CREATE TABLE [dbo].[Account](
