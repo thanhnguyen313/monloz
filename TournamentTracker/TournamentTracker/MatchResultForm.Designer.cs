@@ -230,6 +230,7 @@
             Font = new Font("Segoe UI", 17F, FontStyle.Regular, GraphicsUnit.Pixel);
             ForeColor = Color.White;
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(3, 4, 3, 4);
             MaximizeBox = false;
             MinimizeBox = false;

@@ -368,6 +368,7 @@
             DoubleBuffered = true;
             Font = new Font("Segoe UI", 15F, FontStyle.Regular, GraphicsUnit.Pixel);
             FormBorderStyle = FormBorderStyle.FixedSingle;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(4, 5, 4, 5);
             MaximizeBox = false;
             Name = "MatchesScheduleForm";

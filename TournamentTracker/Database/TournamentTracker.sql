@@ -236,33 +236,71 @@ GO
 
 
 
--- ============================================
--- TEST CASE - Quốc Nguyên (phần này sau này bỏ)
--- ============================================
-
--- 1. Thêm Đội bóng (ID sẽ là 1, 2, 3, 4)
-INSERT INTO Teams (TEAMNAME, COACH) VALUES (N'Vietnam', N'Kim Sang-sik');
-INSERT INTO Teams (TEAMNAME, COACH) VALUES (N'Thailand', N'Masatada Ishii');
-INSERT INTO Teams (TEAMNAME, COACH) VALUES (N'Indonesia', N'Shin Tae-yong');
-INSERT INTO Teams (TEAMNAME, COACH) VALUES (N'Malaysia', N'Kim Pan-gon');
+-- =============================================
+-- 1. DATA BẢNG TOURNAMENTS 
+-- =============================================
+INSERT INTO [dbo].[Tournaments] 
+([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT]) 
+VALUES
+(N'Champions Cup 2024', N'Europe', '2024-05-01', N'$10,000,000', N'/images/ucl2024.jpg', N'Soccer', 8),
+(N'Premier League Simulation', N'England', '2024-08-12', N'$50,000,000', N'/images/pl.jpg', N'Soccer', 20),
+(N'Friendly Asia Tour', N'Vietnam', '2024-06-15', N'$500,000', N'/images/friendly.jpg', N'Soccer', 4);
 GO
 
--- 2. Thêm Trận đấu (QUAN TRỌNG: Phải điền RoundType để không bị lỗi)
+-- =============================================
+-- 2. DATA BẢNG MATCHES 
+-- =============================================
 
--- CASE 1: TRẬN CHƯA ĐÁ (Vietnam vs Thailand)
--- Status = 0, RoundType = 0 (Vòng bảng)
-INSERT INTO Matches (Round, HomeTeamID, AwayTeamID, HomeScore, AwayScore, Status, RoundType) 
-VALUES (1, 1, 2, NULL, NULL, 0, 0); 
+-- ---------------------------------------------------------
+-- KỊCH BẢN 1: CHAMPIONS CUP (Đấu loại trực tiếp - Knockout)
+-- ---------------------------------------------------------
 
+-- VÒNG 1 (Tứ Kết) - Đã đá xong (Status = 2)
+INSERT INTO [dbo].[Matches] 
+([Round], [RoundNumber], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+VALUES
+-- Trận 1: Real Madrid (1) vs Man City (2) -> Real thắng 3-1
+(1, 1, 1, NULL, 1, 2, 3, 1, '2024-05-01 20:00:00', N'Santiago Bernabéu', 2, 1),
 
--- CASE 2: TRẬN ĐÃ ĐÁ (Indonesia vs Malaysia)
--- Status = 2 (Đã xong), RoundType = 0
-INSERT INTO Matches (Round, HomeTeamID, AwayTeamID, HomeScore, AwayScore, Status, RoundType) 
-VALUES (1, 3, 4, 3, 0, 2, 0); 
+-- Trận 2: Bayern Munich (6) vs Barcelona (7) -> Hòa 2-2, Bayern thắng Pen (giả định set WinnerID=6)
+(1, 1, 1, NULL, 6, 7, 2, 2, '2024-05-02 20:00:00', N'Allianz Arena', 2, 6),
 
+-- Trận 3: PSG (8) vs Arsenal (4) -> Arsenal thắng 1-2
+(1, 1, 1, NULL, 8, 4, 1, 2, '2024-05-03 20:00:00', N'Parc des Princes', 2, 4),
 
--- CASE 3: TRẬN HÒA (Thailand vs Indonesia)
-INSERT INTO Matches (Round, HomeTeamID, AwayTeamID, HomeScore, AwayScore, Status, RoundType) 
-VALUES (2, 2, 3, 1, 1, 2, 0); 
+-- Trận 4: Liverpool (5) vs Man Utd (3) -> Liverpool thắng 4-0
+(1, 1, 1, NULL, 5, 3, 4, 0, '2024-05-04 20:00:00', N'Anfield', 2, 5);
 
-GO
+-- VÒNG 2 (Bán Kết) - Sắp đá (Status = 0, chưa có tỷ số)
+-- Người thắng Trận 1 (Real) vs Người thắng Trận 2 (Bayern)
+-- Người thắng Trận 3 (Arsenal) vs Người thắng Trận 4 (Liverpool)
+INSERT INTO [dbo].[Matches] 
+([Round], [RoundNumber], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+VALUES
+(2, 2, 1, NULL, 1, 6, NULL, NULL, '2024-05-15 20:00:00', N'Wembley Stadium', 0, NULL),
+(2, 2, 1, NULL, 4, 5, NULL, NULL, '2024-05-16 20:00:00', N'Wembley Stadium', 0, NULL);
+
+-- ---------------------------------------------------------
+-- KỊCH BẢN 2: FRIENDLY ASIA TOUR (Vòng bảng - Round Robin)
+-- ---------------------------------------------------------
+-- Gồm: Hanoi FC (10), Chelsea (9), Man Utd (3), Barca (7)
+
+-- Lượt trận 1: Đang đá (Status = 1)
+INSERT INTO [dbo].[Matches] 
+([Round], [RoundNumber], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+VALUES
+-- Hanoi FC vs Chelsea (Đang đá phút 70, tỷ số tạm thời 1-2)
+(1, 1, 0, N'A', 10, 9, 1, 2, GETDATE(), N'My Dinh Stadium', 1, NULL),
+
+-- Man Utd vs Barca (Sắp đá hôm nay)
+(1, 1, 0, N'A', 3, 7, NULL, NULL, DATEADD(hour, 2, GETDATE()), N'Thong Nhat Stadium', 0, NULL);
+
+-- Lượt trận 2: Tương lai
+INSERT INTO [dbo].[Matches] 
+([Round], [RoundNumber], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+VALUES
+-- Hanoi FC vs Man Utd
+(2, 2, 0, N'A', 10, 3, NULL, NULL, DATEADD(day, 3, GETDATE()), N'My Dinh Stadium', 0, NULL),
+-- Chelsea vs Barca
+(2, 2, 0, N'A', 9, 7, NULL, NULL, DATEADD(day, 3, GETDATE()), N'My Dinh Stadium', 0, NULL);
+
