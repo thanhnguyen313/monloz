@@ -62,8 +62,24 @@ namespace TeamListForm
             }
 
             // Ngày giờ hiện tại
-            dateLabel.Text = DateTime.Now.ToString("dd/MM/yyyy");
-            locationLabel.Text = "Round " + _match.Round;
+            if (_match.MatchDate != null)
+            {
+                // Sửa định dạng ở đây: "yyyy-MM-dd HH:mm:ss"
+                dateLabel.Text = _match.MatchDate.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            else
+            {
+                dateLabel.Text = "Chưa có lịch";
+            }
+            // Kiểm tra nếu có địa điểm thì hiện, không thì để trống
+            if (!string.IsNullOrEmpty(_match.Location))
+            {
+                locationLabel.Text = _match.Location;
+            }
+            else
+            {
+                locationLabel.Text = "Sân chưa xác định";
+            }
         }
 
         private void LoadPlayers()
