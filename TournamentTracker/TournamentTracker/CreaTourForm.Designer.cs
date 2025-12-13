@@ -436,7 +436,7 @@
             // 
             // CreaTourForm
             // 
-            AutoScaleMode = AutoScaleMode.None;
+            AutoScaleMode = System.Windows.Forms.AutoScaleMode.None; 
             BackColor = Color.FromArgb(64, 64, 64);
             ClientSize = new Size(737, 691);
             Controls.Add(prizeTextBox);
@@ -456,6 +456,7 @@
             Controls.Add(label2);
             Controls.Add(sportCbox);
             Controls.Add(panel1);
+            Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
