@@ -1,4 +1,4 @@
-﻿namespace tournament_tracker
+﻿namespace TeamListForm
 {
     partial class MatchResultForm
     {
@@ -28,143 +28,221 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.HGLabel = new System.Windows.Forms.Label();
-            this.AGLabel = new System.Windows.Forms.Label();
-            this.vsLabel = new System.Windows.Forms.Label();
-            this.homeLabel = new System.Windows.Forms.Label();
-            this.awayLabel = new System.Windows.Forms.Label();
-            this.homeNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.awayNumericUpDown = new System.Windows.Forms.NumericUpDown();
-            this.saveMatchButton = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.homeNumericUpDown)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.awayNumericUpDown)).BeginInit();
-            this.SuspendLayout();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MatchResultForm));
+            HGLabel = new Label();
+            AGLabel = new Label();
+            vsLabel = new Label();
+            homeLabel = new Label();
+            awayLabel = new Label();
+            homeNumericUpDown = new NumericUpDown();
+            awayNumericUpDown = new NumericUpDown();
+            saveMatchButton = new Button();
+            label1 = new Label();
+            closeButton = new Button();
+            MatchInfoLabel = new Label();
+            panel1 = new Panel();
+            finishedCheckBox = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)homeNumericUpDown).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)awayNumericUpDown).BeginInit();
+            panel1.SuspendLayout();
+            SuspendLayout();
             // 
             // HGLabel
             // 
-            this.HGLabel.AutoSize = true;
-            this.HGLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HGLabel.ForeColor = System.Drawing.Color.Gold;
-            this.HGLabel.Location = new System.Drawing.Point(29, 26);
-            this.HGLabel.Name = "HGLabel";
-            this.HGLabel.Size = new System.Drawing.Size(126, 25);
-            this.HGLabel.TabIndex = 0;
-            this.HGLabel.Text = "HOME TEAM";
+            HGLabel.BackColor = Color.Transparent;
+            HGLabel.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            HGLabel.ForeColor = Color.Gold;
+            HGLabel.Location = new Point(50, 17);
+            HGLabel.Name = "HGLabel";
+            HGLabel.Size = new Size(200, 40);
+            HGLabel.TabIndex = 0;
+            HGLabel.Text = "HOME TEAM";
+            HGLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // AGLabel
             // 
-            this.AGLabel.AutoSize = true;
-            this.AGLabel.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.AGLabel.ForeColor = System.Drawing.Color.Gold;
-            this.AGLabel.Location = new System.Drawing.Point(283, 26);
-            this.AGLabel.Name = "AGLabel";
-            this.AGLabel.Size = new System.Drawing.Size(123, 25);
-            this.AGLabel.TabIndex = 1;
-            this.AGLabel.Text = "AWAY TEAM";
+            AGLabel.BackColor = Color.Transparent;
+            AGLabel.Font = new Font("Segoe UI", 26F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            AGLabel.ForeColor = Color.Gold;
+            AGLabel.Location = new Point(324, 17);
+            AGLabel.Name = "AGLabel";
+            AGLabel.Size = new Size(200, 40);
+            AGLabel.TabIndex = 1;
+            AGLabel.Text = "AWAY TEAM";
+            AGLabel.TextAlign = ContentAlignment.MiddleRight;
             // 
             // vsLabel
             // 
-            this.vsLabel.AutoSize = true;
-            this.vsLabel.Font = new System.Drawing.Font("Segoe UI", 30F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.vsLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.vsLabel.Location = new System.Drawing.Point(172, 26);
-            this.vsLabel.Name = "vsLabel";
-            this.vsLabel.Size = new System.Drawing.Size(89, 67);
-            this.vsLabel.TabIndex = 2;
-            this.vsLabel.Text = "VS";
+            vsLabel.AutoSize = true;
+            vsLabel.Font = new Font("Segoe UI", 50F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Pixel, 0);
+            vsLabel.ForeColor = Color.FromArgb(64, 64, 64);
+            vsLabel.Location = new Point(246, 58);
+            vsLabel.Name = "vsLabel";
+            vsLabel.Size = new Size(89, 67);
+            vsLabel.TabIndex = 2;
+            vsLabel.Text = "VS";
             // 
             // homeLabel
             // 
-            this.homeLabel.AutoSize = true;
-            this.homeLabel.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeLabel.ForeColor = System.Drawing.Color.Silver;
-            this.homeLabel.Location = new System.Drawing.Point(29, 69);
-            this.homeLabel.Name = "homeLabel";
-            this.homeLabel.Size = new System.Drawing.Size(71, 19);
-            this.homeLabel.TabIndex = 3;
-            this.homeLabel.Text = "HOME🛡️";
+            homeLabel.AutoSize = true;
+            homeLabel.Font = new Font("Segoe UI", 41F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            homeLabel.ForeColor = Color.Silver;
+            homeLabel.Location = new Point(-12, 7);
+            homeLabel.Name = "homeLabel";
+            homeLabel.Size = new Size(81, 55);
+            homeLabel.TabIndex = 3;
+            homeLabel.Text = "🛡️";
             // 
             // awayLabel
             // 
-            this.awayLabel.AutoSize = true;
-            this.awayLabel.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.awayLabel.ForeColor = System.Drawing.Color.Silver;
-            this.awayLabel.Location = new System.Drawing.Point(283, 69);
-            this.awayLabel.Name = "awayLabel";
-            this.awayLabel.Size = new System.Drawing.Size(71, 19);
-            this.awayLabel.TabIndex = 4;
-            this.awayLabel.Text = "AWAY⚔️";
+            awayLabel.AutoSize = true;
+            awayLabel.Font = new Font("Segoe UI", 41F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            awayLabel.ForeColor = Color.Silver;
+            awayLabel.Location = new Point(509, 7);
+            awayLabel.Name = "awayLabel";
+            awayLabel.Size = new Size(81, 55);
+            awayLabel.TabIndex = 4;
+            awayLabel.Text = "⚔️";
             // 
             // homeNumericUpDown
             // 
-            this.homeNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.homeNumericUpDown.Location = new System.Drawing.Point(29, 102);
-            this.homeNumericUpDown.Name = "homeNumericUpDown";
-            this.homeNumericUpDown.Size = new System.Drawing.Size(120, 38);
-            this.homeNumericUpDown.TabIndex = 5;
+            homeNumericUpDown.BackColor = Color.FromArgb(32, 33, 36);
+            homeNumericUpDown.BorderStyle = BorderStyle.None;
+            homeNumericUpDown.Font = new Font("Microsoft Sans Serif", 83.4F, FontStyle.Regular, GraphicsUnit.Pixel, 0);
+            homeNumericUpDown.ForeColor = Color.White;
+            homeNumericUpDown.Location = new Point(77, 68);
+            homeNumericUpDown.Margin = new Padding(3, 4, 3, 4);
+            homeNumericUpDown.Name = "homeNumericUpDown";
+            homeNumericUpDown.Size = new Size(119, 98);
+            homeNumericUpDown.TabIndex = 5;
             // 
             // awayNumericUpDown
             // 
-            this.awayNumericUpDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.awayNumericUpDown.Location = new System.Drawing.Point(283, 102);
-            this.awayNumericUpDown.Name = "awayNumericUpDown";
-            this.awayNumericUpDown.Size = new System.Drawing.Size(120, 38);
-            this.awayNumericUpDown.TabIndex = 6;
+            awayNumericUpDown.BackColor = Color.FromArgb(32, 33, 36);
+            awayNumericUpDown.BorderStyle = BorderStyle.None;
+            awayNumericUpDown.Font = new Font("Microsoft Sans Serif", 83.4F, FontStyle.Regular, GraphicsUnit.Pixel, 0);
+            awayNumericUpDown.ForeColor = Color.White;
+            awayNumericUpDown.Location = new Point(384, 68);
+            awayNumericUpDown.Margin = new Padding(3, 4, 3, 4);
+            awayNumericUpDown.Name = "awayNumericUpDown";
+            awayNumericUpDown.Size = new Size(119, 98);
+            awayNumericUpDown.TabIndex = 6;
             // 
             // saveMatchButton
             // 
-            this.saveMatchButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(180)))), ((int)(((byte)(80)))));
-            this.saveMatchButton.FlatAppearance.BorderColor = System.Drawing.Color.SpringGreen;
-            this.saveMatchButton.FlatAppearance.BorderSize = 0;
-            this.saveMatchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.saveMatchButton.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.saveMatchButton.ForeColor = System.Drawing.Color.White;
-            this.saveMatchButton.Location = new System.Drawing.Point(70, 169);
-            this.saveMatchButton.Name = "saveMatchButton";
-            this.saveMatchButton.Size = new System.Drawing.Size(293, 61);
-            this.saveMatchButton.TabIndex = 7;
-            this.saveMatchButton.Text = "SAVE MATCH";
-            this.saveMatchButton.UseVisualStyleBackColor = false;
+            saveMatchButton.BackColor = Color.FromArgb(0, 180, 80);
+            saveMatchButton.FlatAppearance.BorderColor = Color.SpringGreen;
+            saveMatchButton.FlatAppearance.BorderSize = 0;
+            saveMatchButton.FlatStyle = FlatStyle.Flat;
+            saveMatchButton.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            saveMatchButton.ForeColor = Color.White;
+            saveMatchButton.Location = new Point(308, 284);
+            saveMatchButton.Margin = new Padding(3, 4, 3, 4);
+            saveMatchButton.Name = "saveMatchButton";
+            saveMatchButton.Size = new Size(247, 61);
+            saveMatchButton.TabIndex = 7;
+            saveMatchButton.Text = "SAVE MATCH";
+            saveMatchButton.UseVisualStyleBackColor = false;
+            saveMatchButton.Click += saveMatchButton_Click;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(178, 93);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(76, 19);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "FULL TIME";
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI", 13.4F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(252, 125);
+            label1.Name = "label1";
+            label1.Size = new Size(76, 19);
+            label1.TabIndex = 8;
+            label1.Text = "FULL TIME";
+            // 
+            // closeButton
+            // 
+            closeButton.BackColor = Color.Silver;
+            closeButton.FlatAppearance.BorderColor = Color.Silver;
+            closeButton.FlatAppearance.BorderSize = 0;
+            closeButton.FlatStyle = FlatStyle.Flat;
+            closeButton.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel);
+            closeButton.ForeColor = Color.White;
+            closeButton.Location = new Point(25, 284);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(247, 61);
+            closeButton.TabIndex = 9;
+            closeButton.Text = "CANCEL";
+            closeButton.UseVisualStyleBackColor = false;
+            // 
+            // MatchInfoLabel
+            // 
+            MatchInfoLabel.Anchor = AnchorStyles.Top;
+            MatchInfoLabel.AutoSize = true;
+            MatchInfoLabel.BackColor = Color.Transparent;
+            MatchInfoLabel.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.World);
+            MatchInfoLabel.ForeColor = Color.Silver;
+            MatchInfoLabel.Location = new Point(175, 10);
+            MatchInfoLabel.Name = "MatchInfoLabel";
+            MatchInfoLabel.Size = new Size(230, 35);
+            MatchInfoLabel.TabIndex = 10;
+            MatchInfoLabel.Text = "Round 0 - Match 0";
+            MatchInfoLabel.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panel1
+            // 
+            panel1.BackColor = Color.FromArgb(32, 33, 36);
+            panel1.Controls.Add(AGLabel);
+            panel1.Controls.Add(awayLabel);
+            panel1.Controls.Add(finishedCheckBox);
+            panel1.Controls.Add(awayNumericUpDown);
+            panel1.Controls.Add(HGLabel);
+            panel1.Controls.Add(label1);
+            panel1.Controls.Add(vsLabel);
+            panel1.Controls.Add(homeLabel);
+            panel1.Controls.Add(homeNumericUpDown);
+            panel1.Location = new Point(0, 56);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(580, 215);
+            panel1.TabIndex = 11;
+            // 
+            // finishedCheckBox
+            // 
+            finishedCheckBox.AutoSize = true;
+            finishedCheckBox.Location = new Point(211, 180);
+            finishedCheckBox.Name = "finishedCheckBox";
+            finishedCheckBox.Size = new Size(158, 27);
+            finishedCheckBox.TabIndex = 9;
+            finishedCheckBox.Text = "Mark as Finished";
+            finishedCheckBox.UseVisualStyleBackColor = true;
+            finishedCheckBox.CheckedChanged += finishedCheckBox_CheckedChanged;
             // 
             // MatchResultForm
             // 
-            this.AcceptButton = this.saveMatchButton;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(33)))), ((int)(((byte)(36)))));
-            this.ClientSize = new System.Drawing.Size(432, 253);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.saveMatchButton);
-            this.Controls.Add(this.awayNumericUpDown);
-            this.Controls.Add(this.homeNumericUpDown);
-            this.Controls.Add(this.awayLabel);
-            this.Controls.Add(this.homeLabel);
-            this.Controls.Add(this.vsLabel);
-            this.Controls.Add(this.AGLabel);
-            this.Controls.Add(this.HGLabel);
-            this.ForeColor = System.Drawing.Color.White;
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "MatchResultForm";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "UPDATE SCORE";
-            ((System.ComponentModel.ISupportInitialize)(this.homeNumericUpDown)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.awayNumericUpDown)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AcceptButton = saveMatchButton;
+            AutoScaleMode = AutoScaleMode.None;
+            BackColor = Color.FromArgb(25, 25, 25);
+            BackgroundImage = (Image)resources.GetObject("$this.BackgroundImage");
+            BackgroundImageLayout = ImageLayout.Stretch;
+            CancelButton = closeButton;
+            ClientSize = new Size(580, 360);
+            Controls.Add(MatchInfoLabel);
+            Controls.Add(closeButton);
+            Controls.Add(saveMatchButton);
+            Controls.Add(panel1);
+            DoubleBuffered = true;
+            Font = new Font("Segoe UI", 17F, FontStyle.Regular, GraphicsUnit.Pixel);
+            ForeColor = Color.White;
+            FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            Margin = new Padding(3, 4, 3, 4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "MatchResultForm";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = " ";
+            ((System.ComponentModel.ISupportInitialize)homeNumericUpDown).EndInit();
+            ((System.ComponentModel.ISupportInitialize)awayNumericUpDown).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -179,5 +257,9 @@
         private System.Windows.Forms.NumericUpDown awayNumericUpDown;
         private System.Windows.Forms.Button saveMatchButton;
         private System.Windows.Forms.Label label1;
+        private Button closeButton;
+        private Label MatchInfoLabel;
+        private Panel panel1;
+        private CheckBox finishedCheckBox;
     }
 }
