@@ -126,6 +126,7 @@
             // sportCbox
             // 
             sportCbox.BackColor = Color.FromArgb(64, 64, 64);
+            sportCbox.DropDownStyle = ComboBoxStyle.DropDownList;
             sportCbox.FlatStyle = FlatStyle.Flat;
             sportCbox.Font = new Font("Segoe UI", 20F, FontStyle.Regular, GraphicsUnit.Pixel);
             sportCbox.ForeColor = SystemColors.Info;
@@ -198,6 +199,7 @@
             // 
             panelSingle.Controls.Add(label8);
             panelSingle.Controls.Add(comboBox2);
+            panelSingle.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             panelSingle.Location = new Point(303, 370);
             panelSingle.Name = "panelSingle";
             panelSingle.Size = new Size(400, 81);
@@ -217,6 +219,7 @@
             // comboBox2
             // 
             comboBox2.BackColor = Color.FromArgb(64, 64, 64);
+            comboBox2.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox2.FlatStyle = FlatStyle.Flat;
             comboBox2.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox2.ForeColor = SystemColors.Info;
@@ -234,6 +237,7 @@
             panelMulti.Controls.Add(label6);
             panelMulti.Controls.Add(comboBox4);
             panelMulti.Controls.Add(comboBox3);
+            panelMulti.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             panelMulti.Location = new Point(303, 466);
             panelMulti.Name = "panelMulti";
             panelMulti.Size = new Size(400, 122);
@@ -265,6 +269,7 @@
             // comboBox4
             // 
             comboBox4.BackColor = Color.FromArgb(64, 64, 64);
+            comboBox4.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox4.FlatStyle = FlatStyle.Flat;
             comboBox4.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox4.ForeColor = SystemColors.Info;
@@ -278,6 +283,7 @@
             // comboBox3
             // 
             comboBox3.BackColor = Color.FromArgb(64, 64, 64);
+            comboBox3.DropDownStyle = ComboBoxStyle.DropDownList;
             comboBox3.FlatStyle = FlatStyle.Flat;
             comboBox3.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             comboBox3.ForeColor = SystemColors.Info;

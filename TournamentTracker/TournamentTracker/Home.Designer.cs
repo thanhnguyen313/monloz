@@ -288,20 +288,20 @@
             contextMenuStrip1.ImageScalingSize = new Size(24, 24);
             contextMenuStrip1.Items.AddRange(new ToolStripItem[] { deleteBtn, toolStripTextBox1 });
             contextMenuStrip1.Name = "contextMenuStrip1";
-            contextMenuStrip1.Size = new Size(241, 101);
+            contextMenuStrip1.Size = new Size(214, 68);
             // 
             // deleteBtn
             // 
             deleteBtn.BackColor = Color.White;
             deleteBtn.Name = "deleteBtn";
-            deleteBtn.Size = new Size(240, 32);
+            deleteBtn.Size = new Size(213, 32);
             deleteBtn.Text = "✏️ Chỉnh sửa";
             deleteBtn.Click += deleteBtn_Click;
             // 
             // toolStripTextBox1
             // 
             toolStripTextBox1.Name = "toolStripTextBox1";
-            toolStripTextBox1.Size = new Size(240, 32);
+            toolStripTextBox1.Size = new Size(213, 32);
             toolStripTextBox1.Text = "🗑️ Xóa giải đấu";
             toolStripTextBox1.Click += toolStripTextBox1_Click;
             // 
@@ -463,6 +463,7 @@
             Controls.Add(createBtn);
             Controls.Add(panel1);
             ForeColor = SystemColors.ControlDarkDark;
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "Home";
             StartPosition = FormStartPosition.CenterScreen;

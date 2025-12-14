@@ -117,6 +117,7 @@
             button1.FlatAppearance.BorderSize = 0;
             button1.FlatAppearance.MouseOverBackColor = Color.FromArgb(64, 64, 64);
             button1.FlatStyle = FlatStyle.Flat;
+            button1.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             button1.Location = new Point(328, 12);
             button1.Name = "button1";
             button1.Size = new Size(32, 32);
@@ -135,6 +136,7 @@
             Controls.Add(lblParticipants);
             Controls.Add(lblSport);
             Controls.Add(lblTitle);
+            Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Pixel);
             Name = "TournamentCard";
             Size = new Size(380, 220);
             ResumeLayout(false);

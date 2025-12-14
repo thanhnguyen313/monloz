@@ -13,7 +13,7 @@ namespace TeamListForm
 {
     internal class DatabaseHelper
     {
-        private static string connectionString = @"Data Source=localhost;Initial Catalog=TournamentTracker;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Command Timeout=30";
+        private static string connectionString = "";
 
         // TEAMS
         public static List<Team> GetTeams(int tournamentId, string search = "")
@@ -100,13 +100,15 @@ namespace TeamListForm
         }
 
         // 2. Cập nhật giải đấu
-        public bool UpdateTournament(int id, string name, string location, DateTime startDate, string prize, string posterPath, string sport, int teamCount)
+        public bool UpdateTournament(int id, string name, string location, DateTime startDate, string prize, string posterPath, string sport, int teamCount,
+                              string mode, string s1Format, string s2Format)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 try
                 {
                     conn.Open();
+                    // Cập nhật thêm 3 cột: FormatMode, Stage1Format, Stage2Format
                     string query = @"UPDATE Tournaments 
                              SET NAME = @name, 
                                  LOCATION = @location, 
@@ -114,10 +116,15 @@ namespace TeamListForm
                                  PRIZE = @prize, 
                                  POSTERPATH = @posterPath, 
                                  SPORT = @sport, 
-                                 TEAM_COUNT = @teamCount 
+                                 TEAM_COUNT = @teamCount,
+                                 FormatMode = @mode,
+                                 Stage1Format = @s1,
+                                 Stage2Format = @s2
                              WHERE ID = @id";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
+
+                    // --- CÁC THAM SỐ CŨ ---
                     cmd.Parameters.AddWithValue("@id", id);
                     cmd.Parameters.AddWithValue("@name", name);
                     cmd.Parameters.AddWithValue("@location", string.IsNullOrEmpty(location) ? (object)DBNull.Value : location);
@@ -127,11 +134,16 @@ namespace TeamListForm
                     cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
                     cmd.Parameters.AddWithValue("@teamCount", teamCount);
 
+                    // --- 3 THAM SỐ MỚI (QUAN TRỌNG) ---
+                    cmd.Parameters.AddWithValue("@mode", mode);       // Ví dụ: "Single" hoặc "Multi"
+                    cmd.Parameters.AddWithValue("@s1", s1Format);     // Ví dụ: "Knockout"
+                    cmd.Parameters.AddWithValue("@s2", string.IsNullOrEmpty(s2Format) ? (object)DBNull.Value : s2Format);
+
                     return cmd.ExecuteNonQuery() > 0;
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Lỗi Update: " + ex.Message);
+                    System.Windows.Forms.MessageBox.Show("Lỗi Update: " + ex.Message);
                     return false;
                 }
             }
@@ -324,7 +336,7 @@ namespace TeamListForm
         }
 
         //Tournaments database
-        public int AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount)
+        public int AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount, string mode, string s1Format, string s2Format) 
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -333,11 +345,10 @@ namespace TeamListForm
                     conn.Open();
                     // Thêm: SELECT CAST(SCOPE_IDENTITY() AS INT) để lấy ID vừa tạo ngay lập tức
                     string query = @"INSERT INTO Tournaments 
-               (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT, CreatedBy) 
+               (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT, CreatedBy, FormatMode, Stage1Format, Stage2Format) 
                VALUES 
-               (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount, @createdBy);
+               (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount, @createdBy, @mode, @s1, @s2);
                SELECT CAST(SCOPE_IDENTITY() AS INT);";
-
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     cmd.Parameters.AddWithValue("@name", name);
@@ -348,8 +359,9 @@ namespace TeamListForm
                     cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
                     cmd.Parameters.AddWithValue("@teamCount", teamCount);
                     cmd.Parameters.AddWithValue("@createdBy", UserSession.CurrentUserId);
-
-                    // Dùng ExecuteScalar để lấy cái ID về
+                    cmd.Parameters.AddWithValue("@mode", mode);
+                    cmd.Parameters.AddWithValue("@s1", s1Format);
+                    cmd.Parameters.AddWithValue("@s2", string.IsNullOrEmpty(s2Format) ? (object)DBNull.Value : s2Format);
                     var result = cmd.ExecuteScalar();
                     return result != null ? Convert.ToInt32(result) : -1;
                 }
