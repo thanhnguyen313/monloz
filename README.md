@@ -48,7 +48,7 @@ Hệ thống gồm 5 bảng chính:
 
 **Bước 1: Clone source code**
 ```bash
-git clone [https://github.com/username/Tournament-Tracker.git](https://github.com/username/Tournament-Tracker.git)
+git clone https://github.com/hoangnguyen1007/Tournament-Tracker
 ```
 Bước 2: Cài đặt Database
 
