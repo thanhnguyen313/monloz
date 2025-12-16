@@ -13,7 +13,7 @@ namespace TeamListForm
 {
     internal class DatabaseHelper
     {
-        private static string connectionString = "";
+        private static string connectionString = @"Data Source=DESKTOP-LOJ3INE\SQLEXPRESS;Initial Catalog=TournamentTracker;Integrated Security=True;TrustServerCertificate=True;";
 
         // TEAMS
         public static List<Team> GetTeams(string search = "")
@@ -43,7 +43,7 @@ namespace TeamListForm
             }
             return teams;
         }
-        // CRUD FUNCTION
+        // TEAM CRUD FUNCTION
         public static bool CheckTeam(string team) // Xem có tồn tại team này chưa ?
         {
             string query = "SELECT COUNT(*) FROM Teams WHERE TEAMNAME=@TN";
@@ -103,18 +103,11 @@ namespace TeamListForm
         {
             var players = new List<Player>();
             string sql = @"
-        SELECT
-            p.ID,
-            p.PLAYERNAME,
-            p.POSITION,
-            p.AGE,
-            p.IDTEAM,
-            p.NUMBER,
-            t.TEAMNAME
-        FROM Players p
-        LEFT JOIN Teams t ON p.IDTEAM = t.ID
-        WHERE p.IDTEAM = @TeamID
-        AND (@Search = '' OR p.PLAYERNAME LIKE '%' + @Search + '%')";
+            SELECT p.ID, p.PLAYERNAME, p.POSITION, p.AGE, p.IDTEAM, p.NUMBER, t.TEAMNAME
+            FROM Players p
+            LEFT JOIN Teams t ON p.IDTEAM = t.ID
+            WHERE p.IDTEAM = @TeamID
+            AND (@Search = '' OR p.PLAYERNAME LIKE '%' + @Search + '%')";
             using (var conn = new SqlConnection(connectionString))
             using (var cmd = new SqlCommand(sql, conn))
             {
@@ -141,6 +134,7 @@ namespace TeamListForm
             }
             return players;
         }
+        // PLAYERS CRUD FUNCTION
         public static void InsertPlayer(Player player)
         {
             string sql = "INSERT INTO Players (PlayerName, Age, Position, IDTEAM) VALUES (@Name, @Age, @Pos, @TeamID)";
@@ -182,6 +176,7 @@ namespace TeamListForm
             conn.Open();
             cmd.ExecuteNonQuery();
         }
+        // ACCOUNT
         public bool Register(string username, string password)
         {
             string hashedPassword;
@@ -465,17 +460,124 @@ FROM Tournaments;";
         // Cập nhật kết quả trận đấu
         public static void UpdateMatchResult(int matchId, int homeScore, int awayScore)
         {
-            string sql = "UPDATE Matches SET HomeScore = @h, AwayScore = @a WHERE ID = @id";
+            object winnerId = DBNull.Value;
+            int homeTeamId = 0, awayTeamId = 0;
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                // Lấy ID 2 đội
+                string getTeamsSql = "SELECT HomeTeamID, AwayTeamID FROM Matches WHERE ID = @id";
+                using (SqlCommand cmd = new SqlCommand(getTeamsSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@id", matchId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            homeTeamId = reader.GetInt32(0);
+                            awayTeamId = reader.GetInt32(1);
+                        }
+                    }
+                }
+                // Xác định người thắng
+                if (homeScore > awayScore) winnerId = homeTeamId;
+                else if (awayScore > homeScore) winnerId = awayTeamId;
+                // Cập nhật DB
+                string updateSql = "UPDATE Matches SET HomeScore=@h, AwayScore=@a, Status=2, WinnerID=@win WHERE ID=@id";
+                using (SqlCommand cmd = new SqlCommand(updateSql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@h", homeScore);
+                    cmd.Parameters.AddWithValue("@a", awayScore);
+                    cmd.Parameters.AddWithValue("@win", winnerId);
+                    cmd.Parameters.AddWithValue("@id", matchId);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+        // Thêm trận đấu mới
+        public static void InsertMatch(int tournamentId, int round, int roundType, int homeTeamId, int awayTeamId, string groupName = null)
+        {
+            // Status = 0 (Chưa đá)
+            string sql = @"INSERT INTO Matches 
+                   (TournamentID, Round, RoundType, GroupName, HomeTeamID, AwayTeamID, Status, MatchDate) 
+                   VALUES 
+                   (@tId, @round, @rType, @gName, @hId, @aId, 0, GETDATE())";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
-                cmd.Parameters.AddWithValue("@h", homeScore);
-                cmd.Parameters.AddWithValue("@a", awayScore);
-                cmd.Parameters.AddWithValue("@id", matchId);
+                cmd.Parameters.AddWithValue("@tId", tournamentId);
+                cmd.Parameters.AddWithValue("@round", round);
+                cmd.Parameters.AddWithValue("@rType", roundType);
+                cmd.Parameters.AddWithValue("@hId", homeTeamId);
+                cmd.Parameters.AddWithValue("@aId", awayTeamId);
+                cmd.Parameters.AddWithValue("@gName", string.IsNullOrEmpty(groupName) ? (object)DBNull.Value : groupName);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
+            }
+        }
+        // Hàm lấy Bảng Xếp Hạng (Dùng cho Round 1, Vòng bảng)
+        public static List<GroupStanding> GetStandings(int tournamentId, string groupName)
+        {
+            var standings = new List<GroupStanding>();
+            // SQL tính điểm: Thắng 3, Hòa 1. Sắp xếp theo Điểm -> Hiệu số -> Bàn thắng
+            string sql = @"
+                SELECT TeamID, SUM(Points) as Pts, SUM(GoalDiff) as GD, SUM(Goals) as GF
+                FROM (
+                    SELECT HomeTeamID as TeamID, 
+                           CASE WHEN HomeScore > AwayScore THEN 3 WHEN HomeScore = AwayScore THEN 1 ELSE 0 END as Points,
+                           (HomeScore - AwayScore) as GoalDiff, HomeScore as Goals
+                    FROM Matches WHERE TournamentID = @tId AND GroupName = @g AND Status = 2
+                    UNION ALL
+                    SELECT AwayTeamID as TeamID, 
+                           CASE WHEN AwayScore > HomeScore THEN 3 WHEN AwayScore = HomeScore THEN 1 ELSE 0 END as Points,
+                           (AwayScore - HomeScore) as GoalDiff, AwayScore as Goals
+                    FROM Matches WHERE TournamentID = @tId AND GroupName = @g AND Status = 2
+                ) as Sub GROUP BY TeamID ORDER BY Pts DESC, GD DESC, GF DESC";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@tId", tournamentId);
+                cmd.Parameters.AddWithValue("@g", groupName);
+                conn.Open();
+                using (SqlDataReader r = cmd.ExecuteReader())
+                {
+                    while (r.Read()) standings.Add(new GroupStanding
+                    {
+                        TeamId = r.GetInt32(0),
+                        Points = r.GetInt32(1),
+                        GoalDifference = r.GetInt32(2),
+                        GoalsFor = r.GetInt32(3)
+                    });
+                }
+            }
+            return standings;
+        }
+        // Hàm lấy danh sách người thắng (Dùng cho Round 2 trở đi, Vòng knockout)
+        public static List<int> GetWinnersFromRound(int tournamentId, int round)
+        {
+            List<int> ids = new List<int>();
+            string sql = "SELECT WinnerID FROM Matches WHERE TournamentID=@tId AND Round=@r AND WinnerID IS NOT NULL";
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand(sql, conn))
+            {
+                cmd.Parameters.AddWithValue("@tId", tournamentId);
+                cmd.Parameters.AddWithValue("@r", round);
+                conn.Open();
+                using (SqlDataReader r = cmd.ExecuteReader()) { while (r.Read()) ids.Add(r.GetInt32(0)); }
+            }
+            return ids;
+        }
+        // Hàm lấy vòng đấu lớn nhất hiện tại
+        public static int GetMaxRound(int tournamentId)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT ISNULL(MAX(Round), 0) FROM Matches WHERE TournamentID=@tId", conn);
+                cmd.Parameters.AddWithValue("@tId", tournamentId);
+                return (int)cmd.ExecuteScalar();
             }
         }
     }
