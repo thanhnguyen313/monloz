@@ -426,7 +426,7 @@
             resultATeamLabel.BackColor = Color.Transparent;
             resultATeamLabel.Font = new Font("Segoe UI", 22F, FontStyle.Bold, GraphicsUnit.Pixel, 0);
             resultATeamLabel.ForeColor = Color.FromArgb(224, 224, 224);
-            resultATeamLabel.Location = new Point(911, 48);
+            resultATeamLabel.Location = new Point(914, 48);
             resultATeamLabel.Name = "resultATeamLabel";
             resultATeamLabel.Size = new Size(236, 31);
             resultATeamLabel.TabIndex = 27;

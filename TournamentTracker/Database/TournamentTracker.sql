@@ -1,7 +1,9 @@
 ﻿USE master;
 GO
 
--- 1. XÓA DB CŨ NẾU TỒN TẠI (Để làm lại cho sạch sẽ, tránh lỗi cột cũ)
+-- =============================================================
+-- BƯỚC 1: RESET DATABASE (Xóa cũ tạo mới sạch sẽ)
+-- =============================================================
 IF EXISTS (SELECT name FROM sys.databases WHERE name = N'TournamentTracker')
 BEGIN
     ALTER DATABASE [TournamentTracker] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
@@ -14,46 +16,19 @@ GO
 USE [TournamentTracker];
 GO
 
--- =============================================
--- PHẦN 1: ACCOUNT & TEAMS
--- =============================================
+-- =============================================================
+-- BƯỚC 2: TẠO CẤU TRÚC BẢNG (SCHEMA)
+-- =============================================================
 
--- 2. Bảng ACCOUNT
+-- 1. Bảng ACCOUNT (Tài khoản đăng nhập)
 CREATE TABLE [dbo].[Account](
-    [ID] [int] IDENTITY(1,1) PRIMARY KEY,
-    [Username] [nvarchar](50) NOT NULL UNIQUE,
-    [PasswordHash] [nvarchar](255) NOT NULL,
-    [CreatedAt] [datetime] DEFAULT GETDATE()
-);
-
--- TẠO TÀI KHOẢN MẶC ĐỊNH (Admin / 123456)
--- PasswordHash này là của "123456" (SHA256)
-INSERT INTO [dbo].[Account] ([Username], [PasswordHash])
-VALUES ('admin', '8D969EEF6ECAD3C29A3A629280E686CF0C3F5D5A86AFF3CA12020C923ADC6C92');
-
--- 3. Bảng Teams 
-CREATE TABLE [dbo].[Teams](
     [ID] INT IDENTITY(1,1) PRIMARY KEY,
-    [TEAMNAME] NVARCHAR(100) NOT NULL,
-    [COACH] NVARCHAR(100) NULL,
+    [Username] NVARCHAR(50) NOT NULL UNIQUE,
+    [PasswordHash] NVARCHAR(255) NOT NULL, -- Mật khẩu (SHA256)
+    [CreatedAt] DATETIME DEFAULT GETDATE()
 );
 
--- 4. Bảng Players 
-CREATE TABLE [dbo].[Players](
-    [ID] INT IDENTITY(1,1) PRIMARY KEY,
-    [IDTEAM] INT NOT NULL,
-    [PLAYERNAME] NVARCHAR(100) NOT NULL,
-    [POSITION] NVARCHAR(50) NULL, 
-    [AGE] INT NULL,
-    [NUMBER] INT NULL,
-    FOREIGN KEY (IDTEAM) REFERENCES Teams(ID)
-);
-
--- =============================================
--- PHẦN 2: TOURNAMENTS
--- =============================================
-
--- 5. Bảng Tournaments
+-- 2. Bảng TOURNAMENTS (Giải đấu) - [ĐÃ CẬP NHẬT]
 CREATE TABLE [dbo].[Tournaments](
     [ID] INT IDENTITY(1,1) PRIMARY KEY,
     [NAME] NVARCHAR(100) NOT NULL,
@@ -62,182 +37,194 @@ CREATE TABLE [dbo].[Tournaments](
     [PRIZE] NVARCHAR(50) NULL,
     [POSTERPATH] NVARCHAR(255) NULL,
     [SPORT] NVARCHAR(50),   
-    [TEAM_COUNT] int,
-    [CreatedBy] INT NULL, -- Liên kết với Account
+    [TEAM_COUNT] INT,
+    [CreatedBy] INT NULL, -- Liên kết: Giải này do ai tạo?
+    
+    -- [MỚI] 3 CỘT LƯU FORMAT GIẢI ĐẤU
+    [FormatMode] NVARCHAR(50) DEFAULT 'Single',    -- 'Single' hoặc 'Multi'
+    [Stage1Format] NVARCHAR(50) DEFAULT 'Knockout', -- Vòng 1: 'Knockout', 'Round Robin', 'Group Stage'
+    [Stage2Format] NVARCHAR(50) NULL,               -- Vòng 2 (Nếu có): 'Knockout', NULL
+
     FOREIGN KEY (CreatedBy) REFERENCES Account(ID)
 );
 
--- =============================================
--- PHẦN 3: MATCHES (Đã Fix cột TournamentID)
--- =============================================
+-- 3. Bảng TEAMS (Đội bóng)
+CREATE TABLE [dbo].[Teams](
+    [ID] INT IDENTITY(1,1) PRIMARY KEY,
+    [TournamentID] INT NOT NULL, -- Đội thuộc về giải nào
+    [TEAMNAME] NVARCHAR(100) NOT NULL,
+    [COACH] NVARCHAR(100) NULL,
+    FOREIGN KEY (TournamentID) REFERENCES Tournaments(ID) ON DELETE CASCADE
+);
 
--- 7. Bảng Matches
+-- 4. Bảng PLAYERS (Cầu thủ)
+CREATE TABLE [dbo].[Players](
+    [ID] INT IDENTITY(1,1) PRIMARY KEY,
+    [IDTEAM] INT NOT NULL, -- Cầu thủ thuộc đội nào
+    [PLAYERNAME] NVARCHAR(100) NOT NULL,
+    [POSITION] NVARCHAR(50) NULL, 
+    [AGE] INT NULL,
+    [NUMBER] INT NULL,
+    FOREIGN KEY (IDTEAM) REFERENCES Teams(ID) ON DELETE CASCADE
+);
+
+-- 5. Bảng MATCHES (Trận đấu)
 CREATE TABLE [dbo].[Matches](
-    [ID] [int] IDENTITY(1,1) PRIMARY KEY,
-    [TournamentID] [int] NOT NULL, -- Cột quan trọng vừa thêm
-    [Round] [int] NOT NULL,
-    [HomeTeamID] [int] NOT NULL,
-    [AwayTeamID] [int] NOT NULL,
-    [HomeScore] [int] NULL,
-    [AwayScore] [int] NULL,
+    [ID] INT IDENTITY(1,1) PRIMARY KEY,
+    [TournamentID] INT NOT NULL, -- Trận đấu thuộc giải nào
+    [Round] INT NOT NULL,          -- Vòng đấu (1, 2, 3...)
+    [RoundType] INT DEFAULT 0,     -- 0: Vòng bảng/Vòng 1, 1: Knockout/Vòng 2
+    [GroupName] NVARCHAR(10) NULL, -- Tên bảng đấu (A, B, C...)
+    
+    [HomeTeamID] INT NOT NULL,     -- Đội nhà
+    [AwayTeamID] INT NOT NULL,     -- Đội khách
+    
+    [HomeScore] INT NULL,          -- Tỷ số (NULL = Chưa đá)
+    [AwayScore] INT NULL,
+    
     [MatchDate] DATETIME NULL,
     [Location] NVARCHAR(100) NULL,
-    [Status] INT DEFAULT 0,
-    [WinnerID] INT NULL,
-    [RoundType] INT NOT NULL DEFAULT 0,   
-    [GroupName] NVARCHAR(10) NULL, 
-    [ParentMatchId] INT NULL,
+    [Status] INT DEFAULT 0,        -- 0: Chưa đá, 1: Đang đá, 2: Kết thúc
+    [WinnerID] INT NULL,           -- Đội thắng
+    [ParentMatchId] INT NULL,      -- Nhánh đấu cha (cho cây knockout)
 
+    FOREIGN KEY (TournamentID) REFERENCES Tournaments(ID), 
     FOREIGN KEY (HomeTeamID) REFERENCES Teams(ID),
     FOREIGN KEY (AwayTeamID) REFERENCES Teams(ID),
     FOREIGN KEY (WinnerID) REFERENCES Teams(ID),
-    FOREIGN KEY (ParentMatchId) REFERENCES Matches(ID),
-    FOREIGN KEY (TournamentID) REFERENCES Tournaments(ID)
+    FOREIGN KEY (ParentMatchId) REFERENCES Matches(ID)
 );
 GO
 
--- =============================================
--- PHẦN 4: DỮ LIỆU MẪU (SEED DATA)
--- =============================================
 
+-- ======================================================================================
+-- KHAI BÁO CÁC BIẾN CẦN DÙNG (Để lưu ID tự động)
+-- ======================================================================================
+DECLARE @TourID INT;
+DECLARE @T1 INT, @T2 INT, @T3 INT, @T4 INT, @T5 INT;
 
--- ============================================================
--- TESTCASE CỦA TEAM - PLAYER (Thành Nguyên)
--- ============================================================
-INSERT INTO [dbo].[Teams] ([TEAMNAME], [COACH]) VALUES
-(N'Real Madrid', N'Carlo Ancelotti'),       
-(N'Manchester City', N'Pep Guardiola'),     
-(N'Manchester United', N'Erik ten Hag'),    
-(N'Arsenal', N'Mikel Arteta'),             
-(N'Liverpool', N'Jurgen Klopp'),            
-(N'Bayern Munich', N'Thomas Tuchel'),       
-(N'Barcelona', N'Xavi Hernandez'),          
-(N'Paris Saint-Germain', N'Luis Enrique'),  
-(N'Chelsea', N'Mauricio Pochettino'),       
-(N'Hanoi FC', N'Daiki Iwamasa');            
-GO
+-- ======================================================================================
+-- KỊCH BẢN 1: GIẢI CHAMPIONS LEAGUE MINI (4 Đội - Knockout)
+-- ======================================================================================
+PRINT N'=== Đang tạo dữ liệu giải 1: Champions League Mini ===';
 
--- Team 1: Real Madrid
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(1, N'Thibaut Courtois', 'GK', 31, 1),
-(1, N'David Alaba', 'DF', 31, 4),
-(1, N'Luka Modric', 'MF', 38, 10),
-(1, N'Jude Bellingham', 'MF', 20, 5),
-(1, N'Vinicius Jr', 'FW', 23, 7);
-
--- Team 2: Manchester City
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(2, N'Ederson', 'GK', 30, 31),
-(2, N'Ruben Dias', 'DF', 26, 3),
-(2, N'Kevin De Bruyne', 'MF', 32, 17),
-(2, N'Rodri', 'MF', 27, 16),
-(2, N'Erling Haaland', 'FW', 23, 9);
-
--- Team 3: Manchester United
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(3, N'Andre Onana', 'GK', 27, 24),
-(3, N'Harry Maguire', 'DF', 30, 5),
-(3, N'Bruno Fernandes', 'MF', 29, 8),
-(3, N'Marcus Rashford', 'FW', 26, 10),
-(3, N'Rasmus Hojlund', 'FW', 21, 11);
-
--- Team 4: Arsenal
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(4, N'David Raya', 'GK', 28, 22),
-(4, N'William Saliba', 'DF', 22, 2),
-(4, N'Declan Rice', 'MF', 25, 41),
-(4, N'Martin Odegaard', 'MF', 25, 8),
-(4, N'Bukayo Saka', 'FW', 22, 7);
-
--- Team 5: Liverpool
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(5, N'Alisson Becker', 'GK', 31, 1),
-(5, N'Virgil van Dijk', 'DF', 32, 4),
-(5, N'Mac Allister', 'MF', 25, 10),
-(5, N'Mohamed Salah', 'FW', 31, 11),
-(5, N'Darwin Nunez', 'FW', 24, 9);
-
--- Team 6: Bayern Munich
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(6, N'Manuel Neuer', 'GK', 37, 1),
-(6, N'Matthijs de Ligt', 'DF', 24, 4),
-(6, N'Joshua Kimmich', 'MF', 29, 6),
-(6, N'Jamal Musiala', 'MF', 21, 42),
-(6, N'Harry Kane', 'FW', 30, 9);
-
--- Team 7: Barcelona
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(7, N'Ter Stegen', 'GK', 31, 1),
-(7, N'Ronald Araujo', 'DF', 25, 4),
-(7, N'Pedri', 'MF', 21, 8),
-(7, N'Frenkie de Jong', 'MF', 26, 21),
-(7, N'Robert Lewandowski', 'FW', 35, 9);
-
--- Team 8: PSG
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(8, N'Donnarumma', 'GK', 25, 99),
-(8, N'Hakimi', 'DF', 25, 2),
-(8, N'Vitinha', 'MF', 24, 17),
-(8, N'Ousmane Dembele', 'FW', 26, 10),
-(8, N'Mbappe', 'FW', 25, 7);
-
--- Team 9: Chelsea
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(9, N'Robert Sanchez', 'GK', 26, 1),
-(9, N'Reece James', 'DF', 24, 24),
-(9, N'Enzo Fernandez', 'MF', 23, 8),
-(9, N'Cole Palmer', 'MF', 21, 20),
-(9, N'Raheem Sterling', 'FW', 29, 7);
-
--- Team 10: Hanoi FC (Vietnam)
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [AGE], [NUMBER]) VALUES
-(10, N'Quan Van Chuan', 'GK', 23, 1),
-(10, N'Do Duy Manh', 'DF', 27, 2),
-(10, N'Do Hung Dung', 'MF', 30, 88),
-(10, N'Nguyen Van Quyet', 'FW', 32, 10),
-(10, N'Pham Tuan Hai', 'FW', 25, 9);
-GO
-
-
-
--- =============================================
--- 1. DATA BẢNG TOURNAMENTS 
--- =============================================
+-- 1. Tạo Giải
 INSERT INTO [dbo].[Tournaments] 
-([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT]) 
+([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
 VALUES
-(N'Champions Cup 2024', N'Europe', '2024-05-01', N'$10,000,000', N'/images/ucl2024.jpg', N'Soccer', 8),
-(N'Premier League Simulation', N'England', '2024-08-12', N'$50,000,000', N'/images/pl.jpg', N'Soccer', 20),
-(N'Friendly Asia Tour', N'Vietnam', '2024-06-15', N'$500,000', N'/images/friendly.jpg', N'Soccer', 4);
-GO
+(N'Champions League Mini 2025', N'Europe', '2025-05-01', N'$10,000,000', N'/images/ucl.jpg', N'Soccer', 4, 'Single', 'Knockout');
 
--- =============================================
--- 2. DATA BẢNG MATCHES
--- =============================================
+-- Lấy ID giải vừa tạo
+SET @TourID = SCOPE_IDENTITY();
 
--- K?CH B?N 1: CHAMPIONS CUP (TournamentID = 1)
+-- 2. Tạo 4 Đội
+INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
+(@TourID, N'Real Madrid', N'Carlo Ancelotti'),
+(@TourID, N'Man City', N'Pep Guardiola'),
+(@TourID, N'Bayern Munich', N'Vincent Kompany'),
+(@TourID, N'Liverpool', N'Arne Slot');
+
+-- Lấy ID các đội vừa tạo để dùng cho việc xếp lịch đấu và thêm cầu thủ
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Real Madrid';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Man City';
+SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Bayern Munich';
+SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Liverpool';
+
+-- 3. Thêm Cầu thủ (Mẫu vài người)
+INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [NUMBER]) VALUES
+(@T1, N'Vinicius Jr', 'FW', 7), (@T1, N'Jude Bellingham', 'MF', 5),
+(@T2, N'Erling Haaland', 'FW', 9), (@T2, N'Kevin De Bruyne', 'MF', 17),
+(@T3, N'Harry Kane', 'FW', 9), (@T3, N'Musiala', 'MF', 42),
+(@T4, N'Mo Salah', 'FW', 11), (@T4, N'Van Dijk', 'DF', 4);
+
+-- 4. Tạo Lịch thi đấu (Bán kết)
 INSERT INTO [dbo].[Matches] 
-([TournamentID], [Round], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+([TournamentID], [Round], [RoundType], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status], [WinnerID]) 
 VALUES
--- Round 1 (Tứ kết)
-(1, 1, 1, NULL, 1, 2, 3, 1, '2024-05-01 20:00:00', N'Santiago Bernabéu', 2, 1),
-(1, 1, 1, NULL, 6, 7, 2, 2, '2024-05-02 20:00:00', N'Allianz Arena', 2, 6),
-(1, 1, 1, NULL, 8, 4, 1, 2, '2024-05-03 20:00:00', N'Parc des Princes', 2, 4),
-(1, 1, 1, NULL, 5, 3, 4, 0, '2024-05-04 20:00:00', N'Anfield', 2, 5),
-
--- Round 2 (Bán kết)
-(1, 2, 1, NULL, 1, 6, NULL, NULL, '2024-05-15 20:00:00', N'Wembley Stadium', 0, NULL),
-(1, 2, 1, NULL, 4, 5, NULL, NULL, '2024-05-16 20:00:00', N'Wembley Stadium', 0, NULL);
+-- Trận 1: Real vs Man City (Đã đá xong, Real thắng)
+(@TourID, 1, 1, @T1, @T2, 3, 1, '2025-05-01 20:00:00', 2, @T1),
+-- Trận 2: Bayern vs Liverpool (Chưa đá)
+(@TourID, 1, 1, @T3, @T4, NULL, NULL, '2025-05-02 20:00:00', 0, NULL);
 
 
--- K?CH B?N 2: FRIENDLY ASIA TOUR (TournamentID = 3)
+-- ======================================================================================
+-- KỊCH BẢN 2: GIẢI SINH VIÊN IT (5 Đội - Vòng tròn/Round Robin)
+-- ======================================================================================
+PRINT N'=== Đang tạo dữ liệu giải 2: IT Student League ===';
+
+-- 1. Tạo Giải
+INSERT INTO [dbo].[Tournaments] 
+([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
+VALUES
+(N'IT Student League 2025', N'Ho Chi Minh City', '2025-09-05', N'5,000,000 VND', N'/images/uit.jpg', N'Soccer', 5, 'Single', 'Round Robin');
+
+SET @TourID = SCOPE_IDENTITY();
+
+-- 2. Tạo 5 Đội
+INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
+(@TourID, N'UIT K17', N'Nguyen Van A'),
+(@TourID, N'BK Polytechnic', N'Tran Van B'),
+(@TourID, N'US Science', N'Le Van C'),
+(@TourID, N'RMIT Tech', N'John Doe'),
+(@TourID, N'FPT Software', N'Pham Van D');
+
+-- Lấy ID
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'UIT K17';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'BK Polytechnic';
+SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'US Science';
+SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'RMIT Tech';
+SELECT @T5 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'FPT Software';
+
+-- 3. Thêm Cầu thủ
+INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [NUMBER]) VALUES
+(@T1, N'Nguyen Van An', 'GK', 1), (@T1, N'Le Tuan Tu', 'FW', 10),
+(@T2, N'Tran Minh', 'MF', 8), (@T3, N'Le Hoang', 'DF', 4);
+
+-- 4. Tạo Lịch đấu (Vòng 1 & Vòng 2)
 INSERT INTO [dbo].[Matches] 
-([TournamentID], [Round], [RoundType], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Location], [Status], [WinnerID]) 
+([TournamentID], [Round], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status]) 
 VALUES
--- Round 1
-(3, 1, 0, N'A', 10, 9, 1, 2, GETDATE(), N'My Dinh Stadium', 1, NULL),
-(3, 1, 0, N'A', 3, 7, NULL, NULL, DATEADD(hour, 2, GETDATE()), N'Thong Nhat Stadium', 0, NULL),
--- Round 2
-(3, 2, 0, N'A', 10, 3, NULL, NULL, DATEADD(day, 3, GETDATE()), N'My Dinh Stadium', 0, NULL),
-(3, 2, 0, N'A', 9, 7, NULL, NULL, DATEADD(day, 3, GETDATE()), N'My Dinh Stadium', 0, NULL);
+-- Vòng 1: UIT vs BK (Đang đá)
+(@TourID, 1, @T1, @T2, 1, 1, GETDATE(), 1),
+-- Vòng 1: US vs RMIT (Chưa đá)
+(@TourID, 1, @T3, @T4, NULL, NULL, DATEADD(DAY, 1, GETDATE()), 0),
+-- Vòng 2: FPT vs UIT (Chưa đá)
+(@TourID, 2, @T5, @T1, NULL, NULL, DATEADD(DAY, 7, GETDATE()), 0);
+
+
+-- ======================================================================================
+-- KỊCH BẢN 3: GIẢI GIAO HỮU VĂN PHÒNG (4 Đội - Group Stage)
+-- ======================================================================================
+PRINT N'=== Đang tạo dữ liệu giải 3: Office Friendly Cup ===';
+
+-- 1. Tạo Giải
+INSERT INTO [dbo].[Tournaments] 
+([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
+VALUES
+(N'Office Friendly Cup', N'Da Nang', '2025-06-15', N'Thùng Bia Heineken', N'/images/beer.jpg', N'Soccer', 4, 'Single', 'Group Stage');
+
+SET @TourID = SCOPE_IDENTITY();
+
+-- 2. Tạo 4 Đội
+INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
+(@TourID, N'Team Marketing', N'Ms. Lan'),
+(@TourID, N'Team Sales', N'Mr. Hung'),
+(@TourID, N'Team Dev', N'Mr. Tuan'),
+(@TourID, N'Team HR', N'Ms. Mai');
+
+-- Lấy ID
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Marketing';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Sales';
+SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Dev';
+SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team HR';
+
+-- 3. Tạo Lịch đấu (Đã đá hết rồi)
+INSERT INTO [dbo].[Matches] 
+([TournamentID], [Round], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [Status], [WinnerID]) 
+VALUES
+(@TourID, 1, N'A', @T1, @T2, 2, 4, 2, @T2), -- Sales thắng
+(@TourID, 1, N'A', @T3, @T4, 5, 1, 2, @T3), -- Dev thắng
+(@TourID, 2, N'A', @T1, @T3, 0, 0, 2, NULL); -- Hòa
+
 GO
+PRINT N'=== ĐÃ TẠO XONG TOÀN BỘ DỮ LIỆU ===';
