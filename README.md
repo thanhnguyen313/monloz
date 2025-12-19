@@ -7,7 +7,7 @@ Project quản lý giải đấu thể thao (Bóng đá), được viết bằng
 
 Dự án được thực hiện bởi 3 thành viên:
 1. **[Tên Thành Viên 1]** - [MSSV]
-2. **[Tên Thành Viên 2]** - [MSSV]
+2. **Lê Vũ Hoàng Nguyên** - 24521182
 3. **[Tên Thành Viên 3]** - [MSSV]
 
 ## 📋 Giới thiệu
