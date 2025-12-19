@@ -57,17 +57,26 @@ namespace TeamListForm
                 }
             }
         }
+        // Load danh sách vòng đấu lên ComboBox
+        private void LoadRounds()
+        {
+            // Lấy danh sách vòng đấu mới nhất từ DB
+            var rounds = DatabaseHelper.GetRounds(_tournamentId);
 
+            // Xử lý hiển thị lên ComboBox
+            choiceRoundComboBox.DataSource = null;
+            if (rounds.Count > 0)
+            {
+                choiceRoundComboBox.DataSource = rounds;
+            }
+        }
+        // Sự kiện Load Form
         private void MatchesScheduleForm_Load(object sender, EventArgs e)
         {
             try
             {
-                // Lấy danh sách vòng đấu đổ vào ComboBox
-                var rounds = DatabaseHelper.GetRounds();
-                if (rounds.Count > 0)
-                {
-                    choiceRoundComboBox.DataSource = rounds;
-                }
+                LoadRounds();
+
                 RecalculateStandings();
                 UpdateButtonState();
             }
@@ -88,7 +97,7 @@ namespace TeamListForm
             string selectedRound = choiceRoundComboBox.SelectedItem.ToString();
 
             // Gọi DatabaseHelper lấy dữ liệu
-            DataTable dt = DatabaseHelper.GetMatchesTable(selectedRound);
+            DataTable dt = DatabaseHelper.GetMatchesTable(_tournamentId, selectedRound);
 
             // Gán vào bảng
             matchesDataGridView.AutoGenerateColumns = false;
@@ -161,6 +170,7 @@ namespace TeamListForm
                 // Gọi hàm tạo vòng tiếp theo (đá knockout dựa trên đội winner hoặc chéo giữa 2 đội đầu bảng)
                 MatchGenerator.GenerateNextRound(_tournamentId);
                 // Load lại giao diện
+                LoadRounds();
                 LoadMatchesToGrid();
                 UpdateButtonState();
                 // Tự động chọn vòng mới nhất vừa tạo

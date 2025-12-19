@@ -378,59 +378,60 @@ FROM Tournaments;";
         //MATCHES
 
         // 1. Lấy danh sách các vòng đấu (để đổ vào ComboBox)
-        public static List<string> GetRounds()
+        public static List<string> GetRounds(int tournamentId) // Nên thêm tham số ID giải
         {
             var rounds = new List<string>();
-            string sql = "SELECT DISTINCT Round FROM Matches ORDER BY Round";
+            // Lọc theo giải đấu hiện tại
+            string sql = "SELECT DISTINCT Round FROM Matches WHERE TournamentID = @tId ORDER BY Round";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
+                cmd.Parameters.AddWithValue("@tId", tournamentId); 
                 conn.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        // Tạo chuỗi hiển thị "Round 1", "Round 2"...
-                        rounds.Add("Round " + reader.GetInt32("Round").ToString());
+                        rounds.Add("Round " + reader.GetInt32(0).ToString());
                     }
                 }
             }
             return rounds;
         }
-
         // 2. Lấy danh sách trận đấu (Có hỗ trợ lọc theo vòng)
-        public static DataTable GetMatchesTable(string roundFilter = "")
+        public static DataTable GetMatchesTable(int tournamentId, string roundFilter = "")
         {
             DataTable dt = new DataTable();
-            
-            // Câu lệnh SQL kết nối 3 bảng: Matches, Teams (Chủ nhà), Teams (Khách)
-            string sql = @"
-                SELECT 
-                    m.ID AS MatchID,
-                    m.Round,
-                    t1.TEAMNAME AS HomeTeamName,
-                    t2.TEAMNAME AS AwayTeamName,
-                    m.HomeScore,
-                    m.AwayScore,
-                    m.HomeTeamID,
-                    m.AwayTeamID
-                FROM Matches m
-                JOIN Teams t1 ON m.HomeTeamID = t1.ID
-                JOIN Teams t2 ON m.AwayTeamID = t2.ID";
 
-            // Nếu có lọc theo vòng (VD: "Round 1" -> Lấy số 1)
+            // Thêm điều kiện TournamentID
+            string sql = @"
+        SELECT 
+            m.ID AS MatchID,
+            m.Round,
+            t1.TEAMNAME AS HomeTeamName,
+            t2.TEAMNAME AS AwayTeamName,
+            m.HomeScore,
+            m.AwayScore,
+            m.HomeTeamID,
+            m.AwayTeamID
+        FROM Matches m
+        JOIN Teams t1 ON m.HomeTeamID = t1.ID
+        JOIN Teams t2 ON m.AwayTeamID = t2.ID
+        WHERE m.TournamentID = @tId"; // [MỚI]
+
             if (!string.IsNullOrEmpty(roundFilter))
             {
-                sql += " WHERE m.Round = @RoundNum";
+                sql += " AND m.Round = @RoundNum"; // [SỬA] Đổi WHERE thành AND vì đã có WHERE ở trên
             }
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
+                cmd.Parameters.AddWithValue("@tId", tournamentId); // [MỚI]
+
                 if (!string.IsNullOrEmpty(roundFilter))
                 {
-                    // Cắt chuỗi "Round 1" lấy số 1
                     string roundNum = roundFilter.Replace("Round ", "").Trim();
                     cmd.Parameters.AddWithValue("@RoundNum", int.Parse(roundNum));
                 }
@@ -439,7 +440,6 @@ FROM Tournaments;";
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
             }
-
             // Thêm cột hiển thị tỷ số (ScoreDisplay) cho đẹp
             dt.Columns.Add("ScoreDisplay", typeof(string));
             foreach (DataRow row in dt.Rows)

@@ -40,53 +40,68 @@ namespace TeamListForm
         // Tạo các vòng tiếp theo 
         public static void GenerateNextRound(int tournamentId)
         {
+            // Xác định vòng lớn nhất hiện tại
             int currentRound = DatabaseHelper.GetMaxRound(tournamentId);
+            // Nếu chưa có vòng nào thì không làm gì cả
             if (currentRound == 0) return;
 
-            // --- KỊCH BẢN 1: TỪ VÒNG BẢNG (ROUND 1) -> KNOCKOUT (ROUND 2) ---
+            // --- LOGIC 1: CHUYỂN TỪ VÒNG BẢNG (ROUND 1) SANG KNOCKOUT (ROUND 2) ---
             if (currentRound == 1)
             {
                 DataTable dtA = DatabaseHelper.GetStandingsTable(tournamentId, "A");
                 DataTable dtB = DatabaseHelper.GetStandingsTable(tournamentId, "B");
-
+                // Kiểm tra điều kiện: Phải có ít nhất 2 đội mỗi bảng
                 if (dtA.Rows.Count < 2 || dtB.Rows.Count < 2)
                 {
-                    MessageBox.Show("Các bảng đấu chưa xác định đủ Top 2.");
+                    MessageBox.Show("Các bảng đấu chưa xác định đủ Top 2 để vào vòng trong.");
                     return;
                 }
-                // Rows[0] là Nhất bảng, Rows[1] là Nhì bảng (do SQL đã sort sẵn Rank)
-                int a1 = Convert.ToInt32(dtA.Rows[0]["TeamID"]);
-                int a2 = Convert.ToInt32(dtA.Rows[1]["TeamID"]);
-
-                int b1 = Convert.ToInt32(dtB.Rows[0]["TeamID"]);
-                int b2 = Convert.ToInt32(dtB.Rows[1]["TeamID"]);
-
-                // Ghép chéo: Nhất A vs Nhì B, Nhất B vs Nhì A
+                // Lấy ID các đội đứng đầu (Dựa vào cột TeamID trả về từ SQL)
+                int a1 = Convert.ToInt32(dtA.Rows[0]["TeamID"]); // Nhất A
+                int a2 = Convert.ToInt32(dtA.Rows[1]["TeamID"]); // Nhì A
+                int b1 = Convert.ToInt32(dtB.Rows[0]["TeamID"]); // Nhất B
+                int b2 = Convert.ToInt32(dtB.Rows[1]["TeamID"]); // Nhì B
+                // Tạo Round 2: Ghép chéo (Nhất bảng này gặp Nhì bảng kia)
                 DatabaseHelper.InsertMatch(tournamentId, 2, 1, a1, b2, null);
                 DatabaseHelper.InsertMatch(tournamentId, 2, 1, b1, a2, null);
 
-                MessageBox.Show("Đã tạo lịch thi đấu Vòng 2 (Knockout)!");
+                MessageBox.Show("Đã tạo lịch thi đấu Vòng 2 (Bán kết)!");
+                return;
+            }
+            // --- LOGIC 2: TỪ CÁC VÒNG SAU (ROUND 2 -> 3 -> 4...) ---
+            // Logic này dùng chung cho Bán kết -> Chung kết, hoặc Tứ kết -> Bán kết...
+
+            // Lấy danh sách người thắng của vòng hiện tại
+            List<int> winners = DatabaseHelper.GetWinnersFromRound(tournamentId, currentRound);
+
+            // Kiểm tra các điều kiện dừng
+            if (winners.Count == 0)
+            {
+                MessageBox.Show("Chưa có kết quả của vòng hiện tại. Hãy cập nhật tỉ số trước.");
                 return;
             }
 
-            // --- KỊCH BẢN 2: TỪ ROUND 2 TRỞ ĐI (KNOCKOUT -> KNOCKOUT) ---
-            List<int> winners = DatabaseHelper.GetWinnersFromRound(tournamentId, currentRound);
-
-            if (winners.Count == 0) { MessageBox.Show("Chưa có kết quả của vòng trước."); return; }
-            if (winners.Count == 1) { MessageBox.Show($"Đã tìm ra VÔ ĐỊCH! Team ID: {winners[0]}"); return; }
-
-            // Trộn ngẫu nhiên
-            Random rng = new Random();
-            winners = winners.OrderBy(x => rng.Next()).ToList();
-
+            if (winners.Count == 1)
+            {
+                MessageBox.Show($"GIẢI ĐẤU KẾT THÚC! Nhà Vô Địch là Team ID: {winners[0]}");
+                return;
+            }
+            // Tính số vòng tiếp theo (Tăng dần: 2 -> 3, 3 -> 4...)
             int nextRound = currentRound + 1;
+            // Ghép cặp đấu
             for (int i = 0; i < winners.Count; i += 2)
             {
+                // Đảm bảo còn đủ cặp
                 if (i + 1 < winners.Count)
                 {
-                    DatabaseHelper.InsertMatch(tournamentId, nextRound, 1, winners[i], winners[i + 1], null);
+                    int team1 = winners[i];
+                    int team2 = winners[i + 1];
+
+                    // Insert vào DB với Round = nextRound
+                    DatabaseHelper.InsertMatch(tournamentId, nextRound, 1, team1, team2, null);
                 }
             }
+
             MessageBox.Show($"Đã tạo lịch thi đấu Vòng {nextRound}!");
         }
     }
