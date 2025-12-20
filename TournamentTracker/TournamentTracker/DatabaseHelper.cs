@@ -16,15 +16,19 @@ namespace TeamListForm
         private static string connectionString = @"Data Source=DESKTOP-LOJ3INE\SQLEXPRESS;Initial Catalog=TournamentTracker;Integrated Security=True;TrustServerCertificate=True;";
 
         // TEAMS
-        public static List<Team> GetTeams(string search = "")
+        public static List<Team> GetTeams(int tournamentId, string search = "")
         {
             var teams = new List<Team>();
-            string sql = "SELECT ID, TEAMNAME, COACH FROM Teams"; // SELECT 
-            if (!string.IsNullOrWhiteSpace(search)) sql += " WHERE TEAMNAME LIKE @search";
-            // Kết nối DB
+
+            // Câu lệnh SQL thêm điều kiện: WHERE TournamentID = @tID
+            string sql = "SELECT ID, TEAMNAME, COACH, TournamentID FROM Teams WHERE TournamentID = @tID";
+
+            if (!string.IsNullOrWhiteSpace(search)) sql += " AND TEAMNAME LIKE @search";
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
+                cmd.Parameters.AddWithValue("@tID", tournamentId); // <--- QUAN TRỌNG
                 if (!string.IsNullOrWhiteSpace(search)) cmd.Parameters.AddWithValue("@search", $"%{search}%");
 
                 conn.Open();
@@ -34,41 +38,114 @@ namespace TeamListForm
                     {
                         teams.Add(new Team
                         {
-                            ID = reader.GetInt32("ID"),
-                            TEAMNAME = reader.GetString("TEAMNAME"),
-                            COACH = reader.IsDBNull("COACH") ? "" : reader.GetString("COACH")
+                            ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                            // Map thêm TournamentID
+                            TournamentID = reader.GetInt32(reader.GetOrdinal("TournamentID")),
+                            TEAMNAME = reader.GetString(reader.GetOrdinal("TEAMNAME")),
+                            COACH = reader.IsDBNull(reader.GetOrdinal("COACH")) ? "" : reader.GetString(reader.GetOrdinal("COACH"))
                         });
                     }
                 }
             }
             return teams;
         }
-        // TEAM CRUD FUNCTION
-        public static bool CheckTeam(string team) // Xem có tồn tại team này chưa ?
+        // CRUD FUNCTION
+        public static bool CheckTeam(string teamName, int tournamentId)
         {
-            string query = "SELECT COUNT(*) FROM Teams WHERE TEAMNAME=@TN";
+            // Thêm điều kiện AND TournamentID = @tID
+            string query = "SELECT COUNT(*) FROM Teams WHERE TEAMNAME=@TN AND TournamentID=@tID";
+
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@TN", team);
+                cmd.Parameters.AddWithValue("@TN", teamName);
+                cmd.Parameters.AddWithValue("@tID", tournamentId); // <--- QUAN TRỌNG
+
                 conn.Open();
                 int count = (int)cmd.ExecuteScalar();
-                // nếu đã tồn tại TEAMNAME return false, ngược lại return true
-                return count == 0;
+                return count == 0; // True nếu chưa có (không trùng)
             }
         }
-        public static void InsertTeam(Team team)
+        public static void InsertTeam(Team team, int tournamentId)
         {
-            string sql = "INSERT INTO Teams (TEAMNAME, COACH) VALUES (@TEAMNAME, @COACH)";
+            // Thêm cột TournamentID vào câu lệnh INSERT
+            string sql = "INSERT INTO Teams (TEAMNAME, COACH, TournamentID) VALUES (@TEAMNAME, @COACH, @tID)";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(sql, conn))
             {
                 cmd.Parameters.AddWithValue("@TEAMNAME", team.TEAMNAME);
                 cmd.Parameters.AddWithValue("@COACH", string.IsNullOrWhiteSpace(team.COACH) ? (object)DBNull.Value : team.COACH);
+                cmd.Parameters.AddWithValue("@tID", tournamentId); 
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
+            }
+        }
+        public DataRow GetTournamentById(int id)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string query = "SELECT * FROM Tournaments WHERE ID = @id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@id", id);
+
+                DataTable dt = new DataTable();
+                new SqlDataAdapter(cmd).Fill(dt);
+
+                if (dt.Rows.Count > 0) return dt.Rows[0];
+                return null;
+            }
+        }
+
+        // 2. Cập nhật giải đấu
+        public bool UpdateTournament(int id, string name, string location, DateTime startDate, string prize, string posterPath, string sport, int teamCount,
+                              string mode, string s1Format, string s2Format)
+        {
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    // Cập nhật thêm 3 cột: FormatMode, Stage1Format, Stage2Format
+                    string query = @"UPDATE Tournaments 
+                             SET NAME = @name, 
+                                 LOCATION = @location, 
+                                 STARTDATE = @startDate, 
+                                 PRIZE = @prize, 
+                                 POSTERPATH = @posterPath, 
+                                 SPORT = @sport, 
+                                 TEAM_COUNT = @teamCount,
+                                 FormatMode = @mode,
+                                 Stage1Format = @s1,
+                                 Stage2Format = @s2
+                             WHERE ID = @id";
+
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    // --- CÁC THAM SỐ CŨ ---
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@name", name);
+                    cmd.Parameters.AddWithValue("@location", string.IsNullOrEmpty(location) ? (object)DBNull.Value : location);
+                    cmd.Parameters.AddWithValue("@startDate", startDate);
+                    cmd.Parameters.AddWithValue("@prize", string.IsNullOrEmpty(prize) ? (object)DBNull.Value : prize);
+                    cmd.Parameters.AddWithValue("@posterPath", string.IsNullOrEmpty(posterPath) ? (object)DBNull.Value : posterPath);
+                    cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
+                    cmd.Parameters.AddWithValue("@teamCount", teamCount);
+
+                    // --- 3 THAM SỐ MỚI (QUAN TRỌNG) ---
+                    cmd.Parameters.AddWithValue("@mode", mode);       // Ví dụ: "Single" hoặc "Multi"
+                    cmd.Parameters.AddWithValue("@s1", s1Format);     // Ví dụ: "Knockout"
+                    cmd.Parameters.AddWithValue("@s2", string.IsNullOrEmpty(s2Format) ? (object)DBNull.Value : s2Format);
+
+                    return cmd.ExecuteNonQuery() > 0;
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show("Lỗi Update: " + ex.Message);
+                    return false;
+                }
             }
         }
         public static void UpdateTeam(Team team)
@@ -242,7 +319,7 @@ namespace TeamListForm
         }
 
         //Tournaments database
-        public bool AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount)
+        public int AddTournament(string name, string location, DateTime? startDate, string prize, string posterPath, string sport, int teamCount, string mode, string s1Format, string s2Format) 
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
 
@@ -250,27 +327,12 @@ namespace TeamListForm
                 try
                 {
                     conn.Open();
-
-                    // --- BƯỚC 1: FIX LỖI THIẾU CỘT (TỰ ĐỘNG SỬA DB) ---
-                    string fixSql = @"
-                IF COL_LENGTH('dbo.Tournaments', 'SPORT') IS NULL
-                    ALTER TABLE dbo.Tournaments ADD SPORT NVARCHAR(50) NULL;
-                
-                IF COL_LENGTH('dbo.Tournaments', 'TEAM_COUNT') IS NULL
-                    ALTER TABLE dbo.Tournaments ADD TEAM_COUNT INT DEFAULT 0;
-            ";
-                    using (SqlCommand fixCmd = new SqlCommand(fixSql, conn))
-                    {
-                        fixCmd.ExecuteNonQuery();
-                    }
-                    // ----------------------------------------------------
-
-                    // BƯỚC 2: THÊM DỮ LIỆU NHƯ BÌNH THƯỜNG
+                    // Thêm: SELECT CAST(SCOPE_IDENTITY() AS INT) để lấy ID vừa tạo ngay lập tức
                     string query = @"INSERT INTO Tournaments 
-                           (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT) 
-                           VALUES 
-                           (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount)";
-
+               (NAME, LOCATION, STARTDATE, PRIZE, POSTERPATH, SPORT, TEAM_COUNT, CreatedBy, FormatMode, Stage1Format, Stage2Format) 
+               VALUES 
+               (@name, @location, @startDate, @prize, @posterPath, @sport, @teamCount, @createdBy, @mode, @s1, @s2);
+               SELECT CAST(SCOPE_IDENTITY() AS INT);";
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     cmd.Parameters.AddWithValue("@name", name);
@@ -280,15 +342,17 @@ namespace TeamListForm
                     cmd.Parameters.AddWithValue("@posterPath", string.IsNullOrEmpty(posterPath) ? (object)DBNull.Value : posterPath);
                     cmd.Parameters.AddWithValue("@sport", string.IsNullOrEmpty(sport) ? (object)DBNull.Value : sport);
                     cmd.Parameters.AddWithValue("@teamCount", teamCount);
-
-                    int rowsAffected = cmd.ExecuteNonQuery();
-                    return rowsAffected > 0;
+                    cmd.Parameters.AddWithValue("@createdBy", UserSession.CurrentUserId);
+                    cmd.Parameters.AddWithValue("@mode", mode);
+                    cmd.Parameters.AddWithValue("@s1", s1Format);
+                    cmd.Parameters.AddWithValue("@s2", string.IsNullOrEmpty(s2Format) ? (object)DBNull.Value : s2Format);
+                    var result = cmd.ExecuteScalar();
+                    return result != null ? Convert.ToInt32(result) : -1;
                 }
                 catch (Exception ex)
                 {
-                    // Hiện lỗi chi tiết để debug
-                    System.Windows.Forms.MessageBox.Show("Lỗi Database: " + ex.Message);
-                    return false;
+                    MessageBox.Show("Error: " + ex.Message);
+                    return -1; // Trả về -1 nếu lỗi
                 }
             }
         }
@@ -312,17 +376,23 @@ namespace TeamListForm
         }
 
         // 2. Lấy giải đấu của người khác (FIND / EXPLORE)
-        public DataTable GetOtherTournaments(int currentUserId)
+        // Thêm tham số string keyword mặc định là rỗng
+         public DataTable GetOtherTournaments(int currentUserId, string keyword = "")
         {
             DataTable dt = new DataTable();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                // Lấy tất cả giải MÀ KHÔNG PHẢI do mình tạo (CreatedBy != ID hoặc CreatedBy IS NULL)
-                string query = "SELECT * FROM Tournaments WHERE (CreatedBy <> @uid OR CreatedBy IS NULL) ORDER BY ID DESC";
+
+                // --- SỬA Ở ĐÂY ---
+                // Bỏ điều kiện "(CreatedBy <> @uid)" đi để nó lấy TOÀN BỘ giải trên hệ thống
+                string query = @"SELECT * FROM Tournaments 
+                         WHERE (@key = '' OR NAME LIKE N'%' + @key + '%') 
+                         ORDER BY ID DESC";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@uid", currentUserId);
+                // cmd.Parameters.AddWithValue("@uid", currentUserId); // Không cần dòng này nữa
+                cmd.Parameters.AddWithValue("@key", keyword);
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
@@ -424,8 +494,9 @@ namespace TeamListForm
                 }
                 else
                 {
-                    // Chế độ TÌM KIẾM: Đếm giải của người khác (hoặc toàn bộ public)
-                    whereClause = "WHERE (CreatedBy <> @uid OR CreatedBy IS NULL)";
+                    // Chế độ TÌM KIẾM: Đếm TOÀN BỘ (không cần WHERE hoặc WHERE 1=1)
+                    // Bạn muốn đếm cả của mình và người khác thì bỏ điều kiện lọc đi
+                    whereClause = "";
                 }
 
                 string query = $@"
@@ -434,10 +505,14 @@ namespace TeamListForm
                 SUM(CASE WHEN STARTDATE > GETDATE() THEN 1 ELSE 0 END) AS UpcomingTournaments,
                 SUM(CASE WHEN STARTDATE <= GETDATE() THEN 1 ELSE 0 END) AS StartedOrFinishedTournaments
             FROM Tournaments
-            {whereClause}"; // Chèn điều kiện lọc vào đây
+            {whereClause}";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@uid", userId);
+                // Chỉ truyền tham số nếu câu lệnh có dùng @uid
+                if (isMyTournamentMode)
+                {
+                    cmd.Parameters.AddWithValue("@uid", userId);
+                }
 
                 SqlDataAdapter adapter = new SqlDataAdapter(cmd);
                 adapter.Fill(dt);
@@ -445,7 +520,60 @@ namespace TeamListForm
                 return dt.Rows.Count > 0 ? dt.Rows[0] : null;
             }
         }
+        public DataTable GetTournamentsByFilter(int userId, string filterMode)
+        {
+            DataTable dt = new DataTable();
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            {
+                conn.Open();
+                string sql = "SELECT * FROM Tournaments WHERE (CreatedBy <> @uid OR CreatedBy IS NULL) ";
 
+                // Nối thêm điều kiện dựa vào nút bấm
+                switch (filterMode)
+                {
+                    case "Active":
+                        // Đang diễn ra: Ngày bắt đầu <= Hôm nay
+                        sql += " AND STARTDATE <= CAST(GETDATE() AS DATE)";
+                        break;
+                    case "Upcoming":
+                        // Sắp tới: Ngày bắt đầu > Hôm nay
+                        sql += " AND STARTDATE > CAST(GETDATE() AS DATE)";
+                        break;
+                    case "HighPrize":
+                        // Ví dụ: Lọc giải thưởng lớn (Logic này tuỳ bạn xử lý chuỗi tiền tệ)
+                        // sql += " ... "; 
+                        sql += " ORDER BY PRIZE DESC"; // Sắp xếp tiền to lên đầu
+                        break;
+                    case "Recently":
+                        sql += " ORDER BY ID DESC"; // Mới tạo nhất
+                        break;
+                    case "All":
+                    default:
+                        // Mặc định sắp xếp theo ngày
+                        sql += " ORDER BY ID DESC";
+                        break;
+                }
+
+                // Nếu câu lệnh chưa có ORDER BY thì thêm mặc định
+                if (!sql.Contains("ORDER BY")) sql += " ORDER BY STARTDATE ASC";
+
+                SqlCommand cmd = new SqlCommand(sql, conn);
+                cmd.Parameters.AddWithValue("@uid", userId);
+
+                SqlDataAdapter adapter = new SqlDataAdapter(cmd);
+                adapter.Fill(dt);
+            }
+            return dt;
+        }
+        // =============================================================
+        // PHẦN 4: TOURNAMENTS & MATCHES (CẬP NHẬT MỚI)
+        // =============================================================
+
+        // [MỚI] 1. Lấy danh sách Giải đấu (Để đổ vào ComboBox chọn giải)
+        public static DataTable GetTournaments()
+        {
+            DataTable dt = new DataTable();
+            string sql = "SELECT ID, NAME FROM Tournaments"; // Lấy ID và Tên giải
 
         //MATCHES
 

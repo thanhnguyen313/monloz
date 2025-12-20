@@ -120,6 +120,9 @@ namespace TeamListForm
         // Hiển thị bảng xếp hạng
         private void RecalculateStandings()
         {
+            // Lấy dữ liệu trận đấu CHỈ CỦA GIẢI NÀY
+            DataTable dtMatches = DatabaseHelper.GetMatchesTable(_tournamentId, "");
+            var originalTeams = DatabaseHelper.GetTeams(_tournamentId);
             try
             {
                 // Gọi Stored Procedure qua DatabaseHelper để lấy bảng xếp hạng đã tính sẵn
@@ -276,6 +279,7 @@ namespace TeamListForm
 
     public class Match
     {
+        public int TournamentID { get; set; }
         public int MatchId { get; set; }
         public int Round { get; set; }
         public Team? HomeTeam { get; set; }
