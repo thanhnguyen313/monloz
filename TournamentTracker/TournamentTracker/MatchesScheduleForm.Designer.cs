@@ -58,6 +58,7 @@
             titleLabel = new Label();
             btnStart = new Button();
             btnNextRound = new Button();
+            InforButton = new Button();
             ((System.ComponentModel.ISupportInitialize)matchesDataGridView).BeginInit();
             ((System.ComponentModel.ISupportInitialize)standingsDataGridView).BeginInit();
             SuspendLayout();
@@ -130,6 +131,7 @@
             matchesDataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             matchesDataGridView.Size = new Size(585, 355);
             matchesDataGridView.TabIndex = 3;
+            matchesDataGridView.CellDoubleClick += matchesDataGridView_CellDoubleClick;
             // 
             // colHome
             // 
@@ -385,6 +387,21 @@
             btnNextRound.Text = "NEXT ROUND";
             btnNextRound.UseVisualStyleBackColor = false;
             btnNextRound.Click += btnNextRound_Click;
+            // InforButton
+            // 
+            InforButton.AutoSize = true;
+            InforButton.BackColor = Color.Transparent;
+            InforButton.FlatAppearance.BorderSize = 0;
+            InforButton.FlatStyle = FlatStyle.Flat;
+            InforButton.Font = new Font("Segoe UI", 30F, FontStyle.Regular, GraphicsUnit.Pixel);
+            InforButton.ForeColor = Color.White;
+            InforButton.Location = new Point(582, 96);
+            InforButton.Name = "InforButton";
+            InforButton.Size = new Size(62, 52);
+            InforButton.TabIndex = 0;
+            InforButton.Text = "⌞⌝";
+            InforButton.UseVisualStyleBackColor = false;
+            InforButton.Click += InforButton_Click;
             // 
             // MatchesScheduleForm
             // 
@@ -396,6 +413,7 @@
             ClientSize = new Size(1282, 773);
             Controls.Add(btnNextRound);
             Controls.Add(btnStart);
+            Controls.Add(InforButton);
             Controls.Add(titleLabel);
             Controls.Add(standingsLabel);
             Controls.Add(standingsDataGridView);
@@ -442,6 +460,7 @@
         private DataGridViewTextBoxColumn colAway;
         private Button btnStart;
         private Button btnNextRound;
+        private Button InforButton;
     }
 }
 
