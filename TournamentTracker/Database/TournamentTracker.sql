@@ -97,134 +97,132 @@ CREATE TABLE [dbo].[Matches](
 GO
 
 
+
+
 -- ======================================================================================
--- KHAI BÁO CÁC BIẾN CẦN DÙNG (Để lưu ID tự động)
+-- BƯỚC 1: KHAI BÁO BIẾN (Dùng chung cho cả script)
 -- ======================================================================================
 DECLARE @TourID INT;
-DECLARE @T1 INT, @T2 INT, @T3 INT, @T4 INT, @T5 INT;
+DECLARE @T1 INT, @T2 INT, @T3 INT; -- Biến lưu ID đội bóng
+
+PRINT N'=== BẮT ĐẦU TẠO DỮ LIỆU MẪU ===';
 
 -- ======================================================================================
--- KỊCH BẢN 1: GIẢI CHAMPIONS LEAGUE MINI (4 Đội - Knockout)
+-- KỊCH BẢN 1: GIẢI "MINI CUP 2025" (3 Đội - Đá vòng tròn - Đã đá xong)
 -- ======================================================================================
-PRINT N'=== Đang tạo dữ liệu giải 1: Champions League Mini ===';
+PRINT N'--- Đang tạo giải 1: Mini Cup 2025 ---';
 
 -- 1. Tạo Giải
 INSERT INTO [dbo].[Tournaments] 
 ([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
 VALUES
-(N'Champions League Mini 2025', N'Europe', '2025-05-01', N'$10,000,000', N'/images/ucl.jpg', N'Soccer', 4, 'Single', 'Knockout');
-
--- Lấy ID giải vừa tạo
-SET @TourID = SCOPE_IDENTITY();
-
--- 2. Tạo 4 Đội
-INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
-(@TourID, N'Real Madrid', N'Carlo Ancelotti'),
-(@TourID, N'Man City', N'Pep Guardiola'),
-(@TourID, N'Bayern Munich', N'Vincent Kompany'),
-(@TourID, N'Liverpool', N'Arne Slot');
-
--- Lấy ID các đội vừa tạo để dùng cho việc xếp lịch đấu và thêm cầu thủ
-SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Real Madrid';
-SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Man City';
-SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Bayern Munich';
-SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Liverpool';
-
--- 3. Thêm Cầu thủ (Mẫu vài người)
-INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [NUMBER]) VALUES
-(@T1, N'Vinicius Jr', 'FW', 7), (@T1, N'Jude Bellingham', 'MF', 5),
-(@T2, N'Erling Haaland', 'FW', 9), (@T2, N'Kevin De Bruyne', 'MF', 17),
-(@T3, N'Harry Kane', 'FW', 9), (@T3, N'Musiala', 'MF', 42),
-(@T4, N'Mo Salah', 'FW', 11), (@T4, N'Van Dijk', 'DF', 4);
-
--- 4. Tạo Lịch thi đấu (Bán kết)
-INSERT INTO [dbo].[Matches] 
-([TournamentID], [Round], [RoundType], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status], [WinnerID]) 
-VALUES
--- Trận 1: Real vs Man City (Đã đá xong, Real thắng)
-(@TourID, 1, 1, @T1, @T2, 3, 1, '2025-05-01 20:00:00', 2, @T1),
--- Trận 2: Bayern vs Liverpool (Chưa đá)
-(@TourID, 1, 1, @T3, @T4, NULL, NULL, '2025-05-02 20:00:00', 0, NULL);
-
-
--- ======================================================================================
--- KỊCH BẢN 2: GIẢI SINH VIÊN IT (5 Đội - Vòng tròn/Round Robin)
--- ======================================================================================
-PRINT N'=== Đang tạo dữ liệu giải 2: IT Student League ===';
-
--- 1. Tạo Giải
-INSERT INTO [dbo].[Tournaments] 
-([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
-VALUES
-(N'IT Student League 2025', N'Ho Chi Minh City', '2025-09-05', N'5,000,000 VND', N'/images/uit.jpg', N'Soccer', 5, 'Single', 'Round Robin');
+(N'Mini Cup 2025', N'Hanoi', '2025-01-10', N'10,000,000 VND', N'/images/mini.jpg', N'Soccer', 3, 'Single', 'Round Robin');
 
 SET @TourID = SCOPE_IDENTITY();
 
--- 2. Tạo 5 Đội
+-- 2. Tạo 3 Đội
 INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
-(@TourID, N'UIT K17', N'Nguyen Van A'),
-(@TourID, N'BK Polytechnic', N'Tran Van B'),
-(@TourID, N'US Science', N'Le Van C'),
-(@TourID, N'RMIT Tech', N'John Doe'),
-(@TourID, N'FPT Software', N'Pham Van D');
+(@TourID, N'Red Dragon FC', N'Coach Red'),
+(@TourID, N'Blue Shark FC', N'Coach Blue'),
+(@TourID, N'Green Tiger FC', N'Coach Green');
 
 -- Lấy ID
-SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'UIT K17';
-SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'BK Polytechnic';
-SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'US Science';
-SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'RMIT Tech';
-SELECT @T5 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'FPT Software';
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Red Dragon FC';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Blue Shark FC';
+SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Green Tiger FC';
+
+-- 3. Thêm Cầu thủ (Mỗi đội 1 người đại diện)
+INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [NUMBER]) VALUES
+(@T1, N'Nguyen Van Do', 'FW', 10),
+(@T2, N'Tran Van Xanh', 'MF', 8),
+(@T3, N'Le Van La', 'DF', 4);
+
+-- 4. Tạo Lịch đấu (3 Round - Tất cả đã kết thúc)
+INSERT INTO [dbo].[Matches] 
+([TournamentID], [Round], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status], [WinnerID]) 
+VALUES
+-- Round 1: Red vs Blue
+(@TourID, 1, @T1, @T2, 2, 1, '2025-01-10 18:00:00', 2, @T1),
+-- Round 2: Blue vs Green
+(@TourID, 2, @T2, @T3, 1, 1, '2025-01-12 18:00:00', 2, NULL), -- Hòa
+-- Round 3: Green vs Red
+(@TourID, 3, @T3, @T1, 0, 3, '2025-01-14 18:00:00', 2, @T1);
+
+
+-- ======================================================================================
+-- KỊCH BẢN 2: GIẢI "SIÊU CÚP ANH" (2 Đội - Best of 3)
+-- ======================================================================================
+PRINT N'--- Đang tạo giải 2: Super Cup Series ---';
+
+-- 1. Tạo Giải
+INSERT INTO [dbo].[Tournaments] 
+([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
+VALUES
+(N'Super Cup Series', N'London', '2025-06-01', N'$1,000,000', N'/images/super.jpg', N'Soccer', 2, 'Single', 'Knockout');
+
+SET @TourID = SCOPE_IDENTITY();
+
+-- 2. Tạo 2 Đội
+INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
+(@TourID, N'Arsenal', N'Mikel Arteta'),
+(@TourID, N'Chelsea', N'Enzo Maresca');
+
+-- Lấy ID
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Arsenal';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Chelsea';
 
 -- 3. Thêm Cầu thủ
 INSERT INTO [dbo].[Players] ([IDTEAM], [PLAYERNAME], [POSITION], [NUMBER]) VALUES
-(@T1, N'Nguyen Van An', 'GK', 1), (@T1, N'Le Tuan Tu', 'FW', 10),
-(@T2, N'Tran Minh', 'MF', 8), (@T3, N'Le Hoang', 'DF', 4);
+(@T1, N'Saka', 'FW', 7),
+(@T2, N'Palmer', 'MF', 20);
 
--- 4. Tạo Lịch đấu (Vòng 1 & Vòng 2)
+-- 4. Tạo Lịch đấu (3 Round - 1 trận xong, 1 đang đá, 1 chưa đá)
 INSERT INTO [dbo].[Matches] 
-([TournamentID], [Round], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status]) 
+([TournamentID], [Round], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status], [WinnerID]) 
 VALUES
--- Vòng 1: UIT vs BK (Đang đá)
-(@TourID, 1, @T1, @T2, 1, 1, GETDATE(), 1),
--- Vòng 1: US vs RMIT (Chưa đá)
-(@TourID, 1, @T3, @T4, NULL, NULL, DATEADD(DAY, 1, GETDATE()), 0),
--- Vòng 2: FPT vs UIT (Chưa đá)
-(@TourID, 2, @T5, @T1, NULL, NULL, DATEADD(DAY, 7, GETDATE()), 0);
+-- Round 1: Lượt đi (Xong)
+(@TourID, 1, @T1, @T2, 2, 0, GETDATE()-2, 2, @T1), 
+-- Round 2: Lượt về (Đang diễn ra)
+(@TourID, 2, @T2, @T1, 1, 1, GETDATE(), 1, NULL),
+-- Round 3: Chung kết (Chưa đá)
+(@TourID, 3, @T1, @T2, NULL, NULL, GETDATE()+7, 0, NULL);
 
 
 -- ======================================================================================
--- KỊCH BẢN 3: GIẢI GIAO HỮU VĂN PHÒNG (4 Đội - Group Stage)
+-- KỊCH BẢN 3: GIẢI "GIAO HỮU MÙA HÈ" (3 Đội - Có 1 đội được miễn vòng 1)
 -- ======================================================================================
-PRINT N'=== Đang tạo dữ liệu giải 3: Office Friendly Cup ===';
+PRINT N'--- Đang tạo giải 3: Summer Friendly ---';
 
 -- 1. Tạo Giải
 INSERT INTO [dbo].[Tournaments] 
 ([NAME], [LOCATION], [STARTDATE], [PRIZE], [POSTERPATH], [SPORT], [TEAM_COUNT], [FormatMode], [Stage1Format]) 
 VALUES
-(N'Office Friendly Cup', N'Da Nang', '2025-06-15', N'Thùng Bia Heineken', N'/images/beer.jpg', N'Soccer', 4, 'Single', 'Group Stage');
+(N'Summer Friendly 2025', N'Da Nang', '2025-07-20', N'Cúp Vàng', N'/images/summer.jpg', N'Soccer', 3, 'Single', 'Knockout');
 
 SET @TourID = SCOPE_IDENTITY();
 
--- 2. Tạo 4 Đội
+-- 2. Tạo 3 Đội
 INSERT INTO [dbo].[Teams] ([TournamentID], [TEAMNAME], [COACH]) VALUES
-(@TourID, N'Team Marketing', N'Ms. Lan'),
-(@TourID, N'Team Sales', N'Mr. Hung'),
-(@TourID, N'Team Dev', N'Mr. Tuan'),
-(@TourID, N'Team HR', N'Ms. Mai');
+(@TourID, N'Hanoi FC', N'Coach HN'),
+(@TourID, N'Da Nang FC', N'Coach DN'),
+(@TourID, N'Hai Phong FC', N'Coach HP');
 
 -- Lấy ID
-SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Marketing';
-SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Sales';
-SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team Dev';
-SELECT @T4 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Team HR';
+SELECT @T1 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Hanoi FC';
+SELECT @T2 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Da Nang FC';
+SELECT @T3 = ID FROM Teams WHERE TournamentID = @TourID AND TEAMNAME = N'Hai Phong FC';
 
--- 3. Tạo Lịch đấu (Đã đá hết rồi)
+-- 3. Tạo Lịch đấu
+-- Giả sử Hanoi FC được đặc cách vào thẳng chung kết (Round 2)
 INSERT INTO [dbo].[Matches] 
-([TournamentID], [Round], [GroupName], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [Status], [WinnerID]) 
+([TournamentID], [Round], [HomeTeamID], [AwayTeamID], [HomeScore], [AwayScore], [MatchDate], [Status]) 
 VALUES
-(@TourID, 1, N'A', @T1, @T2, 2, 4, 2, @T2), -- Sales thắng
-(@TourID, 1, N'A', @T3, @T4, 5, 1, 2, @T3), -- Dev thắng
-(@TourID, 2, N'A', @T1, @T3, 0, 0, 2, NULL); -- Hòa
+-- Round 1: Da Nang vs Hai Phong (Loại trực tiếp) - Chưa đá
+(@TourID, 1, @T2, @T3, NULL, NULL, '2025-07-20 15:00:00', 0),
+
+-- Round 2: Hanoi FC vs (Người thắng cặp trên - Tạm để NULL AwayTeamID hoặc điền tạm ID đội T2 để test)
+-- Ở đây mình set tạm là Hanoi vs Da Nang (dự kiến)
+(@TourID, 2, @T1, @T2, NULL, NULL, '2025-07-25 15:00:00', 0);
 
 GO
-PRINT N'=== ĐÃ TẠO XONG TOÀN BỘ DỮ LIỆU ===';
+PRINT N'=== HOÀN TẤT TẠO DỮ LIỆU ===';
