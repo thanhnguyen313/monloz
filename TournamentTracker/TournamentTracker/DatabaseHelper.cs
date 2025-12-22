@@ -820,50 +820,54 @@ namespace TeamListForm
         //  Hàm gọi Stored Procedure chia bảng
         public static bool GenerateGroupStage(int tournamentId, int numberOfGroups)
         {
-            try
+            using (SqlConnection conn = new SqlConnection(connectionString))
+            using (SqlCommand cmd = new SqlCommand("sp_GenerateGroupStage", conn))
             {
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.AddWithValue("@TournamentID", tournamentId);
+                cmd.Parameters.AddWithValue("@NumberOfGroups", numberOfGroups);
+
+                try
                 {
-                    using (SqlCommand cmd = new SqlCommand("sp_GenerateGroupStage", conn))
-                    {
-                        cmd.CommandType = CommandType.StoredProcedure;
-
-                        // Truyền 2 tham số quan trọng cho SQL
-                        cmd.Parameters.AddWithValue("@TournamentID", tournamentId);
-                        cmd.Parameters.AddWithValue("@NumberOfGroups", numberOfGroups);
-
-                        conn.Open();
-                        cmd.ExecuteNonQuery();
-                    }
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    return true;
                 }
-                return true; // Chạy xong không lỗi là thành công
-            }
-            catch (Exception ex)
-            {
-                // Ghi log lỗi nếu cần
-                Console.WriteLine(ex.Message);
-                return false;
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Lỗi SQL: " + ex.Message);
+                    return false;
+                }
             }
         }
         // Hàm lấy số bảng của giải đấu
         public static int GetTournamentGroupCount(int tournamentId)
         {
-            int count = 1; // Mặc định là 1 bảng nếu tìm không thấy
-            using (SqlConnection conn = new SqlConnection(connectionString)) 
+            // Mặc định là 1 bảng (nếu lỗi hay gì cũng về 1 cho an toàn)
+            int defaultCount = 1;
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 string query = "SELECT GroupCount FROM Tournaments WHERE ID = @ID";
                 SqlCommand cmd = new SqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@ID", tournamentId);
 
-                conn.Open();
-                object result = cmd.ExecuteScalar();
-
-                if (result != null && result != DBNull.Value)
+                try
                 {
-                    count = Convert.ToInt32(result);
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    if (result != null && int.TryParse(result.ToString(), out int count))
+                    {
+                        // Nếu > 0 thì lấy, còn không (hoặc âm) thì lấy mặc định
+                        return count > 0 ? count : defaultCount;
+                    }
+                }
+                catch
+                {
+                    // "Im lặng là vàng" :v 
                 }
             }
-            return count; // Trả về số lượng bảng
+            return defaultCount;
         }
     }
 }

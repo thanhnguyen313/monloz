@@ -9,34 +9,26 @@ namespace TeamListForm
 {
     public class MatchGenerator
     {
+        // Tạo vòng bảng (Round 1)
         public static void GenerateRound1(int tournamentId)
         {
-            try
+            // Lấy số bảng cần chia từ Database
+            int numGroups = DatabaseHelper.GetTournamentGroupCount(tournamentId);
+            // Kiểm tra số lượng đội
+            var teams = DatabaseHelper.GetTeams(tournamentId);
+            if (teams.Count < numGroups * 2)
             {
-                // Lấy số lượng bảng mà người dùng đã cài đặt lúc tạo giải
-                int numGroups = DatabaseHelper.GetTournamentGroupCount(tournamentId);
-                if (numGroups < 1) numGroups = 1;
-                // Gọi SQL để tự động chia bảng và tạo lịch
-                DatabaseHelper.GenerateGroupStage(tournamentId, numGroups);
-                MessageBox.Show($"Đã tạo lịch thi đấu xong cho {numGroups} bảng!");
+                MessageBox.Show($"Không đủ đội! Cần ít nhất {numGroups * 2} đội để chia {numGroups} bảng.");
+                return;
             }
-            catch (Exception ex)
-            {
-                throw new Exception("Lỗi khi tạo Vòng 1: " + ex.Message);
-            }
-        }
-        private static void CreateRoundRobin(int tId, List<int> teams, string groupName)
-        {
-            for (int i = 0; i < teams.Count; i++)
-            {
-                for (int j = i + 1; j < teams.Count; j++)
-                {
-                    // Round 1, Type 0 (Vòng bảng)
-                    DatabaseHelper.InsertMatch(tId, 1, 0, teams[i], teams[j], groupName);
-                }
-            }
-        }
+            // Gọi SQL để nó tự Random và Chia bảng
+            bool success = DatabaseHelper.GenerateGroupStage(tournamentId, numGroups);
 
+            if (success)
+            {
+                MessageBox.Show($"Đã chia xong {numGroups} bảng đấu ngẫu nhiên!");
+            }
+        }
         // Tạo các vòng tiếp theo 
         public static void GenerateNextRound(int tournamentId)
         {
