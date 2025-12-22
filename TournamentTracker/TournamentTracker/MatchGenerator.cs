@@ -11,28 +11,20 @@ namespace TeamListForm
     {
         public static void GenerateRound1(int tournamentId)
         {
-            // Lấy danh sách đội tham gia giải đấu
-            List<Team> teamsInTournament = DatabaseHelper.GetTeamsByTournament(tournamentId);
-            // Kiểm tra điều kiện số lượng đội
-            if (teamsInTournament.Count < 4)
+            try
             {
-                MessageBox.Show("Cần ít nhất 4 đội để bắt đầu giải đấu.");
-                return;
+                // Lấy số lượng bảng mà người dùng đã cài đặt lúc tạo giải
+                int numGroups = DatabaseHelper.GetTournamentGroupCount(tournamentId);
+                if (numGroups < 1) numGroups = 1;
+                // Gọi SQL để tự động chia bảng và tạo lịch
+                DatabaseHelper.GenerateGroupStage(tournamentId, numGroups);
+                MessageBox.Show($"Đã tạo lịch thi đấu xong cho {numGroups} bảng!");
             }
-            // Lấy danh sách ID để thực hiện chia bảng
-            List<int> allTeamIds = teamsInTournament.Select(t => t.ID).ToList();
-            // Chia 2 bảng A và B
-            int mid = allTeamIds.Count / 2;
-            var groupA = allTeamIds.Take(mid).ToList();
-            var groupB = allTeamIds.Skip(mid).ToList();
-
-            // Hàm con tạo lịch vòng tròn
-            CreateRoundRobin(tournamentId, groupA, "A");
-            CreateRoundRobin(tournamentId, groupB, "B");
-
-            MessageBox.Show("Đã tạo lịch thi đấu Vòng Bảng (Round 1)!");
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi tạo Vòng 1: " + ex.Message);
+            }
         }
-
         private static void CreateRoundRobin(int tId, List<int> teams, string groupName)
         {
             for (int i = 0; i < teams.Count; i++)

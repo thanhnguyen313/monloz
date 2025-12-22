@@ -162,42 +162,46 @@ namespace TeamListForm
 
         private void btnStart_Click(object sender, EventArgs e)
         {
-            List<Team> teams = DatabaseHelper.GetTeams(_tournamentId);
-            if (teams.Count < 2)
+            try
             {
-                MessageBox.Show("Cần ít nhất 2 đội để bắt đầu giải đấu!");
-                return;
-            }
-
-            // Có thể check thêm: teams.Count < (Số bảng * 2) thì cảnh báo...
-
-            // 2. Gọi SQL để chia bảng và xếp lịch (Code Mới)
-            DatabaseHelper db = new DatabaseHelper();
-            bool success = db.GenerateSchedule(_tournamentId);
-
-            if (success)
-            {
-                MessageBox.Show("Đã sinh lịch thi đấu và chia bảng thành công!", "Thành công");
-
-                // 3. Load lại giao diện
-                LoadRounds(); // Load danh sách vòng (Round 1, 2...)
-
-                // Tự động chọn Round 1
-                if (choiceRoundComboBox.Items.Count > 0)
+                // Lấy thông tin cấu hình của giải (Số bảng cần chia)
+                int groupCount = DatabaseHelper.GetTournamentGroupCount(_tournamentId);
+                // Lấy danh sách đội để kiểm tra
+                List<Team> teams = DatabaseHelper.GetTeams(_tournamentId);
+                // CHECK 1: Không có đội
+                if (teams.Count == 0)
                 {
-                    choiceRoundComboBox.SelectedIndex = 0;
+                    MessageBox.Show("Giải đấu chưa có đội nào đăng ký!", "Cảnh báo");
+                    return;
+                }
+                // CHECK 2: Số đội không đủ để chia (Mỗi bảng tối thiểu 2 đội)
+                if (teams.Count < groupCount * 2)
+                {
+                    MessageBox.Show($"Không đủ đội! Bạn muốn chia {groupCount} bảng thì cần tối thiểu {groupCount * 2} đội.\nHiện tại chỉ có: {teams.Count} đội.", "Lỗi cấu hình");
+                    return;
+                }
+                // Gọi hàm sinh lịch (Truyền thêm groupCount)
+                bool success = DatabaseHelper.GenerateGroupStage(_tournamentId, groupCount);
+                if (success)
+                {
+                    MessageBox.Show($"Đã chia ngẫu nhiên thành {groupCount} bảng và tạo lịch thi đấu!", "Thành công");
+                    // 4. Cập nhật giao diện
+                    LoadRounds();
+                    // Tự động chọn Round 1 nếu có
+                    if (choiceRoundComboBox.Items.Count > 0)
+                        choiceRoundComboBox.SelectedIndex = 0;
+                    else
+                        LoadMatchesToGrid();
+                    UpdateButtonState(); // Ẩn Start, hiện Next
                 }
                 else
                 {
-                    // Fallback nếu combo chưa kịp update
-                    LoadMatchesToGrid();
+                    MessageBox.Show("Lỗi khi gọi Stored Procedure. Vui lòng thử lại.", "Lỗi");
                 }
-
-                UpdateButtonState(); // Ẩn nút Start, hiện nút Next
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Lỗi khi sinh lịch thi đấu. Vui lòng kiểm tra lại số lượng đội!", "Lỗi");
+                MessageBox.Show("Lỗi hệ thống: " + ex.Message);
             }
         }
         private void btnNextRound_Click(object sender, EventArgs e)

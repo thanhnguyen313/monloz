@@ -13,7 +13,7 @@ namespace TeamListForm
 {
     internal class DatabaseHelper
     {
-        private static string connectionString = @"Data Source=localhost;Initial Catalog=TournamentTracker;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=False;TrustServerCertificate=True;Command Timeout=30";
+        private static string connectionString = @"Data Source=DESKTOP-LOJ3INE\SQLEXPRESS;Integrated Security=True;Persist Security Info=False;Pooling=False;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=True;Application Name=""SQL Server Management Studio"";Command Timeout=30";
 
         // TEAMS
         public static List<Team> GetTeams(int tournamentId, string search = "")
@@ -817,40 +817,53 @@ namespace TeamListForm
                 return (int)cmd.ExecuteScalar();
             }
         }
-        public bool GenerateSchedule(int tournamentId)
+        //  Hàm gọi Stored Procedure chia bảng
+        public static bool GenerateGroupStage(int tournamentId, int numberOfGroups)
         {
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                try
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand("sp_GenerateGroupStage", conn))
+                    {
+                        cmd.CommandType = CommandType.StoredProcedure;
 
-                    // 1. Lấy thông tin GroupCount của giải này trước
-                    // (Vì SP cần biết chia làm mấy bảng)
-                    string getInfoSql = "SELECT GroupCount FROM Tournaments WHERE ID = @id";
-                    SqlCommand cmdGet = new SqlCommand(getInfoSql, conn);
-                    cmdGet.Parameters.AddWithValue("@id", tournamentId);
+                        // Truyền 2 tham số quan trọng cho SQL
+                        cmd.Parameters.AddWithValue("@TournamentID", tournamentId);
+                        cmd.Parameters.AddWithValue("@NumberOfGroups", numberOfGroups);
 
-                    object result = cmdGet.ExecuteScalar();
-                    int groupCount = (result != null && result != DBNull.Value) ? Convert.ToInt32(result) : 1;
-
-                    // 2. Gọi Stored Procedure để sinh lịch
-                    SqlCommand cmd = new SqlCommand("sp_GenerateGroupStage", conn);
-                    cmd.CommandType = CommandType.StoredProcedure; // Quan trọng!
-
-                    cmd.Parameters.AddWithValue("@TournamentID", tournamentId);
-                    cmd.Parameters.AddWithValue("@NumberOfGroups", groupCount);
-
-                    cmd.ExecuteNonQuery(); // Chạy lệnh SQL
-
-                    return true;
+                        conn.Open();
+                        cmd.ExecuteNonQuery();
+                    }
                 }
-                catch (Exception ex)
+                return true; // Chạy xong không lỗi là thành công
+            }
+            catch (Exception ex)
+            {
+                // Ghi log lỗi nếu cần
+                Console.WriteLine(ex.Message);
+                return false;
+            }
+        }
+        // Hàm lấy số bảng của giải đấu
+        public static int GetTournamentGroupCount(int tournamentId)
+        {
+            int count = 1; // Mặc định là 1 bảng nếu tìm không thấy
+            using (SqlConnection conn = new SqlConnection(connectionString)) 
+            {
+                string query = "SELECT GroupCount FROM Tournaments WHERE ID = @ID";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@ID", tournamentId);
+
+                conn.Open();
+                object result = cmd.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
                 {
-                    // System.Windows.Forms.MessageBox.Show("Lỗi sinh lịch: " + ex.Message);
-                    return false;
+                    count = Convert.ToInt32(result);
                 }
             }
+            return count; // Trả về số lượng bảng
         }
     }
 }
